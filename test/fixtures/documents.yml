@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  uploaded_at: 2021-03-08 13:05:38
+  expired_at: 2021-03-08 13:05:38
+  url: MyString
+  user: one
+
+two:
+  name: MyString
+  uploaded_at: 2021-03-08 13:05:38
+  expired_at: 2021-03-08 13:05:38
+  url: MyString
+  user: two
