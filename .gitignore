@@ -41,3 +41,6 @@ private_key.pem
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+private_key.pem
+public_key.pem
