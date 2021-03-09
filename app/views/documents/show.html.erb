@@ -1,29 +1,39 @@
-<p id="notice"><%= notice %></p>
+<div class="pb-5 border-b border-gray-200 sm:pb-0">
+  <h3 class="text-center text-2xl leading-6 font-medium text-gray-700 mt-5 mb-8">
+    policy-book-2021-for-public-distribution.pdf
+  </h3>
+  <div class="mt-3 sm:mt-4">
+    <!-- Dropdown menu on small screens -->
+    <div class="sm:hidden">
+      <label for="selected-tab" class="sr-only">Select a tab</label>
+      <select id="selected-tab" name="selected-tab" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-orange focus:border-orange sm:text-sm rounded-md">
+        <option selected>Manage</option>
 
-<p>
-  <strong>Name:</strong>
-  <%= @document.name %>
-</p>
+        <option>Tracking</option>
 
-<p>
-  <strong>Uploaded at:</strong>
-  <%= @document.uploaded_at %>
-</p>
+        <option>Share</option>
+      </select>
+    </div>
+    <!-- Tabs at small breakpoint and up -->
+    <div class="hidden sm:block">
+      <nav class="-mb-px flex space-x-8">
+        <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg" aria-current="page">
+          Manage
+        </a>
 
-<p>
-  <strong>Expired at:</strong>
-  <%= @document.expired_at %>
-</p>
+        <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg">
+          Tracking
+        </a>
 
-<p>
-  <strong>Url:</strong>
-  <%= @document.url %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @document.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_document_path(@document) %> |
-<%= link_to 'Back', documents_path %>
+        <!-- Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" -->
+        <a href="#" class="border-orange text-orange whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg">
+          Share
+        </a>
+      </nav>
+    </div>
+  </div>
+</div>
+<div class="bg-white overflow-hidden text-gray-700">
+  <%= render('tracking') %>
+  <!-- render 'share', tracking, render manage, -->
+</div>
