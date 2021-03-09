@@ -2,8 +2,9 @@ require 'date'
 
 class DownloadsController < ApplicationController
   def show
+    # dummy data for now. needs to be integrated with the database.
     file_name = "graham-cookies.zip"
-    resource = "https://d1u2b9f4x0ygob.cloudfront.net/#{file_name}?response-content-disposition=attachment;"
+    resource = "https://dvt9gv73mq47e.cloudfront.net/#{file_name}?response-content-disposition=attachment;"
 
     signer = Aws::CloudFront::UrlSigner.new({
         key_pair_id: Rails.application.credentials.cloudfront[:public_key_id],
@@ -11,8 +12,8 @@ class DownloadsController < ApplicationController
         private_key: Rails.application.credentials.cloudfront[:private_key]
       })
 
+    # update for shorter expiration time
     @signed_url = signer.signed_url(resource, expires: Date.today + 1)
-    puts "*****************\nSigned URL: #{@signed_url}\n********************"
     redirect_to @signed_url
   end
 end
