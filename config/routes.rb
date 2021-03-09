@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  root 'downloads#index', as: 'download'
+
   get 'about/show'
-  get 'downloads/show'
+  put 'downloads' => 'downloads#show'
+  
   resources :documents
   get 'session/login'
   get 'session/logout'
