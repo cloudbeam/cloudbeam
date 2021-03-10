@@ -31,8 +31,8 @@ class DocumentsController < ApplicationController
     # get url key from attachment blob
     key = @document.upload.key
     # run model method to set remaining properties
-    # @document.set_properties_after_upload(session[:user_id], key)
-    @document.set_properties_after_upload(1, key)
+    @document.set_properties_after_upload(session[:user_id], key)
+    # @document.set_properties_after_upload(1, key)
 
     respond_to do |format|
       if @document.save

@@ -16,13 +16,13 @@
     <%= form.text_field :name %>
   </div>
   
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
+  <%# <div class="field"> %>
+    <%# <%= form.label :user_id %> 
+    <%# <%= form.text_field :user_id %>
+  <%# </div> %>
   <!-- This will need to be dynamically assigned to session id 
-  <%= form.hidden_field :user_id, :value => 1 %>
   -->
+  <%= form.hidden_field :user_id, :value => session[:user_id] %>
 
   <div class="field">
     <%= form.label :upload %>
