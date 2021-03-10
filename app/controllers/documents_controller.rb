@@ -60,6 +60,9 @@ class DocumentsController < ApplicationController
 
   # DELETE /documents/1 or /documents/1.json
   def destroy
+    # remove active storage entry and trigger removal from S3
+    @document.upload.purge
+
     @document.destroy
     respond_to do |format|
       format.html { redirect_to documents_url, notice: "Document was successfully destroyed." }
