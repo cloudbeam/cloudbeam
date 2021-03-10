@@ -3,11 +3,16 @@ class DocumentsController < ApplicationController
 
   # GET /documents or /documents.json
   def index
+    if session[:user_id] == nil then
+      redirect_to get_login_url, alert: "You need to be logged in to do that"
+    end
     @documents = Document.all
   end
 
   # GET /documents/1 or /documents/1.json
   def show
+    @document = Document.find(params[:id])
+    @recipients = DocumentRecipient.where(document_id: params[:id])
   end
 
   # GET /documents/new
@@ -21,13 +26,11 @@ class DocumentsController < ApplicationController
 
   # POST /documents or /documents.json
   def create
-    # create new document object with only name and attachment
-    @document = Document.create!(document_params)
-    # get url key from attachment blob
-    key = @document.upload.key
-    # run model method to set remaining properties
-    # @document.set_properties_after_upload(session[:user_id], key)
-    @document.set_properties_after_upload(1, key)
+    doc_params = params[:document]
+    name = doc_params[:name]
+    url = doc_params[:url]
+    user_id = session[:user_id] || 1
+    @document = Document.new(name: name, url: url, user_id: user_id)
 
     respond_to do |format|
       if @document.save
@@ -63,13 +66,13 @@ class DocumentsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_document
-    @document = Document.find(params[:id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_document
+      @document = Document.find(params[:id])
+    end
 
-  # Only allow a list of trusted parameters through.
-  def document_params
-    params.require(:document).permit(:name, :user_id, :upload)
-  end
+    # Only allow a list of trusted parameters through.
+    def document_params
+      params.require(:document).permit(:name, :uploaded_at, :expired_at, :url, :user_id)
+    end
 end

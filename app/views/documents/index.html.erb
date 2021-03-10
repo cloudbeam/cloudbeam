@@ -3,109 +3,129 @@
     My Files
   </h3>
 </div>
-<div class="flex text-base text-gray-700 px-7 mb-9 text-center">
-  <p>Click a file name to track or manage its share status. Once all recipients have used their unique code to download a file, it is removed from the temporary file store.</p>
-</div>
-<div class="flex flex-col">
-  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-        <table class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-gray-50">
-            <tr>
-              <th scope="col" class="w-1/2 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                File name
-              </th>
-              <th scope="col" class="w-1/2 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Date Uploaded
-              </th>
-              <th scope="col" class="w-1/8 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Times Shared
-              </th>
-              <th scope="col" class="w-1/8 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Times Downloaded
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Odd row -->
-            <tr class="bg-white">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-navy">
-                global-training-manual.zip
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                02/29/2021
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                80
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                16
-              </td>
-            </tr>
+<% if @documents.count > 0 then %>
+  <div class="flex text-base text-gray-700 px-7 mb-9 text-center">
+    <p>Click a file name to track or manage its share status. Once all recipients have used their unique code to download a file, it is removed from the temporary file store.</p>
+  </div>
+  <div class="flex flex-col">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="w-1/2 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  File name
+                </th>
+                <th scope="col" class="w-1/2 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Date Uploaded
+                </th>
+                <th scope="col" class="w-1/8 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Times Shared
+                </th>
+                <th scope="col" class="w-1/8 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Times Downloaded
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <% @documents.each.with_index do |document, index| %>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-navy">
+                      <%= link_to document[:name], document_dashboard_path(document.id) %>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <%= document.created_at %>
+                    </td>
+                  </tr>
+                <% end %>
+                
+              
+              
+              <!-- Odd row -->
+              <tr class="bg-white">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-navy">
+                  global-training-manual.zip
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  02/29/2021
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  80
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  16
+                </td>
+              </tr>
 
-            <!-- Even row -->
-            <tr class="bg-gray-50">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-navy">
-                policy-book-2021-for-public-distribution.pdf
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                03/01/2021
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                4
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                2
-              </td>
-            </tr>
+              <!-- Even row -->
+              <tr class="bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-navy">
+                  policy-book-2021-for-public-distribution.pdf
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  03/01/2021
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  4
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  2
+                </td>
+              </tr>
 
-            <!-- Odd row -->
-            <tr class="bg-white">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-navy">
-                training-videos-for-staff.mp4
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                03/02/2021
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                6
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                3
-              </td>
-            </tr>
+              <!-- Odd row -->
+              <tr class="bg-white">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-navy">
+                  training-videos-for-staff.mp4
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  03/02/2021
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  6
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  3
+                </td>
+              </tr>
 
-            <!-- Even row -->
-            <tr class="bg-gray-50">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-navy">
-                locality-rules-example.pdf
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                02/28/2021
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                3
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                1
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              <!-- Even row -->
+              <tr class="bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-navy">
+                  locality-rules-example.pdf
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  02/28/2021
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  3
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  1
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% else %>
+  <tr>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-navy">
+      <em><strong>You have no files! Get started by uploading one</strong></em>
+    </td>
+  </tr>
+<% end %>
 <div>
   <div class="clearfix mt-5 mb-2 text-gray-700">
     <div class="flex text-sm pb-5">
       <p class="w-80">Note that the maximum storage time for a file is 30 days, regardless of whether all recipients have downloaded the content.</p>
     </div>
-    <a href="/documents/new">Upload a new file</a>
-    <button type="button" class="float-right items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-orange hover:bg-turqoise focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-turqoise">
-    Upload a new file
-    </button>
+    <%= link_to "Upload a new file", upload_file_path, class: "float-right items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-orange hover:bg-turqoise focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-turqoise" %>
+    
   </div>
   <div class="clearfix">
     <p class="float-right w-60 text-xs text-right text-gray-700">First, upload a new file. Next, you'll be able to share it with your whole team!

@@ -1,73 +1,77 @@
-<div class="mt-5  border-b border-gray-200">
-  <p class="text-gray-700">There are <b>8</b> recipients who still have not downloaded the file. Once all recipients have downloaded the file, it will be deleted and removed from your active files dashboard.</p><br>
-  <p>Visit the 'Share' tab to share this file with more recipients.</p>
-  <div class="clearfix">
-    <p class="float-right w-72 text-sm text-gray-700"><b>Need to share elsewhere?</b> No problem! Share the user's unique link with them however you like, and we will track their download activity as usual.</p>
-  </div>
-  <div class="flex flex-col mt-5 mb-10">
-    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-          <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-              <tr>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/3">
-                  Recipient e-mail
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Date shared
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Downloaded
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Recipient's link
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Odd row -->
-              <tr class="bg-white h-70">
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                  sally@example.com
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  01/13/2021
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                  No<br><button class="text-blue-400 background-transparent font-normal text-sm outline-none focus:outline-none" type="button" style="transition: all .15s ease">
-                  send again</button>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <button class="text-blue-400 background-transparent font-normal text-sm outline-none focus:outline-none" type="button" style="transition: all .15s ease" disabled>
-                    copy to clipboard
-                  </button>
-                </td>
-              </tr>
+<div class="mt-5  border-b border-gray-200 hidden" id="tracking">
+  <% if recipients.count > 0 then %>
+    <p class="text-gray-700">There are <b><%= recipients.where(downloaded_at: nil).count %></b> recipients who still have not downloaded the file. Once all recipients have downloaded the file, it will be deleted and removed from your active files dashboard.</p><br>
+    <p>Visit the 'Share' tab to share this file with more recipients.</p>
+    <div class="clearfix">
+      <p class="float-right w-72 text-sm text-gray-700"><b>Need to share elsewhere?</b> No problem! Share the user's unique link with them however you like, and we will track their download activity as usual.</p>
+    </div>
+    <div class="flex flex-col mt-5 mb-10">
+      <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+          <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/3">
+                    Recipient e-mail
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Date shared
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Downloaded
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Recipient's link
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Odd row -->
+                <tr class="bg-white h-70">
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                    sally@example.com
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    01/13/2021
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                    No<br><button class="text-blue-400 background-transparent font-normal text-sm outline-none focus:outline-none" type="button" style="transition: all .15s ease">
+                    send again</button>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <button class="text-blue-400 background-transparent font-normal text-sm outline-none focus:outline-none" type="button" style="transition: all .15s ease" disabled>
+                      copy to clipboard
+                    </button>
+                  </td>
+                </tr>
 
-              <!-- Even row -->
-              <tr class="bg-gray-50 h-70">
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                  bob@example.com
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  2/16/2021
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  Yes
-                </td>
-                <td class="whitespace-nowrap text-sm text-gray-500 px-6">
-                  <button class="text-gray-400 background-transparent font-normal text-sm outline-none focus:outline-none" type="button" style="transition: all .15s ease" disabled>
-                    copy to clipboard
-                  </button>
-                </td>
-              </tr>
+                <!-- Even row -->
+                <tr class="bg-gray-50 h-70">
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                    bob@example.com
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    2/16/2021
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    Yes
+                  </td>
+                  <td class="whitespace-nowrap text-sm text-gray-500 px-6">
+                    <button class="text-gray-400 background-transparent font-normal text-sm outline-none focus:outline-none" type="button" style="transition: all .15s ease" disabled>
+                      copy to clipboard
+                    </button>
+                  </td>
+                </tr>
 
-              <!-- More items... -->
-            </tbody>
-          </table>
+                <!-- More items... -->
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% else %>
+    <p>You have not shared this file with anyone</p>
+  <% end %>
 </div>
