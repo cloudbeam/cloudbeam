@@ -1,6 +1,6 @@
 <div class="pb-5 border-b border-gray-200 sm:pb-0">
   <h3 class="text-center text-2xl leading-6 font-medium text-gray-700 mt-5 mb-8">
-    policy-book-2021-for-public-distribution.pdf
+    <%= @document.name %>
   </h3>
   <div class="mt-3 sm:mt-4">
     <!-- Dropdown menu on small screens -->
@@ -16,17 +16,17 @@
     </div>
     <!-- Tabs at small breakpoint and up -->
     <div class="hidden sm:block">
-      <nav class="-mb-px flex space-x-8">
-        <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg" aria-current="page">
+      <nav class="-mb-px flex space-x-8" id="file-navpane">
+        <a href="#" data-ref="manage" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg" aria-current="page">
           Manage
         </a>
 
-        <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg">
+        <a href="#" data-ref="tracking" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg">
           Tracking
         </a>
 
         <!-- Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" -->
-        <a href="#" class="border-orange text-orange whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg">
+        <a href="#" data-ref="share" class="border-orange text-orange whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg">
           Share
         </a>
       </nav>
@@ -34,6 +34,45 @@
   </div>
 </div>
 <div class="bg-white overflow-hidden text-gray-700">
-  <%= render('tracking') %>
-  <!-- render 'share', tracking, render manage, -->
+  <%= render 'manage', document: @document, recipients: @recipients %>
+  <%= render('tracking', recipients: @recipients) %>
+  <%= render 'share' %>
+  
 </div>
+
+<script>
+  self.activePane = null;
+  self.activePane = "manage";
+  document.querySelector("#file-navpane").addEventListener('click', e => {
+    e.preventDefault();
+    console.log('clicked');
+    let a = e.target.closest('a');
+    if (a) {
+      let refId = a.dataset.ref
+      if (refId == self.activePane) {
+        return;
+      }
+      let pane = document.querySelector(`#${refId}`);
+      pane.classList.remove("hidden");
+      pane.classList.add("active");
+      document.querySelector(`#${self.activePane}`).classList.add("hidden");
+      document.querySelector(`#${self.activePane}`).classList.remove("active");
+      document.querySelector(`[data-ref="${self.activePane}"`).classList.remove("selected");
+      document.querySelector(`[data-ref="${refId}"`).classList.add("selected");
+      self.activePane = refId;
+    }
+  });
+  document.querySelector("#clear").addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector("#about").value = ""
+  });
+  // self.copyButtons = document.querySelectorAll(".copy");
+  // Array.from(copyButtons).forEach(copyButton => {
+  //   let code = copyButton.previousElementSibling;
+  //   copyButton.addEventListener('click', e => {
+  //     e.preventDefault();
+  //     code.select();
+  //     document.execCommand('copy');
+  //   });
+  // });
+</script>
