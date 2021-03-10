@@ -6,12 +6,16 @@
       <p class="text-center w-2/3 mx-auto pb-5">Each unique code allows for a single download.</p>
     </div>
     <div class="w-1/2 px-8 mx-auto mb-10 clearfix">
-      <label for="email" class="sr-only">code</label>
-      <input type="text" name="email" id="email" class="ml-3 mb-2 h-10 inline-block shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-2/3 text-base border-gray-300 rounded-md" placeholder="my share code">
+      <%= form_with url: "/", method: :put, local: true do |form| %>
+        <%= form.text_field :download_code, value: @download_code, placeholder: 'my share code', class: "ml-3 mb-2 h-10 inline-block shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-2/3 text-base border-gray-300 rounded-md" %>
+        <%= form.submit "Download", class: "h-10 px-6 inline-block items-center px-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-orange hover:bg-turqoise focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700" %>
+      <% end %>
       <!-- <button type="button" class="h-10 px-6 inline-block items-center px-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-orange hover:bg-turqoise focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700">
       Download
       </button> -->
-      <%= button_to "Download", downloads_path, method: :put, class: "h-10 px-6 inline-block items-center px-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-orange hover:bg-turqoise focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700" %>
+      <% if @notice then %>
+        <p><%= @notice %></p>
+      <% end %>
       <p class="text-right text-xs float-right w-48 mr-7 text-gray-600">If a file has been shared with you via Bugle, the unique share code has been e-mailed to you.</p>
     </div>
   </div>

@@ -3,11 +3,16 @@ class DocumentsController < ApplicationController
 
   # GET /documents or /documents.json
   def index
+    if session[:user_id] == nil then
+      redirect_to get_login_url, alert: "You need to be logged in to do that"
+    end
     @documents = Document.all
   end
 
   # GET /documents/1 or /documents/1.json
   def show
+    @document = Document.find(params[:id])
+    @recipients = DocumentRecipient.where(document_id: params[:id])
   end
 
   # GET /documents/new
@@ -21,7 +26,11 @@ class DocumentsController < ApplicationController
 
   # POST /documents or /documents.json
   def create
-    @document = Document.new(document_params)
+    doc_params = params[:document]
+    name = doc_params[:name]
+    url = doc_params[:url]
+    user_id = session[:user_id] || 1
+    @document = Document.new(name: name, url: url, user_id: user_id)
 
     respond_to do |format|
       if @document.save

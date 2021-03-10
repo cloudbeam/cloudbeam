@@ -5,18 +5,26 @@
         <div class="flex float-right items-center">
           <div class="hidden md:block">
             <div class="flex items-baseline space-x-4">
-              <a href="#" class="bg-cyan-700 text-white hover:text-turqoise px-3 py-2 rounded-md text-lg font-medium">About</a>
+              <%= link_to "About", about_path, class: "bg-cyan-700 text-white hover:text-turqoise px-3 py-2 rounded-md text-lg font-medium" %>
 
-              <a href="#" class="text-white hover:text-turqoise px-3 py-2 rounded-md text-lg font-medium">Download</a>
+              <%= link_to "Download", download_path, class: "text-white hover:text-turqoise px-3 py-2 rounded-md text-lg font-medium" %>
 
-              <a href="#" class="text-white hover:text-turqoise px-3 py-2 rounded-md text-lg font-medium">My Files</a>
+              <%= link_to "My Files", documents_dashboard_path, class: "text-white hover:text-turqoise px-3 py-2 rounded-md text-lg font-medium" %>
+              
             </div>
           </div>
         </div>
         <div class="hidden md:block">
           <div class="ml-4 flex items-center md:ml-6">
             <div class="ml-3 relative">
-              <a href="#" class="text-white hover:text-turqoise px-3 py-2 rounded-md text-lg font-medium">Sign Out</a>
+              <% if session[:user_id] == nil then %>
+                <%= link_to "Login", get_login_path, class: "text-white hover:text-turqoise px-3 py-2 rounded-md text-lg font-medium" %>
+              <% else %>
+                <%= link_to "Logout", logout_path, class: "text-white hover:text-turqoise px-3 py-2 rounded-md text-lg font-medium" %>
+              <% end %>
+              <% if session[:user_id] == nil then %>
+                <%= link_to "Signup", get_signup_path, class: "text-white hover:text-turqoise px-3 py-2 rounded-md text-lg font-medium" %>
+              <% end %>
             </div>
           </div>
         </div>
