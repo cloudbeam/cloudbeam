@@ -27,7 +27,10 @@ class DocumentsController < ApplicationController
   # POST /documents or /documents.json
   def create
     # create new document object with only name and attachment
+    puts 'Hi'
+    puts params[:document]
     @document = Document.create!(document_params)
+    puts @document
     # get url key from attachment blob
     key = @document.upload.key
     # run model method to set remaining properties
@@ -78,6 +81,6 @@ class DocumentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def document_params
-      params.require(:document).permit(:name, :uploaded_at, :expired_at, :url, :user_id)
+      params.require(:document).permit(:name, :uploaded_at, :expired_at, :url, :user_id, :upload)
     end
 end
