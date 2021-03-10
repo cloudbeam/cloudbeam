@@ -26,11 +26,13 @@ class DocumentsController < ApplicationController
 
   # POST /documents or /documents.json
   def create
-    doc_params = params[:document]
-    name = doc_params[:name]
-    url = doc_params[:url]
-    user_id = session[:user_id] || 1
-    @document = Document.new(name: name, url: url, user_id: user_id)
+    # create new document object with only name and attachment
+    @document = Document.create!(document_params)
+    # get url key from attachment blob
+    key = @document.upload.key
+    # run model method to set remaining properties
+    @document.set_properties_after_upload(session[:user_id], key)
+    # @document.set_properties_after_upload(1, key)
 
     respond_to do |format|
       if @document.save
@@ -58,6 +60,9 @@ class DocumentsController < ApplicationController
 
   # DELETE /documents/1 or /documents/1.json
   def destroy
+    # remove active storage entry and trigger removal from S3
+    @document.upload.purge
+
     @document.destroy
     respond_to do |format|
       format.html { redirect_to documents_url, notice: "Document was successfully destroyed." }

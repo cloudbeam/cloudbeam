@@ -4,6 +4,7 @@
     <div id="error_explanation">
       <h2><%= pluralize(@document.errors.count, "error") %> prohibited this user from being saved:</h2>
 
+<<<<<<< HEAD
       <ul>
         <% @document.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -23,3 +24,8 @@
   <br>
   <%= form.submit "Submit" %>
 <% end %>
+=======
+<%= render 'form', document: @document %>
+
+<%= link_to 'Back', documents_path %>
+>>>>>>> dynamic-branch
