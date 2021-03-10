@@ -21,7 +21,13 @@ class DocumentsController < ApplicationController
 
   # POST /documents or /documents.json
   def create
-    @document = Document.new(document_params)
+    # create new document object with only name and attachment
+    @document = Document.create!(document_params)
+    # get url key from attachment blob
+    key = @document.upload.key
+    # run model method to set remaining properties
+    # @document.set_properties_after_upload(session[:user_id], key)
+    @document.set_properties_after_upload(1, key)
 
     respond_to do |format|
       if @document.save
@@ -57,13 +63,13 @@ class DocumentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_document
-      @document = Document.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_document
+    @document = Document.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def document_params
-      params.require(:document).permit(:name, :uploaded_at, :expired_at, :url, :user_id)
-    end
+  # Only allow a list of trusted parameters through.
+  def document_params
+    params.require(:document).permit(:name, :user_id, :upload)
+  end
 end
