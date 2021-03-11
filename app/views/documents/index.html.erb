@@ -36,76 +36,17 @@
                       <%= link_to document[:name], document_dashboard_path(document.id) %>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <%= document.created_at %>
+                      <%= created_at_local_time(document) %>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <%= document.find_total_times_shared %>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <%= document.find_total_times_downloaded %>
                     </td>
                   </tr>
                 <% end %>
-                
               
-              
-              <!-- Odd row -->
-              <tr class="bg-white">
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-navy">
-                  global-training-manual.zip
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  02/29/2021
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  80
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  16
-                </td>
-              </tr>
-
-              <!-- Even row -->
-              <tr class="bg-gray-50">
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-navy">
-                  policy-book-2021-for-public-distribution.pdf
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  03/01/2021
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  4
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  2
-                </td>
-              </tr>
-
-              <!-- Odd row -->
-              <tr class="bg-white">
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-navy">
-                  training-videos-for-staff.mp4
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  03/02/2021
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  6
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  3
-                </td>
-              </tr>
-
-              <!-- Even row -->
-              <tr class="bg-gray-50">
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-navy">
-                  locality-rules-example.pdf
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  02/28/2021
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  3
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  1
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
