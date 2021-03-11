@@ -1,29 +1,23 @@
 <div class="mt-5  border-b border-gray-200 hidden" id="share">
-  <div>
-    <label for="email" class="px-1 block text-base font-medium text-gray-700">Recipeint emails<span class="text-xs"> (comma separated)</span></label>
+  <%= form_with(url: "/distribute/#{@document.id}", method: :post, local: true, class: "sm:col-span-6 mt-3") do |form| %>
+    <%= form.label :recipients, 'Recipient email <span class="text-xs"> (comma separated)</span>', class:"px-1 block text-base font-medium text-gray-700" %>
     <div class="mt-1">
-      <input type="text" name="email" id="email" class="shadow-sm focus:ring-indigo-500 focus:border-gray-500 block w-full sm:text-base border-gray-300 rounded-md" placeholder="you@example.com, friend@example.com">
+      <%= form.text_field :recipients, class: "shadow-sm focus:ring-indigo-500 focus:border-gray-500 block w-full sm:text-base border-gray-300 rounded-md", placeholder: "you@example.com, friend@example.com" %>
     </div>
-    <div class="sm:col-span-6 mt-3">
-      <label for="about" class="px-1 block text-base font-medium text-gray-700">
-        Message to recipients
-      </label>
+      <%= form.label :message, "Message to recipients", class: "px-1 block text-base font-medium text-gray-700" %>
       <div class="mt-1">
-        <textarea id="about" name="about" rows="10" class="shadow-sm focus:ring-indigo-500 focus:border-gray-600 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Hey everyone,&#10;Please download this file at your earliest convenience!&#10;&#10;Regards,&#10;Your Teammate"></textarea>
+        <%= form.text_area :message, rows: 10, class: "shadow-sm focus:ring-indigo-500 focus:border-gray-600 block w-full sm:text-sm border-gray-300 rounded-md", placeholder: "Hey everyone,&#10;Please download this file at your earliest convenience!&#10;&#10;Regards,&#10;Your Teammate" %>
       </div>
       <div class="clearfix block mt-5">
-        <button type="button" class="ml-5 float-right items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-orange hover:bg-orange focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange">
-        Send to recipients
-        </button>
-        <button type="button" id="clear" class="float-right items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700">
-        Clear Form
-        </button>
+        <%= form.button "Send to recipients", class: "ml-5 float-right items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-orange hover:bg-orange focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange" %>
+        
+        <%= form.button "Clear Form", id: "clear", class: "float-right items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700" %>
       </div>
       <div class="clearfix"><p class="float-right w-80 text-sm mt-1 text-right">After clicking 'Send to recipients', you will receive e-mail documentation of this file share.</p></div>
       <div class="my-3">
         <p class="text-gray-600"><b>What now?</b></p>
         <p class="text-gray-600 w-96">You can track the recipients with whom you've shared the file and whether or not they have downloaded it via the 'Tracking' tab.</p>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>

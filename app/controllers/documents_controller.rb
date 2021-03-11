@@ -27,10 +27,7 @@ class DocumentsController < ApplicationController
   # POST /documents or /documents.json
   def create
     # create new document object with only name and attachment
-    puts 'Hi'
-    puts params[:document]
     @document = Document.create!(document_params)
-    puts @document
     # get url key from attachment blob
     key = @document.upload.key
     # run model method to set remaining properties
@@ -45,6 +42,38 @@ class DocumentsController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @document.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def distribute
+    if not session[:user_id] then
+      redirect_to login_url, alert: "You need to be signed in to do that"
+      return
+    end
+    
+    message = params[:message]
+    params[:recipients].split(",").each do |recipient|
+      recipient = recipient.strip
+      download_code = SecureRandom.uuid
+      DocumentRecipient.create({
+        document_id: params[:id],
+        shared_at: Time.now,
+        download_code: download_code,
+        email: recipient
+      })
+      puts "distributing"
+      DocumentMailer.distributed(recipient, message, download_code).deliver_now
+    end
+    begin
+      document = Document.find(params[:id])
+      redirect_to document_dashboard_path(params[:id]), alert: "We are working to distribute your file"
+    rescue
+      if document == nil then
+        puts 404
+      end
+    end
+    if document && document.user_id != session[:user_id] then
+      redirect_to documents_dashboard_url
     end
   end
 
