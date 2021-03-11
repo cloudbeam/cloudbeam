@@ -1,18 +1,19 @@
 class Document < ApplicationRecord
   has_one_attached :upload
   belongs_to :user
+  has_many :document_recipients, dependent: :destroy
 
-  # this should likely be set as an env variable 
+  # this should likely be set as an env variable
   S3_BUCKET_BASE_URL = 'https://cloudbeam.s3.us-east-2.amazonaws.com/'
 
-  # create url to access file in bucket 
+  # create url to access file in bucket
   def calculate_s3_url(s3_key, base_url)
     base_url + s3_key
   end
 
   # this will be offset to a chron job so don't set it now
   # given a date, return new date time exactly 30 days later
-  def calculate_expire_date(upload_date) 
+  def calculate_expire_date(upload_date)
     upload_date.days_since(30)
   end
 
