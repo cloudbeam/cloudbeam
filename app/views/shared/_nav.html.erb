@@ -10,7 +10,7 @@
               <%= link_to "Download", download_path, class: "text-white hover:text-turqoise px-3 py-2 rounded-md text-lg font-medium" %>
 
               <%= link_to "My Files", documents_dashboard_path, class: "text-white hover:text-turqoise px-3 py-2 rounded-md text-lg font-medium" %>
-              
+
             </div>
           </div>
         </div>
@@ -18,7 +18,7 @@
           <div class="ml-4 flex items-center md:ml-6">
             <div class="ml-3 relative">
               <% if session[:user_id] == nil then %>
-                <%= link_to "Login", get_login_path, class: "text-white hover:text-turqoise px-3 py-2 rounded-md text-lg font-medium" %>
+                <%= link_to "Login", login_path, class: "text-white hover:text-turqoise px-3 py-2 rounded-md text-lg font-medium" %>
               <% else %>
                 <%= link_to "Logout", logout_path, class: "text-white hover:text-turqoise px-3 py-2 rounded-md text-lg font-medium" %>
               <% end %>
