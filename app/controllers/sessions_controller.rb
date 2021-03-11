@@ -8,9 +8,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user_params = user_params()
-    user = User.find_by(email: user_params[:email])
-    if user.try(:authenticate, user_params[:password]) then
+    user = User.find_by(email: params[:email])
+    if user.try(:authenticate, params[:password]) then
       session[:user_id] = user.id
       redirect_to documents_dashboard_url
     else
@@ -25,11 +24,5 @@ class SessionsController < ApplicationController
     else
       redirect_to get_login_url
     end
-  end
-
-  private
-
-  def user_params
-    params.require(:user).permit(:email, :password)
   end
 end

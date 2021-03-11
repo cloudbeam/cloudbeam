@@ -6,7 +6,7 @@ class DocumentsController < ApplicationController
     if session[:user_id] == nil then
       redirect_to get_login_url, alert: "You need to be logged in to do that"
     end
-    
+
     @documents = Document.all
   end
 
