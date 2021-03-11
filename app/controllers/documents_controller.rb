@@ -4,7 +4,7 @@ class DocumentsController < ApplicationController
   # GET /documents or /documents.json
   def index
     if session[:user_id] == nil then
-      redirect_to get_login_url, alert: "You need to be logged in to do that"
+      redirect_to login_url, alert: "You need to be logged in to do that"
     end
 
     @documents = Document.all
