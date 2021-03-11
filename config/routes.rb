@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   controller :downloads do
     get '/downloads'  => :index
-    post '/downloads' => :show
+    put '/' => :submit_code
   end
 
   controller :sessions do
