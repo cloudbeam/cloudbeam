@@ -1,6 +1,6 @@
-class SessionController < ApplicationController
+class SessionsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  def login
+  def new
     if session[:user_id] then
       redirect_to documents_dashboard_url
     end
@@ -18,7 +18,7 @@ class SessionController < ApplicationController
     end
   end
 
-  def logout
+  def destroy
     if session[:user_id] then
       session[:user_id] = nil
       redirect_to get_login_url, alert: "Logged out"
