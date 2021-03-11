@@ -20,7 +20,7 @@
               <% if session[:user_id] == nil then %>
                 <%= link_to "Login", login_path, class: "text-white hover:text-turqoise px-3 py-2 rounded-md text-lg font-medium" %>
               <% else %>
-                <%= link_to "Logout", logout_path, class: "text-white hover:text-turqoise px-3 py-2 rounded-md text-lg font-medium" %>
+                <%= link_to "Logout", logout_path, method: :delete, class: "text-white hover:text-turqoise px-3 py-2 rounded-md text-lg font-medium" %>
               <% end %>
               <% if session[:user_id] == nil then %>
                 <%= link_to "Signup", get_signup_path, class: "text-white hover:text-turqoise px-3 py-2 rounded-md text-lg font-medium" %>
