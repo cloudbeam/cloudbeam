@@ -8,19 +8,19 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:email])
-    if user.try(:authenticate, params[:password]) then
+    user = User.find_by(email: params[:user][:email])
+    if user.try(:authenticate, params[:user][:password]) then
       session[:user_id] = user.id
       redirect_to documents_dashboard_url
     else
-      redirect_to get_login_url, alert: "Invalid user/password combination"
+      redirect_to login_url, alert: "Invalid user/password combination"
     end
   end
 
   def destroy
     if session[:user_id] then
       session[:user_id] = nil
-      redirect_to get_login_url, alert: "Logged out"
+      redirect_to login_url, alert: "Logged out"
     else
       redirect_to download_url
     end
