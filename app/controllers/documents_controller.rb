@@ -67,23 +67,27 @@ class DocumentsController < ApplicationController
     end
     message = params[:message]
     document_id = params[:id]
-    params[:recipients].split(",").each do |recipient|
+    document = Document.find(document_id)
+
+    if document && document.user_id != session[:user_id] then
+      redirect_to documents_dashboard_url
+      return
+    end
+    
+    recipients = params[:recipients].split(",")
+    recipients.each do |recipient|
       download_code = SecureRandom.uuid
       helpers.create_new_document_recipient(recipient, document_id, download_code)
       DocumentMailer.distributed(recipient, message, download_code).deliver_now
     end
 
-    begin
-      document = Document.find(document_id)
-      redirect_to document_dashboard_path(document_id), alert: "We are working to distribute your file"
-    rescue
-      if document == nil then
-        puts 404
-      end
-    end
-    if document && document.user_id != session[:user_id] then
-      redirect_to documents_dashboard_url
-    end
+    
+    # sender_email = User.find(session[:user_id]).email
+    # DocumentMailer.sender_distributed(sender_email, document.name, recipients).deliver_now
+
+    
+    redirect_to document_dashboard_path(document_id), alert: "We are working to distribute your file"
+    
   end
 
   # PATCH/PUT /documents/1 or /documents/1.json

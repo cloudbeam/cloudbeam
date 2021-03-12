@@ -1,0 +1,6 @@
+Document Sent
+
+<%= "You have sent the document #{@document_name} to #{@recipients.length} people:" %>
+<% @recipients.each do |recipient| %>
+  <%= recipient %>
+<% end %>

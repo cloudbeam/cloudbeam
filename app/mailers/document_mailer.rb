@@ -15,4 +15,13 @@ class DocumentMailer < ApplicationMailer
 
     mail to: email, subject: 'File sent'
   end
+
+  def sender_distributed(email, document_name, recipients)
+    puts "Email sender of the file"
+    @document_name = document_name
+
+    @recipients = recipients
+
+    mail to: email, subject: 'File distributed'
+  end
 end

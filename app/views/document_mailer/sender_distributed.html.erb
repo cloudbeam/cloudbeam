@@ -1,0 +1,10 @@
+<h1>Document Sent</h1>
+
+<%= "You have sent the document #{@document_name} to #{@recipients.length} people:" %>
+<ul>
+  <% @recipients.each do |recipient| %>
+    <li>
+      <%= recipient %>
+    </li>
+  <% end %>
+</ul>
