@@ -27,6 +27,10 @@ class DocumentsController < ApplicationController
 
   # POST /documents or /documents.json
   def create
+    if !document_params[:upload]
+      redirect_to upload_url, notice: "You didn't choose a file." and return
+    end
+
     @document = Document.create!(document_params)
     key = @document.upload.key
     @document.set_properties_after_upload(session[:user_id], key)
@@ -73,7 +77,7 @@ class DocumentsController < ApplicationController
       redirect_to documents_dashboard_url
       return
     end
-    
+
     recipients = params[:recipients].split(",")
     recipients.each do |recipient|
       download_code = SecureRandom.uuid
@@ -81,13 +85,13 @@ class DocumentsController < ApplicationController
       #DocumentMailer.distributed(recipient, message, download_code).deliver_now
     end
 
-    
+
     # sender_email = User.find(session[:user_id]).email
     # DocumentMailer.sender_distributed(sender_email, document.name, recipients).deliver_now
 
-    
+
     redirect_to document_dashboard_path(document_id), alert: "We are working to distribute your file"
-    
+
   end
 
   # PATCH/PUT /documents/1 or /documents/1.json
