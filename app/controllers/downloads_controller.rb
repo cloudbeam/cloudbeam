@@ -25,7 +25,7 @@ class DownloadsController < ApplicationController
     @notice = 'Starting'
     recipient.update(downloaded_at: DateTime.now)
 
-    redirect_to signed_url(file_name)
+    redirect_to signed_url(file_name(document))
   end
 
   private
