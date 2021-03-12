@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require 'date'
 
+# this controller handles the download based on user's unique code
 class DownloadsController < ApplicationController
   def index
     # get any id param in the url
@@ -7,43 +10,43 @@ class DownloadsController < ApplicationController
   end
 
   def submit_code
-    download_code = params[:download_code]
-    if download_code == '' then
-      redirect_to downloads_url, notice: "Please enter a code."
-      return
-    else
-      document_recipient = DocumentRecipient.find_by(download_code: download_code)
-      if document_recipient == nil then
-        redirect_to downloads_url, notice: "Invalid code."
-      else
-        document = Document.find(document_recipient.document_id)
-        if document_recipient.downloaded_at == nil then
-          @notice = "Starting"
-          document_recipient.update(downloaded_at: DateTime.now)
+    code = params[:download_code]
+    redirect_to downloads_url, notice: 'Please enter a code.' and return if code.empty?
 
-          charArr = document.url.split("/")
-          name = charArr[charArr.length - 1]
-          resource = "#{Rails.application.credentials.cloudfront[:url]}#{name}?response-content-disposition=attachment"
+    recipient = DocumentRecipient.find_by(download_code: code)
+    redirect_to downloads_url, notice: 'Invalid code.' and return if recipient.nil?
 
-          signer = Aws::CloudFront::UrlSigner.new({
-            key_pair_id: Rails.application.credentials.cloudfront[:public_key_id],
-            private_key: Rails.application.credentials.cloudfront[:private_key]
-          })
+    document = Document.find(recipient.document_id)
 
-          # update for shorter expiration time
-          @signed_url = signer.signed_url(resource, expires: Date.today + 1)
-          redirect_to @signed_url
-
-          user = User.find(document.user_id)
-
-          return
-
-        elsif document.expired_at then
-          @notice = "File expired"
-        else
-          @notice = "Code used"
-        end
-      end
+    if recipient.downloaded_at || document.expired_at
+      redirect_to downloads_url, notice: error_message(document) and return
     end
+
+    @notice = 'Starting'
+    recipient.update(downloaded_at: DateTime.now)
+
+    redirect_to signed_url(file_name)
+  end
+
+  private
+
+  def signed_url(file_name)
+    resource = "#{Rails.application.credentials.cloudfront[:url]}#{file_name}?response-content-disposition=attachment"
+
+    signer = Aws::CloudFront::UrlSigner.new({
+                                              key_pair_id: Rails.application.credentials.cloudfront[:public_key_id],
+                                              private_key: Rails.application.credentials.cloudfront[:private_key]
+                                            })
+
+    # url expires in 3 minutes
+    signer.signed_url(resource, expires: Time.now + 180)
+  end
+
+  def file_name(document)
+    document.url.split('/').last
+  end
+
+  def error_message(document)
+    document.expired_at ? 'File expired' : 'Code used'
   end
 end
