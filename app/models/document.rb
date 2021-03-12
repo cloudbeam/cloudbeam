@@ -10,15 +10,12 @@ class Document < ApplicationRecord
     base_url + s3_key
   end
 
-<<<<<<< HEAD
   # this will be offset to a chron job so don't set it now
   # given a date, return new date time exactly 30 days later
   def calculate_expire_date(upload_date)
     upload_date.days_since(30)
   end
 
-=======
->>>>>>> shares
   # return current date time
   def get_current_date_time
     DateTime.now
