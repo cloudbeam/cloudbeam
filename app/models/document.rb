@@ -3,22 +3,14 @@ class Document < ApplicationRecord
   belongs_to :user
   has_many :document_recipients, dependent: :destroy
 
-  S3_BUCKET_BASE_URL = Rails.application.credentials.bucket_url
+  S3_BUCKET_BASE_URL = 'https://cloudbeam.s3.us-east-2.amazonaws.com/' 
+  # S3_BUCKET_BASE_URL = Rails.application.credentials.bucket_url
 
   # create url to access file in bucket
   def calculate_s3_url(s3_key, base_url)
     base_url + s3_key
   end
 
-<<<<<<< HEAD
-  # this will be offset to a chron job so don't set it now
-  # given a date, return new date time exactly 30 days later
-  def calculate_expire_date(upload_date)
-    upload_date.days_since(30)
-  end
-
-=======
->>>>>>> shares
   # return current date time
   def get_current_date_time
     DateTime.now
