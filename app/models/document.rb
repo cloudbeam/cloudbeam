@@ -24,6 +24,7 @@ class Document < ApplicationRecord
 
   # set properties on object that are unset after initial creation from params
   def set_properties_after_upload(id, key)
+    p self
     self[:url] = self.calculate_s3_url(key, S3_BUCKET_BASE_URL)
     self[:uploaded_at] = self.get_current_date_time
   end

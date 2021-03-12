@@ -10,6 +10,7 @@ class DownloadsController < ApplicationController
   end
 
   def submit_code
+    # request.remote_ip
     code = params[:download_code]
     redirect_to downloads_url, notice: 'Please enter a code.' and return if code.empty?
 
@@ -43,7 +44,7 @@ class DownloadsController < ApplicationController
   end
 
   def file_name(document)
-    document.url.split('/').last
+    document[:url].split('/').last
   end
 
   def error_message(document)
