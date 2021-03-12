@@ -1,15 +1,36 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  download_code: MyString
+  download_code: DownloadCode1
   downloaded_at: 2021-03-08 16:58:02
   shared_at: 2021-03-08 16:58:02
   document: one
-  email: MyString
+  email: test@test.com
 
 two:
-  download_code: MyString
+  download_code: DownloadCode2
   downloaded_at: 2021-03-08 16:58:02
   shared_at: 2021-03-08 16:58:02
   document: two
-  email: MyString
+  email: example@test.com
+
+three:
+  download_code: DownloadCode3
+  downloaded_at:
+  shared_at: 2021-02-09 12:58:02
+  document: one
+  email: sample@test.com
+
+four:
+  download_code: DownloadCode4
+  downloaded_at: 
+  shared_at: 2021-02-19 12:58:02
+  document: two
+  email: testing@test.com
+
+five:
+  download_code: DownloadCode5
+  downloaded_at: 2021-02-20 12:58:02 
+  shared_at: 2021-02-19 12:58:02
+  document: two
+  email: tester@test.com
