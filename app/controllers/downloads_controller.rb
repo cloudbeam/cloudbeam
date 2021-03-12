@@ -32,7 +32,7 @@ class DownloadsController < ApplicationController
   private
 
   def signed_url(file_name)
-    resource = "#{Rails.application.credentials.cloudfront[:url]}#{file_name}?response-content-disposition=attachment"
+    resource = "#{Rails.application.credentials.cloudfront[:url]}#{file_name}?response-content-disposition=attachment%3B%20filename%#{file_name}"
 
     signer = Aws::CloudFront::UrlSigner.new({
                                               key_pair_id: Rails.application.credentials.cloudfront[:public_key_id],
