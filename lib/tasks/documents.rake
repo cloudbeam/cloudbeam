@@ -1,6 +1,6 @@
 namespace :expired do
   desc "Check for docs with expired at values and remove"
-  task remove_expired: "environment"do
+  task remove_expired: "environment" do
     expired_docs = Document.where(["expired_at < :current", {current: DateTime.now}])
     expired_docs.each do |doc|
       if Rails.env.test?
