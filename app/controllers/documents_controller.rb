@@ -28,7 +28,7 @@ class DocumentsController < ApplicationController
   # POST /documents or /documents.json
   def create
     if !document_params[:upload]
-      redirect_to upload_url, notice: "You didn't choose a file." and return
+      redirect_to upload_url, alert: "You didn't choose a file." and return
     end
 
     @document = Document.create!(document_params)
@@ -98,7 +98,7 @@ class DocumentsController < ApplicationController
   def update
     respond_to do |format|
       if @document.update(document_params)
-        format.html { redirect_to @document, notice: "Document was successfully updated." }
+        format.html { redirect_to @document, success: "Document was successfully updated." }
         format.json { render :show, status: :ok, location: @document }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -114,7 +114,7 @@ class DocumentsController < ApplicationController
 
     @document.destroy
     respond_to do |format|
-      format.html { redirect_to documents_url, notice: "Document was successfully destroyed." }
+      format.html { redirect_to documents_url, success: "Document was successfully destroyed." }
       format.json { head :no_content }
     end
   end
