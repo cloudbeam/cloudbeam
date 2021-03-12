@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   post 'upload', to: 'documents#create'
   post 'distribute/:id', to: 'documents#distribute'
+  get '/distributeagain', to: 'documents#distribute_again'
 
   get  'signup',  to: 'users#new',    as: 'get_signup'
   post 'signup',  to: 'users#create', as: 'post_signup'

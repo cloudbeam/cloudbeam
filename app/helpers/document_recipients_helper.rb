@@ -12,7 +12,7 @@ module DocumentRecipientsHelper
 
     button_tag 'Send Again',
                type: 'button',
-               class: 'text-blue-400 background-transparent font-normal text-sm outline-none focus:outline-none',
-               confirm: "This will send another email to #{recipient.email}. Are you sure?"
+               class: 'send-again-btn text-blue-400 background-transparent font-normal text-sm outline-none focus:outline-none',
+               data: {recipient: recipient.email, recipient_id: recipient.id, document_id: recipient.document_id}
   end
 end

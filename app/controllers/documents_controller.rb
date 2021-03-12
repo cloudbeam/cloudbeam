@@ -42,6 +42,18 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def distribute_again
+    puts "distributing"
+    document_id = params[:document_id]
+    recipient_id = params[:recipient_id]
+    document = Document.find(document_id)
+    document_recipient = DocumentRecipient.find(recipient_id)
+    recipient = document_recipient.email
+    message = "Resending the code for the file: #{document.name}"
+    download_code = document_recipient.download_code
+    DocumentMailer.distributed(recipient, message, download_code).deliver_now
+  end
+
   def distribute
     if not session[:user_id] then
       redirect_to login_url, alert: "You need to be signed in to do that"
@@ -52,9 +64,7 @@ class DocumentsController < ApplicationController
     params[:recipients].split(",").each do |recipient|
       download_code = SecureRandom.uuid
       helpers.create_new_document_recipient(recipient, document_id, download_code)
-
-      puts "distributing"
-      # DocumentMailer.distributed(recipient, message, download_code).deliver_now
+      DocumentMailer.distributed(recipient, message, download_code).deliver_now
     end
 
     begin
