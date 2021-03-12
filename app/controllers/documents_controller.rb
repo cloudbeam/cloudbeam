@@ -27,6 +27,10 @@ class DocumentsController < ApplicationController
 
   # POST /documents or /documents.json
   def create
+    if !document_params[:upload]
+      redirect_to upload_url, alert: "You didn't choose a file." and return
+    end
+
     @document = Document.create!(document_params)
     key = @document.upload.key
     @document.set_properties_after_upload(session[:user_id], key)
@@ -73,7 +77,7 @@ class DocumentsController < ApplicationController
       redirect_to documents_dashboard_url
       return
     end
-    
+
     recipients = params[:recipients].split(",")
     recipients.each do |recipient|
       download_code = SecureRandom.uuid
@@ -81,20 +85,20 @@ class DocumentsController < ApplicationController
       #DocumentMailer.distributed(recipient, message, download_code).deliver_now
     end
 
-    
+
     # sender_email = User.find(session[:user_id]).email
     # DocumentMailer.sender_distributed(sender_email, document.name, recipients).deliver_now
 
-    
+
     redirect_to document_dashboard_path(document_id), alert: "We are working to distribute your file"
-    
+
   end
 
   # PATCH/PUT /documents/1 or /documents/1.json
   def update
     respond_to do |format|
       if @document.update(document_params)
-        format.html { redirect_to @document, notice: "Document was successfully updated." }
+        format.html { redirect_to @document, success: "Document was successfully updated." }
         format.json { render :show, status: :ok, location: @document }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -110,7 +114,7 @@ class DocumentsController < ApplicationController
 
     @document.destroy
     respond_to do |format|
-      format.html { redirect_to documents_url, notice: "Document was successfully destroyed." }
+      format.html { redirect_to documents_url, success: "Document was successfully destroyed." }
       format.json { head :no_content }
     end
   end

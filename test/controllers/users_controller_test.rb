@@ -5,11 +5,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @user = users(:one)
   end
 
-  test "should get index" do
-    get users_url
-    assert_response :success
-  end
-
   test "should get new" do
     get new_user_url
     assert_response :success
@@ -20,7 +15,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       post users_url, params: { user: { email: "unique@example.com", first_name: "Newest", last_name: "User", password: 'secret', password_confirmation: 'secret' } }
     end
 
-    assert_redirected_to user_url(User.last)
+    assert_redirected_to documents_url(:controller => 'documents', :action => 'index')
   end
 
   test "should show user" do

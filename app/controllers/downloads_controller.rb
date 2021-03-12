@@ -12,18 +12,17 @@ class DownloadsController < ApplicationController
   def submit_code
     # request.remote_ip
     code = params[:download_code]
-    redirect_to downloads_url, notice: 'Please enter a code.' and return if code.empty?
+    redirect_to downloads_url, alert: 'Please enter a code.' and return if code.empty?
 
     recipient = DocumentRecipient.find_by(download_code: code)
-    redirect_to downloads_url, notice: 'Invalid code.' and return if recipient.nil?
+    redirect_to downloads_url, alert: 'Invalid code.' and return if recipient.nil?
 
     document = Document.find(recipient.document_id)
 
     if recipient.downloaded_at || document.expired_at
-      redirect_to downloads_url, notice: error_message(document) and return
+      redirect_to downloads_url, alert: error_message(document) and return
     end
 
-    @notice = 'Starting'
     recipient.update(downloaded_at: DateTime.now)
 
     redirect_to signed_url(file_name(document))
