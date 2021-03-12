@@ -19,6 +19,14 @@ jobs:
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
+      - name: Install yarn
+        run: |
+          wget -q -O - https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+          echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
+          apt-get update -yq
+          apt-get -o dir::cache::archives="$APT_CACHE_DIR" install -y yarn
+          yarn install
+          
       - name: Install gems
         run: |
           bundle config path vendor/bundle
