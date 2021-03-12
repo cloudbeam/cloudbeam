@@ -57,7 +57,7 @@ class DocumentsController < ApplicationController
     recipient = document_recipient.email
     message = "Resending the code for the file: #{document.name}"
     download_code = document_recipient.download_code
-    DocumentMailer.distributed(recipient, message, download_code).deliver_now
+    #DocumentMailer.distributed(recipient, message, download_code).deliver_now
   end
 
   def distribute
@@ -78,7 +78,7 @@ class DocumentsController < ApplicationController
     recipients.each do |recipient|
       download_code = SecureRandom.uuid
       helpers.create_new_document_recipient(recipient, document_id, download_code)
-      DocumentMailer.distributed(recipient, message, download_code).deliver_now
+      #DocumentMailer.distributed(recipient, message, download_code).deliver_now
     end
 
     
