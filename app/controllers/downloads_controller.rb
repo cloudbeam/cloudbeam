@@ -19,10 +19,10 @@ class DownloadsController < ApplicationController
         if document_recipient.downloaded_at == nil then
           @notice = "Starting"
           document_recipient.update(downloaded_at: DateTime.now)
-          
+
           charArr = document.url.split("/")
           name = charArr[charArr.length - 1]
-          resource = "https://dvt9gv73mq47e.cloudfront.net/#{name}?response-content-disposition=attachment"
+          resource = "#{Rails.application.credentials.cloudfront[:url]}#{name}?response-content-disposition=attachment"
 
           signer = Aws::CloudFront::UrlSigner.new({
             key_pair_id: Rails.application.credentials.cloudfront[:public_key_id],
@@ -34,7 +34,7 @@ class DownloadsController < ApplicationController
           redirect_to @signed_url
 
           user = User.find(document.user_id)
-          
+
           return
 
         elsif document.expired_at then

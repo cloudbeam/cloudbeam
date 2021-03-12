@@ -3,8 +3,7 @@ class Document < ApplicationRecord
   belongs_to :user
   has_many :document_recipients, dependent: :destroy
 
-  # this should likely be set as an env variable
-  S3_BUCKET_BASE_URL = 'https://cloudbeam.s3.us-east-2.amazonaws.com/'
+  S3_BUCKET_BASE_URL = Rails.application.credentials.bucket_url
 
   # create url to access file in bucket
   def calculate_s3_url(s3_key, base_url)
