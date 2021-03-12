@@ -9,17 +9,18 @@ class DownloadsController < ApplicationController
   def submit_code
     download_code = params[:download_code]
     if download_code == '' then
-      @notice = "Please enter a code"
+      redirect_to downloads_url, notice: "Please enter a code."
+      return
     else
       document_recipient = DocumentRecipient.find_by(download_code: download_code)
       if document_recipient == nil then
-        @notice = "Invalid Code"
+        redirect_to downloads_url, notice: "Invalid code."
       else
         document = Document.find(document_recipient.document_id)
         if document_recipient.downloaded_at == nil then
           @notice = "Starting"
           document_recipient.update(downloaded_at: DateTime.now)
-          
+
           charArr = document.url.split("/")
           name = charArr[charArr.length - 1]
           resource = "https://dvt9gv73mq47e.cloudfront.net/#{name}?response-content-disposition=attachment"
@@ -34,7 +35,7 @@ class DownloadsController < ApplicationController
           redirect_to @signed_url
 
           user = User.find(document.user_id)
-          
+
           return
 
         elsif document.expired_at then
@@ -44,6 +45,5 @@ class DownloadsController < ApplicationController
         end
       end
     end
-    render "index"
   end
 end

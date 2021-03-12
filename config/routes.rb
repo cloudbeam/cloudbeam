@@ -12,11 +12,11 @@ Rails.application.routes.draw do
   post 'distribute/:id', to: 'documents#distribute'
 
   get  'signup',  to: 'users#new',    as: 'get_signup'
-  post 'signup', to: 'users#create', as: 'post_signup'
+  post 'signup',  to: 'users#create', as: 'post_signup'
 
   controller :downloads do
-    get '/downloads'  => :index
-    put '/' => :submit_code
+    get  '/downloads'  => :index
+    post '/downloads'  => :submit_code
   end
 
   controller :sessions do

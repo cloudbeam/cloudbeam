@@ -3,7 +3,7 @@ require 'test_helper'
 class DocumentsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:one)
-    post login_url, params: { user: @user, email: @user.email, password: 'password' }
+    post login_url, params: {user:{ email: @user.email, password: 'password' }}
 
     @document = documents(:one)
   end
