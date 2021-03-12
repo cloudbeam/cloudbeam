@@ -4,11 +4,9 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    env:
+      RAILS_MASTER_KEY: ${{ secrets.CLOUDBEAM_PRIMARY }} 
     steps:
-      - name: Set env var
-        env:
-          RAILS_MASTER_KEY: ${{ secrets.CLOUDBEAM_PRIMARY }} 
       - name: Checkout code
         uses: actions/checkout@v2
 
