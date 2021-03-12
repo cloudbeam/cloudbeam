@@ -47,6 +47,12 @@ class DocumentsController < ApplicationController
     document_id = params[:document_id]
     recipient_id = params[:recipient_id]
     document = Document.find(document_id)
+
+    if not session[:user_id] || session[:user_id] != document.user_id then
+      redirect_to login_url, alert: "You need to be signed in to do that"
+      return
+    end
+
     document_recipient = DocumentRecipient.find(recipient_id)
     recipient = document_recipient.email
     message = "Resending the code for the file: #{document.name}"
