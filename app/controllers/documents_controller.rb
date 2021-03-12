@@ -27,13 +27,9 @@ class DocumentsController < ApplicationController
 
   # POST /documents or /documents.json
   def create
-    # create new document object with only name and attachment
     @document = Document.create!(document_params)
-    # get url key from attachment blob
     key = @document.upload.key
-    # run model method to set remaining properties
     @document.set_properties_after_upload(session[:user_id], key)
-    # @document.set_properties_after_upload(1, key)
 
     respond_to do |format|
       if @document.save
@@ -51,23 +47,19 @@ class DocumentsController < ApplicationController
       redirect_to login_url, alert: "You need to be signed in to do that"
       return
     end
-
     message = params[:message]
+    document_id = params[:id]
     params[:recipients].split(",").each do |recipient|
-      recipient = recipient.strip
       download_code = SecureRandom.uuid
-      DocumentRecipient.create({
-        document_id: params[:id],
-        shared_at: Time.now,
-        download_code: download_code,
-        email: recipient
-      })
+      helpers.create_new_document_recipient(recipient, document_id, download_code)
+
       puts "distributing"
-      DocumentMailer.distributed(recipient, message, download_code).deliver_now
+      # DocumentMailer.distributed(recipient, message, download_code).deliver_now
     end
+
     begin
-      document = Document.find(params[:id])
-      redirect_to document_dashboard_path(params[:id]), alert: "We are working to distribute your file"
+      document = Document.find(document_id)
+      redirect_to document_dashboard_path(document_id), alert: "We are working to distribute your file"
     rescue
       if document == nil then
         puts 404
