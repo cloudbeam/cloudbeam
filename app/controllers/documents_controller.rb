@@ -53,8 +53,7 @@ class DocumentsController < ApplicationController
       download_code = SecureRandom.uuid
       helpers.create_new_document_recipient(recipient, document_id, download_code)
 
-      puts "distributing"
-      # DocumentMailer.distributed(recipient, message, download_code).deliver_now
+      DocumentMailer.distributed(recipient, message, download_code).deliver_now
     end
 
     begin
