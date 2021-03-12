@@ -44,9 +44,9 @@ Rails.application.configure do
     domain: "sandbox5634fd882fb143c1b8f7dc2797130a81.mailgun.org",
     authentication: "plain",
     #user_name: ENV["MAILGUN_USERNAME"],
-    user_name: Rails.application.credentials.mailgun[:username],
+    user_name: Rails.application.credentials[:mailgun][:username],
     #password: ENV["MAILGUN_PASSWORD"],
-    password: Rails.application.credentials.mailgun[:password],
+    password: Rails.application.credentials[:mailgun][:password],
     enable_starttls_auto: true
   }
 
