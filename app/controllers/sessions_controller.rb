@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
     if session[:user_id] then
       session[:user_id] = nil
       redirect_to login_url, alert: "Logged out"
-    else
+    else 
       redirect_to download_url
     end
   end
