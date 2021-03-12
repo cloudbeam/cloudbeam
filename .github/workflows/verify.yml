@@ -1,4 +1,4 @@
-name: Ruby Cloudbeam
+name: Cloudbeam
 on: [push]
 
 jobs:
