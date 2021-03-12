@@ -1,4 +1,4 @@
-https://github.com/kaledoux/cloudbeam/actions/workflows/verify.yml/badge.svg
+![Status](https://github.com/kaledoux/cloudbeam/actions/workflows/verify.yml/badge.svg)
 
 # Cloudbeam
 Using Rails 6 and Ruby 2.6.6
