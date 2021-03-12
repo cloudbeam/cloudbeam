@@ -7,9 +7,6 @@ class Document < ApplicationRecord
 
   # create url to access file in bucket
   def calculate_s3_url(s3_key, base_url)
-    puts "**********\n\n"
-    puts "base url: #{base_url}, s3_key: #{s3_key}"
-    puts "\n\n************"
     base_url + s3_key
   end
 
