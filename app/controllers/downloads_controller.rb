@@ -22,11 +22,10 @@ class DownloadsController < ApplicationController
           
           charArr = document.url.split("/")
           name = charArr[charArr.length - 1]
-          resource = "https://dvt9gv73mq47e.cloudfront.net/#{name}?response-content-disposition=attachment;"
+          resource = "https://dvt9gv73mq47e.cloudfront.net/#{name}?response-content-disposition=attachment"
 
           signer = Aws::CloudFront::UrlSigner.new({
             key_pair_id: Rails.application.credentials.cloudfront[:public_key_id],
-            response_content_disposition: "attachment",
             private_key: Rails.application.credentials.cloudfront[:private_key]
           })
 

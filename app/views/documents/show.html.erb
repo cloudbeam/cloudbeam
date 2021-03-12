@@ -69,13 +69,18 @@
     e.preventDefault();
     document.querySelector("#about").value = ""
   });
-  // self.copyButtons = document.querySelectorAll(".copy");
-  // Array.from(copyButtons).forEach(copyButton => {
-  //   let code = copyButton.previousElementSibling;
-  //   copyButton.addEventListener('click', e => {
-  //     e.preventDefault();
-  //     code.select();
-  //     document.execCommand('copy');
-  //   });
-  // });
+  self.copyButtons = document.querySelectorAll(".copy-btn");
+  Array.from(self.copyButtons).forEach(copyButton => {
+    let code = copyButton.previousElementSibling;
+    copyButton.addEventListener('click', e => {
+      e.preventDefault();
+      navigator.permissions.query({name: "clipboard-write"}).then(result => {
+        if (result.state == "granted" || result.state == "prompt") {
+          navigator.clipboard.writeText(code.value);
+        }
+      });
+      copyButton.textContent = "copied";
+      setTimeout(() => copyButton.textContent = "copy to clipboard", 1000);
+    });
+  });
 </script>

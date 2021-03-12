@@ -40,8 +40,8 @@
                       send again</button>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <%= recipient.download_code %>
-                      <button class="text-blue-400 background-transparent font-normal text-sm outline-none focus:outline-none" type="button" style="transition: all .15s ease" disabled>
+                      <%= hidden_field_tag recipient.id, recipient.download_code %>
+                      <button class="copy-btn text-blue-400 background-transparent font-normal text-sm outline-none focus:outline-none" type="button" style="transition: all .15s ease">
                         copy to clipboard
                       </button>
                     </td>
