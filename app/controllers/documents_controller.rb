@@ -7,7 +7,7 @@ class DocumentsController < ApplicationController
       redirect_to login_url, alert: "You need to be logged in to do that"
     end
 
-    @documents = Document.all
+    @documents = Document.where(user_id: session[:user_id])
   end
 
   # GET /documents/1 or /documents/1.json

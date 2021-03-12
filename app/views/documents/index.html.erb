@@ -30,8 +30,9 @@
             </thead>
             <tbody>
               
-                <% @documents.each.with_index do |document, index| %>
+                <% @documents.each do |document| %>
                   <tr>
+                    <% download_stats = get_document_download_stats(document) %>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-navy">
                       <%= link_to document[:name], document_dashboard_path(document.id) %>
                     </td>
@@ -39,10 +40,10 @@
                       <%= created_at_local_time(document) %>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <%= document.find_total_times_shared %>
+                      <%= download_stats[:times_shared] %>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <%= document.find_total_times_downloaded %>
+                      <%= download_stats[:times_downloaded] %>
                     </td>
                   </tr>
                 <% end %>
