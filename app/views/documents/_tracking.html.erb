@@ -36,10 +36,9 @@
                       <%= shared_at_local_time(recipient) %>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                     <%# below helper method is not funcitonal. needs further testing%>
-                      <%# create_download_again_link(recipient) %>
-                      <%= recipient.downloaded_at == nil ? "No" : "Yes" %><br><button class="text-blue-400 background-transparent font-normal text-sm outline-none focus:outline-none" type="button" style="transition: all .15s ease">
-                      send again</button>
+                      <%= did_recipient_use_download_code(recipient) %>
+                      <br>
+                      <%= create_download_again_link(recipient) %>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       <button class="text-blue-400 background-transparent font-normal text-sm outline-none focus:outline-none" type="button" style="transition: all .15s ease" disabled>
@@ -47,46 +46,7 @@
                       </button>
                     </td>
                   </tr>
-
                 <% end %>
-                <!-- Odd row -->
-                <tr class="bg-white h-70">
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                    sally@example.com
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    01/13/2021
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                    No<br><button class="text-blue-400 background-transparent font-normal text-sm outline-none focus:outline-none" type="button" style="transition: all .15s ease">
-                    send again</button>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    <button class="text-blue-400 background-transparent font-normal text-sm outline-none focus:outline-none" type="button" style="transition: all .15s ease" disabled>
-                      copy to clipboard
-                    </button>
-                  </td>
-                </tr>
-
-                <!-- Even row -->
-                <tr class="bg-gray-50 h-70">
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                    bob@example.com
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    2/16/2021
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    Yes
-                  </td>
-                  <td class="whitespace-nowrap text-sm text-gray-500 px-6">
-                    <button class="text-gray-400 background-transparent font-normal text-sm outline-none focus:outline-none" type="button" style="transition: all .15s ease" disabled>
-                      copy to clipboard
-                    </button>
-                  </td>
-                </tr>
-
-                <!-- More items... -->
               </tbody>
             </table>
           </div>
