@@ -41,12 +41,3 @@ input[type=file][data-direct-upload-url][disabled] {
 	display: none;
 }
 
-@keyframes flashgreen {
-	0% {background-color: green};
-	100% {background-color: white};
-}
-
-.flash-green {
-	animation-name: flashgreen;
-	animation-duration: 2s;
-}
