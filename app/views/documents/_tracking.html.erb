@@ -35,6 +35,7 @@
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       <%= shared_at_local_time(recipient) %>
                     </td>
+                    <%= hidden_field_tag recipient.id %>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                       <%= did_recipient_use_download_code(recipient) %>
                       <br>

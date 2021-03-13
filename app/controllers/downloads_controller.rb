@@ -24,6 +24,9 @@ class DownloadsController < ApplicationController
     end
 
     recipient.update(downloaded_at: DateTime.now)
+    
+    DocumentRecipientChannel.broadcast_to User.find(document.user_id),
+                document: document, recipient: recipient
 
     redirect_to signed_url(file_name(document))
   end
@@ -31,7 +34,7 @@ class DownloadsController < ApplicationController
   private
 
   def signed_url(file_name)
-    resource = "#{Rails.application.credentials.cloudfront[:url]}#{file_name}?response-content-disposition=attachment%3B%20filename%#{file_name}"
+    resource = "#{Rails.application.credentials.cloudfront[:url]}#{file_name}?response-cache-control=No-cache&?response-content-disposition=attachment%3B%20filename%#{file_name}"
 
     signer = Aws::CloudFront::UrlSigner.new({
                                               key_pair_id: Rails.application.credentials.cloudfront[:public_key_id],
