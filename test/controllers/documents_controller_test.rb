@@ -13,6 +13,12 @@ class DocumentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "index should raise error with unauthenticated user" do 
+    delete logout_url
+    get documents_url
+    assert_response :redirect
+  end
+
   test "should get new" do
     get new_document_url
     assert_response :success

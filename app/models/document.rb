@@ -12,7 +12,7 @@ class Document < ApplicationRecord
   end
 
   # return current date time
-  def get_current_date_time
+  def current_date_time
     DateTime.now
   end
 
@@ -20,7 +20,7 @@ class Document < ApplicationRecord
   def set_properties_after_upload(id, key)
     p self
     self[:url] = self.calculate_s3_url(key, S3_BUCKET_BASE_URL)
-    self[:uploaded_at] = self.get_current_date_time
+    self[:uploaded_at] = self.current_date_time
   end
 
   # maybe instead of having to hit a db query for these numbers, we can set
