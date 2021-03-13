@@ -6,44 +6,49 @@
 @import "tailwindcss/utilities";
 
 body {
-  background: #f0f7ff;
+	background: #f0f7ff;
 }
 
 #title-heading {
-  font-size: 6.75em;
-  font-family: 'Architects Daughter', cursive;
+	font-size: 6.75em;
+	font-family: 'Architects Daughter', cursive;
 }
 
 #page-head {
-  margin: 0 auto;
+	margin: 0 auto;
 
-  h1, div, div > img {
-    display: inline-block;
-  }
-
+	h1,
+	div,
+	div > img {
+		display: inline-block;
+	}
 }
 
 .clearfix {
-  overflow: auto;
+	overflow: auto;
 }
 
 .clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
+	content: "";
+	clear: both;
+	display: table;
 }
 
 .notice {
-  color: green;
+	color: green;
 }
 
 .alert {
-  color: red;
+	color: red;
 }
 
 @keyframes flashgreen {
-	from {background-color: green;}
-	to {background-color: white;}
+	from {
+		background-color: green;
+	}
+	to {
+		background-color: white;
+	}
 }
 
 .flash-green {
@@ -61,8 +66,46 @@ body {
 
 .alert-ul li {
 	color: white;
-	background-color: rgb(50,250,50);
+	background-color: rgb(50, 250, 50);
 	padding: 5px;
 	margin-top: 5px;
 }
 
+/* direct_uploads.css */
+.direct-upload {
+	display: inline-block;
+	position: relative;
+	padding: 2px 4px;
+	margin: 3px;
+	border: 2px solid rgba(0, 0, 0, 0.3);
+	border-radius: 3px;
+	font-size: 16px;
+	line-height: 18px;
+}
+
+.direct-upload--pending {
+	opacity: 0.6;
+}
+
+.direct-upload__progress {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	opacity: 0.2;
+	background: #0076ff;
+	transition: width 120ms ease-out, opacity 60ms 60ms ease-in;
+	transform: translate3d(0, 0, 0);
+}
+
+.direct-upload--complete .direct-upload__progress {
+	opacity: 0.4;
+}
+
+.direct-upload--error {
+	border-color: red;
+}
+
+input[type=file][data-direct-upload-url][disabled] {
+	display: none;
+}
