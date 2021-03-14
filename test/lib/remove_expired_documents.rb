@@ -7,14 +7,9 @@ class RakeTest < ActiveSupport::TestCase
 
 
   test "verify expired documents were deleted" do
-    assert_equal(5, documents.size)
-    Rake::Task['expired:remove_expired'].invoke
-    assert_equal(2, documents.size)
+    assert_equal(5, Document.count)
+    assert_difference('Document.count', -3) do
+      Rake::Task['expired:remove_expired'].invoke
+    end
   end
-  # test "check total number of show_expired" do
-  #   # assert Rake::Task['expired:show_expired']
-  #   expired = Rake::Task['expired:show_expired'].invoke
-  #   puts expired
-  #   assert_equal(3, expired)
-  # end
 end
