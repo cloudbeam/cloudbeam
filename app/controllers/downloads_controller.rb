@@ -24,6 +24,14 @@ class DownloadsController < ApplicationController
 
     recipient.update(downloaded_at: DateTime.now)
 
+    # Delete the file if everyone has downloaded it
+    
+    recipients_not_downloaded = DocumentRecipient.where(document_id: document.id, downloaded_at: nil).count
+
+    if recipients_not_downloaded == 0 then
+      document.update(expired_at: DateTime.now)
+    end
+
     DocumentRecipientChannel.broadcast_to User.find(document.user_id),
                 document: document, recipient: recipient
 

@@ -31,21 +31,23 @@
             <tbody>
               
                 <% @documents.each do |document| %>
-                  <tr>
-                    <% download_stats = get_document_download_stats(document) %>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-navy">
-                      <%= link_to document[:name], document_dashboard_path(document.id) %>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <%= created_at_local_time(document) %>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <%= download_stats[:times_shared] %>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <%= download_stats[:times_downloaded] %>
-                    </td>
-                  </tr>
+                  <% if document.expired_at == nil then %>
+                    <tr>
+                      <% download_stats = get_document_download_stats(document) %>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-navy">
+                        <%= link_to document[:name], document_dashboard_path(document.id) %>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <%= created_at_local_time(document) %>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <%= download_stats[:times_shared] %>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <%= download_stats[:times_downloaded] %>
+                      </td>
+                    </tr>
+                  <% end %>
                 <% end %>
               
             </tbody>

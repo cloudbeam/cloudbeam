@@ -13,6 +13,10 @@ class DocumentsController < ApplicationController
   # GET /documents/1 or /documents/1.json
   def show
     @document = Document.find(params[:id])
+
+    if @document.expired_at != nil then
+      # redirect to 404 page
+    end
     @recipients = DocumentRecipient.where(document_id: params[:id])
   end
 
@@ -85,6 +89,7 @@ class DocumentsController < ApplicationController
 
     recipients = params[:recipients].split(",")
     recipients.each do |recipient|
+      recipient = recipient.strip
       download_code = SecureRandom.uuid
       helpers.create_new_document_recipient(recipient, document_id, download_code)
       #DocumentMailer.distributed(recipient, message, download_code).deliver_now
