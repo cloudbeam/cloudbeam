@@ -27,6 +27,11 @@ class DocumentsController < ApplicationController
 
   # POST /documents or /documents.json
   def create
+    unless session[:user_id]
+      redirect_to login_url, alert: "You need to be signed in to do that"
+      return
+    end
+
     if !document_params[:upload]
       redirect_to upload_url, alert: "You didn't choose a file." and return
     end
@@ -88,7 +93,6 @@ class DocumentsController < ApplicationController
 
     # sender_email = User.find(session[:user_id]).email
     # DocumentMailer.sender_distributed(sender_email, document.name, recipients).deliver_now
-
 
     redirect_to document_dashboard_path(document_id), alert: "We are working to distribute your file"
 

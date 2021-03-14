@@ -3,8 +3,7 @@ class Document < ApplicationRecord
   belongs_to :user
   has_many :document_recipients, dependent: :destroy
 
-  # stow away
-  S3_BUCKET_BASE_URL = "https://cloudbeam.s3.us-east-2.amazonaws.com/"
+  S3_BUCKET_BASE_URL = Rails.application.credentials[:bucket_url]
 
   # create url to access file in bucket
   def calculate_s3_url(s3_key, base_url)
@@ -18,7 +17,6 @@ class Document < ApplicationRecord
 
   # set properties on object that are unset after initial creation from params
   def set_properties_after_upload(id, key)
-    p self
     self[:url] = self.calculate_s3_url(key, S3_BUCKET_BASE_URL)
     self[:uploaded_at] = self.current_date_time
   end

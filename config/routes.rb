@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+  get 'errors/not_found'
+  get 'errors/internal_server_error'
   root 'downloads#index', as: 'download'
 
   get 'about', to: 'about#show', as: 'about'
-  #get '/',     to: 'downloads#index'
 
   get 'dashboard', to: 'documents#index', as: 'documents_dashboard'
   get 'dashboard/:id', to: 'documents#show', as: 'document_dashboard'
@@ -28,4 +29,7 @@ Rails.application.routes.draw do
 
   resources :documents
   resources :users
+
+  match "/404", to: "errors#not_found", via: :all
+  match "/500", to: "errors#internal_server_error", via: :all
 end
