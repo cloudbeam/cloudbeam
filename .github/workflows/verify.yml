@@ -4,14 +4,34 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     env:
-      RAILS_MASTER_KEY: ${{ secrets.CLOUDBEAM_PRIMARY }} 
+      RAILS_MASTER_KEY: ${{ secrets.CLOUDBEAM_PRIMARY }}
+      RAILS_ENV: test
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
+
+      - name: Install dependent libraries
+        run: sudo apt-get install libpq-dev
 
       - name: Ruby gem cache
         uses: actions/cache@v1
@@ -33,5 +53,22 @@ jobs:
         run: |
           bundle exec rails webpacker:compile
 
+      - name: Setup Database
+        env:
+          PGHOST: localhost
+          PGUSER: postgres
+          PGPASSWORD: postgres
+          RAILS_ENV: test
+        run: |
+          cp config/database.yml.github-actions config/database.yml
+          bundle exec rake db:create
+          bundle exec rake db:schema:load
+          bundle exec rake db:seed
+
       - name: Run tests
+        env:
+          PGHOST: localhost
+          PGUSER: postgres
+          PGPASSWORD: postgres
+          RAILS_ENV: test
         run: bundle exec rake test
