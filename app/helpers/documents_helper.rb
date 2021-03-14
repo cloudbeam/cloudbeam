@@ -1,5 +1,5 @@
 module DocumentsHelper
-
+  # used to create new document_recipient in DB
   def create_new_document_recipient(recipient, doc_id, download_code)
     DocumentRecipient.create!({
       document_id: doc_id,
@@ -9,11 +9,12 @@ module DocumentsHelper
     })
   end
 
+  # format created at from UTC to human readable local time
   def created_at_local_time(doc)
     doc.created_at.localtime.to_formatted_s(:long)
   end
 
-
+  # for a doc, find times shared and how many times downloaded
   def get_document_download_stats(doc)
     recipients = DocumentRecipient.where(document_id: doc.id)
     times_shared = recipients.size
@@ -26,10 +27,12 @@ module DocumentsHelper
     {times_shared: times_shared, times_downloaded: times_downloaded}
   end
 
+  # find total number of shares that have not been downloaded
   def how_many_recipients_downloaded(recipients)
     recipients.where(downloaded_at: nil).count
   end
 
+  # pluralization methods : customs to remove count present in pluralize built-in
   def recipients_not_dl(recipients)
     recipient_count = how_many_recipients_downloaded(recipients)
     pluralize(recipient_count, 'recipient').to_s

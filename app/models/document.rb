@@ -20,14 +20,4 @@ class Document < ApplicationRecord
     self[:url] = self.calculate_s3_url(key, S3_BUCKET_BASE_URL)
     self[:uploaded_at] = self.current_date_time
   end
-
-  # maybe instead of having to hit a db query for these numbers, we can set
-  # a property for this on the document itself?
-  def find_total_times_shared
-    DocumentRecipient.where(document_id: self.id).size
-  end
-
-  def find_total_times_downloaded
-    DocumentRecipient.where("document_id = :id and downloaded_at IS NOT NULL", id: self.id).size
-  end
 end
