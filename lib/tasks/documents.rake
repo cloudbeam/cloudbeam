@@ -1,11 +1,11 @@
 namespace :expired do
   desc "Check for docs with expired at values and remove"
   task remove_expired: "environment" do
-    expired_docs = Document.where(["expired_at < :current", {current: DateTime.now}])
+    one_month_ago = DateTime.now.days_ago(30)
+    expired_docs = Document.where(['uploaded_at < :expired_date', {expired_date: one_month_ago}])
     expired_docs.each do |doc|
       if Rails.env.test?
         doc.destroy
-        puts doc.destroyed?
       else
         doc.upload.purge
         doc.destroy
