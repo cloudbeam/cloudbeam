@@ -99,7 +99,7 @@ class DocumentsController < ApplicationController
     # sender_email = User.find(session[:user_id]).email
     # DocumentMailer.sender_distributed(sender_email, document.name, recipients).deliver_now
 
-    redirect_to document_dashboard_path(document_id), alert: "We are working to distribute your file"
+    redirect_to document_dashboard_path(document_id), notice: "We are working to distribute your file"
 
   end
 
