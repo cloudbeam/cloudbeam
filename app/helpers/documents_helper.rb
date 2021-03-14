@@ -25,4 +25,21 @@ module DocumentsHelper
     end
     {times_shared: times_shared, times_downloaded: times_downloaded}
   end
+
+  def how_many_recipients_downloaded(recipients)
+    recipients.where(downloaded_at: nil).count
+  end
+
+  def recipients_not_dl(recipients)
+    recipient_count = how_many_recipients_downloaded(recipients)
+    pluralize(recipient_count, 'recipient').to_s
+  end
+
+  def is_or_are(recipients)
+    how_many_recipients_downloaded(recipients) == 1 ? "is" : "are"
+  end
+
+  def has_or_have(recipients)
+    how_many_recipients_downloaded(recipients) == 1 ? 'has' : 'have'
+  end
 end

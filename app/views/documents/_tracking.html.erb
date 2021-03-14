@@ -1,6 +1,6 @@
 <div class="mt-5  border-b border-gray-200 hidden" id="tracking">
   <% if recipients.count > 0 then %>
-    <p class="text-gray-700">There are <b><%= recipients.where(downloaded_at: nil).count %></b> recipients who still have not downloaded the file. Once all recipients have downloaded the file, it will be deleted and removed from your active files dashboard.</p><br>
+    <p class="text-gray-700">There <%= is_or_are(recipients) %> <b><%= recipients_not_dl(recipients) %></b> who still <%= has_or_have(recipients) %> not downloaded the file. Once all recipients have downloaded the file, it will be deleted and removed from your active files dashboard.</p><br>
     <p>Visit the 'Share' tab to share this file with more recipients.</p>
     <div class="clearfix">
       <p class="float-right w-72 text-sm text-gray-700"><b>Need to share elsewhere?</b> No problem! Share the user's unique link with them however you like, and we will track their download activity as usual.</p>
