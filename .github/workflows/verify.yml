@@ -6,18 +6,23 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:11
-        ports:
-          - 5432:5432
+        image: postgres
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --healthretries 5
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     env:
       RAILS_MASTER_KEY: ${{ secrets.CLOUDBEAM_PRIMARY }}
       RAILS_ENV: test
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -44,24 +49,25 @@ jobs:
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
 
-      - name: Setup Database
-        run: |
-          cp config/database.yml.github-actions config/database.yml
-          bundle exec rake db:create
-          bundle exec rake db:schema:load
-        env:
-          RAILS_ENV: test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-
-
       - name: Prep assets
         run: |
           bundle exec rails webpacker:compile
 
+    - name: Setup Database
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        PGPASSWORD: postgres
+        RAILS_ENV: test
+      run: |
+        cp config/database.yml.github-actions config/database.yml
+        bundle exec rake db:create
+        bundle exec rake db:schema:load
+
       - name: Run tests
-        run: bundle exec rake test
         env:
+          PGHOST: localhost
+          PGUSER: postgres
+          PGPASSWORD: postgres
           RAILS_ENV: test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+        run: bundle exec rake test
