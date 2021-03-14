@@ -53,17 +53,17 @@ jobs:
         run: |
           bundle exec rails webpacker:compile
 
-    - name: Setup Database
-      env:
-        PGHOST: localhost
-        PGUSER: postgres
-        PGPASSWORD: postgres
-        RAILS_ENV: test
-      run: |
-        cp config/database.yml.github-actions config/database.yml
-        bundle exec rake db:create
-        bundle exec rake db:schema:load
-        bundle exec rake db:seed
+      - name: Setup Database
+        env:
+          PGHOST: localhost
+          PGUSER: postgres
+          PGPASSWORD: postgres
+          RAILS_ENV: test
+        run: |
+          cp config/database.yml.github-actions config/database.yml
+          bundle exec rake db:create
+          bundle exec rake db:schema:load
+          bundle exec rake db:seed
 
       - name: Run tests
         env:
