@@ -29,7 +29,6 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 
 
 rackup      DefaultRackup
-port        ENV['PORT']     || 3000
 environment ENV['RACK_ENV'] || 'development'
 
 # Allow puma to be restarted by `rails restart` command.
