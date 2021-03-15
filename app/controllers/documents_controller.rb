@@ -32,12 +32,12 @@ class DocumentsController < ApplicationController
   # POST /documents or /documents.json
   def create
     unless session[:user_id]
-      redirect_to login_url, alert: "You need to be signed in to do that"
+      redirect_to login_url, alert: "Sorry, you need to be signed in before you can do that!"
       return
     end
 
     if !document_params[:upload]
-      redirect_to upload_url, alert: "You didn't choose a file." and return
+      redirect_to upload_url, alert: "You need to select a file to beam!" and return
     end
 
     @document = Document.create!(document_params)
@@ -46,7 +46,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, notice: "Document was successfully created." }
+        format.html { redirect_to @document, notice: "Your file was successfully sent to our Cloud!" }
         format.json { render :show, status: :created, location: @document }
       else
         format.html { render :new, status: :unprocessable_entity }
