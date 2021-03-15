@@ -44,22 +44,6 @@ class DownloadsController < ApplicationController
     expiration  = Time.now + 180
     resource    = "#{Rails.application.credentials.cloudfront[:url]}#{file_name}?response-cache-control=No-cache&?response-content-disposition=attachment%3B%20filename%#{file_name}"
 
-    #puts "***********\n\n\n#{Rails.env.production?}\n\n*****************"
-    # the next 5 lines of code would replace the code on lines 47-52 to restrict IP addresses
-    # url = Aws::CF::Signer.sign_url resource,
-    #                            expires: expiration,
-    #                            resource: resource,
-    #                            ip_range: "#{ip}/32"
-    # url
-
-    # this could be removed if IP identify works on production
-    # signer = Aws::CloudFront::UrlSigner.new({
-    #                                           key_pair_id: Rails.application.credentials.cloudfront[:public_key_id],
-    #                                           private_key: Rails.application.credentials.cloudfront[:private_key]
-    #                                         })
-    # this could be removed if IP identify works on production
-    #signer.signed_url(resource, expires: expiration)
-
     if Rails.env.production?
       prod_signed_url(resource, expiration, ip)
     else
