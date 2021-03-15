@@ -23,8 +23,23 @@
         <div class="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
           <div class="bg-white rounded-lg shadow px-5 py-6 sm:px-6">
             <% flash.each do |type, msg| %>
-              <div class=<%= type %>>
-                <%= msg %>
+              <div class="flex justify-center">
+                <ul class="flex divide-y divide-gray-200">
+                  <% if type == 'alert' %>
+                  <li class="p-2 border-2 border-red-900 rounded-md bg-red-600 py-4 flex">
+                    <%= image_tag 'error-icon.png', alt: "error icon", size: "32x32" %>
+                    <div class="ml-3">
+                      <p class="text-sm font-medium text-navy"><%= msg %></p>
+                    </div>
+                  </li>
+                  <% elsif type == 'notice' %>
+                  <li class="p-2 border-2 border-navy rounded-md bg-powder_blue py-4 flex">
+                    <div class="ml-3">
+                      <p class="text-sm font-medium text-navy"><%= msg %></p>
+                    </div>
+                  </li>
+                  <% end %>
+                </ul>
               </div>
             <% end %>
             <div class="rounded-lg min-h-96">
