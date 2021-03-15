@@ -15,7 +15,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       post users_url, params: { user: { email: "unique@example.com", first_name: "Newest", last_name: "User", password: 'secret', password_confirmation: 'secret' } }
     end
 
-    assert_redirected_to documents_url(:controller => 'documents', :action => 'index')
+    assert_redirected_to documents_dashboard_url
   end
 
   test "should show user" do
