@@ -1,15 +1,31 @@
 ![Status](https://github.com/kaledoux/cloudbeam/actions/workflows/verify.yml/badge.svg)
 
 # Cloudbeam
-Using Rails 6 and Ruby 2.6.6
+Using:
+- [Rails 6](https://guides.rubyonrails.org/) and Ruby 2.6.6
+- [Heroku](https://www.heroku.com/)
+- [AWS S3](https://aws.amazon.com/s3) storage
+- [AWS Cloudfront](https://aws.amazon.com/cloudfront/) distribution
+- [PostgreSQL](https://www.postgresql.org/)
+- [Mailgun](https://www.mailgun.com/)
 
+## Visit on the web
+[cloud-beam.com](https://www.cloud-beam.com)
 
-### To run locally
+## Try it out using our demo credentials:
+- user: demo@cloud-beam.com
+- password: cloudbeam-demo
+
+---
+
+## Development notes
+
+### To run the app locally
 -  `yarn install`
 -  `bundle install`
 -  `bin/rails s`
 
-#### Rake Tasks
+### Rake Tasks
 **Development database spot checking:**
 - `rake current_data:total_report`
 - `rake current_data:report_users`
@@ -20,3 +36,6 @@ Using Rails 6 and Ruby 2.6.6
 
 ### Testing
 - `bin/rails t`
+
+### Viewing the production database information from the command line:
+`heroku pg:psql`
