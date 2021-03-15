@@ -16,7 +16,7 @@
 - user: demo@cloud-beam.com
 - password: cloudbeam-demo
 
-## Authors 
+## Authors
 - [Kyle LeDoux](https://github.com/kaledoux) - kaledoux@gmail.com
 - [Jimmy Zheng](https://github.com/jimzhe842) - jimmy_842@berkeley.edu
 - [Elizabeth Tackett](http://github.com/emctackett) - emctackett@gmail.com
