@@ -45,7 +45,7 @@
   </div>
   <div class="py-5">
   <%# set download to pull document url %>
-    <button class="text-blue-400 background-transparent font-normal pb-2 text-base outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all .15s ease">
+    <button id="download" class="text-blue-400 background-transparent font-normal pb-2 text-base outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all .15s ease">
       Download File
     </button>
   </div>
@@ -66,3 +66,4 @@
     </div>
   </div>
 </div>
+<%= javascript_pack_tag("manage_handler") %>
