@@ -36,11 +36,18 @@ class DocumentsController < ApplicationController
       return
     end
 
+    # this needs to be a form validation not a redirection
     if !document_params[:upload]
       redirect_to upload_url, alert: "You need to select a file to beam!" and return
     end
 
-    @document = Document.create!(document_params)
+
+    @document = Document.new(document_params)
+    # this needs to be a form validation not a redirection
+    if @document.invalid?
+      redirect_to upload_url, alert: @document.errors.messages[:name].first and return
+    end
+
     key = @document.upload.key
     @document.set_properties_after_upload(session[:user_id], key)
 
