@@ -1,5 +1,5 @@
 <h1>Login</h1>
-<%= form_with(url: "login", method: :post, model: @user, local: true) do |form| %>
+<%= form_with(url: "login", method: :post, model: @user, local: true, id: "login-form") do |form| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -15,14 +15,17 @@
   <div class="field">
     <%= form.label :email %>
     <%= form.text_field :email %>
+    <span></span>
   </div>
 
   <div class="field">
     <%= form.label :password %>
     <%= form.password_field :password %>
+    <span></span>
   </div>
 
   <div class="actions">
-    <%= form.submit "Login" %>
+    <%= form.submit "Login", id: "login-btn" %>
   </div>
 <% end %>
+<%= javascript_pack_tag("login_validation") %>

@@ -14,29 +14,35 @@
   <div class="field">
     <%= form.label :first_name %>
     <%= form.text_field :first_name %>
+    <span></span>
   </div>
 
   <div class="field">
     <%= form.label :last_name %>
     <%= form.text_field :last_name %>
+    <span></span>
   </div>
 
   <div class="field">
     <%= form.label :email %>
     <%= form.text_field :email %>
+    <span></span>
   </div>
 
   <div class="field">
     <%= form.label :password %>
     <%= form.password_field :password %>
+    <span></span>
   </div>
 
   <div class="field">
     <%= form.label :password_confirmation %>
     <%= form.password_field :password_confirmation %>
+    <span></span>
   </div>
 
-  <div class="actions">
+  <div class="actions" id="signup-btn">
     <%= form.submit %>
   </div>
 <% end %>
+<%= javascript_pack_tag("signup_validation") %>
