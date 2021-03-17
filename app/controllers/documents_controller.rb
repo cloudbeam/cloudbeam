@@ -78,6 +78,7 @@ class DocumentsController < ApplicationController
       redirect_to login_url, alert: "You need to be signed in to do that"
       return
     end
+    sender = User.find(session[:user_id])
     message = params[:message]
     document_id = params[:id]
     document = Document.find(document_id)
@@ -89,15 +90,15 @@ class DocumentsController < ApplicationController
 
     recipients = params[:recipients].split(",")
     recipients.each do |recipient|
-      recipient = recipient.strip
+      recipient_email = recipient.strip
       download_code = SecureRandom.uuid
-      helpers.create_new_document_recipient(recipient, document_id, download_code)
-      #DocumentMailer.distributed(recipient, message, download_code).deliver_now
+      helpers.create_new_document_recipient(recipient_email, document_id, download_code)
+      #DocumentMailer.distributed(sender, recipient_email, document, message, download_code).deliver_now
     end
 
 
-    # sender_email = User.find(session[:user_id]).email
-    # DocumentMailer.sender_distributed(sender_email, document.name, recipients).deliver_now
+    # sender_email = sender.email
+    # DocumentMailer.sender_distributed(sender_email, document, recipients, message).deliver_now
 
     redirect_to document_dashboard_path(document_id), notice: "We are working to distribute your file"
 
