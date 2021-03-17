@@ -32,27 +32,21 @@ class DocumentsController < ApplicationController
   # POST /documents or /documents.json
   def create
     unless session[:user_id]
-      redirect_to login_url, alert: "Sorry, you need to be signed in before you can do that!"
+      redirect_to login_url, alert: "You need to be signed in to do that"
       return
     end
 
-    # this needs to be a form validation not a redirection
     if !document_params[:upload]
-      redirect_to upload_url, alert: "You need to select a file to beam!" and return
+      redirect_to upload_url, alert: "You didn't choose a file." and return
     end
 
-    @document = Document.new(document_params)
-    # this needs to be a form validation not a redirection
-    if @document.invalid?
-      redirect_to upload_url, alert: @document.errors.messages[:name].first and return
-    end
-
+    @document = Document.create!(document_params)
     key = @document.upload.key
     @document.set_properties_after_upload(session[:user_id], key)
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, notice: "Your file was successfully sent to our Cloud!" }
+        format.html { redirect_to @document, notice: "Document was successfully created." }
         format.json { render :show, status: :created, location: @document }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -62,6 +56,7 @@ class DocumentsController < ApplicationController
   end
 
   def distribute_again
+    puts "distributing"
     document_id = params[:document_id]
     recipient_id = params[:recipient_id]
     document = Document.find(document_id)
@@ -83,6 +78,7 @@ class DocumentsController < ApplicationController
       redirect_to login_url, alert: "You need to be signed in to do that"
       return
     end
+    sender = User.find(session[:user_id])
     message = params[:message]
     document_id = params[:id]
     document = Document.find(document_id)
@@ -94,15 +90,15 @@ class DocumentsController < ApplicationController
 
     recipients = params[:recipients].split(",")
     recipients.each do |recipient|
-      recipient = recipient.strip
+      recipient_email = recipient.strip
       download_code = SecureRandom.uuid
-      helpers.create_new_document_recipient(recipient, document_id, download_code)
-      #DocumentMailer.distributed(recipient, message, download_code).deliver_now
+      helpers.create_new_document_recipient(recipient_email, document_id, download_code)
+      #DocumentMailer.distributed(sender, recipient_email, document, message, download_code).deliver_now
     end
 
 
-    # sender_email = User.find(session[:user_id]).email
-    # DocumentMailer.sender_distributed(sender_email, document.name, recipients).deliver_now
+    # sender_email = sender.email
+    # DocumentMailer.sender_distributed(sender_email, document, recipients, message).deliver_now
 
     redirect_to document_dashboard_path(document_id), notice: "We are working to distribute your file"
 
