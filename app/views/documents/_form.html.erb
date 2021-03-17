@@ -13,9 +13,8 @@
 
       <div class="border-t field sm:col-span-4 sm:col-start-2">
         <%= form.label :name, :value => 'File name', :class => "mt-2 block text-sm font-medium text-gray-700" %>
-        <div class="mt-1 flex rounded-md shadow-sm">
-          <%= form.text_field :name, :class => "flex-1 focus:ring-navy focus:border-navy block w-full min-w-0 rounded-md sm:text-sm border-navy" %>
-                                     
+        <div class="mt-1 flex flex-wrap rounded-md shadow-sm">
+          <%= form.text_field :name, :class => "flex-1 focus:ring-navy focus:border-navy block w-full min-w-full rounded-md sm:text-sm border-navy" %>
         </div>
       </div>
 
@@ -25,8 +24,8 @@
         <%= form.label :upload, :value => "File to upload", :class => "block text-sm font-medium text-gray-700" %>
         <div class="mt-1 flex justify-center px-6 pt-3 pb-6 ">
           <div class="space-y-1 text-center">
-            <div class="field flex text-sm text-gray-600">
-              <%= form.file_field :upload, multiple: false, direct_upload: true, :class => "cursor-pointer ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-navy hover:bg-turqoise focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange" %>
+            <div class="field flex flex-wrap text-sm text-gray-600">
+              <%= form.file_field :upload, multiple: false, direct_upload: true, :class => "cursor-pointer inline-flex min-w-full justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-navy hover:bg-turqoise focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange" %>
             </div>
           </div>
         </div>
