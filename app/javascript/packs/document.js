@@ -1,1 +1,0 @@
-import DocumentNameValidator from 'DocumentNameValidator';
