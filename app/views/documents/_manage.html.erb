@@ -54,15 +54,12 @@
       <div class="flex mb-2">
         <p class="text-right">Change your mind? You can permanently delete this file immediately. <b>Be careful!</b> If you delete your file now, any recipients you've shared this with who haven't yet downloaded the file will be unable to do so.</p>
       </div>
-      <%# <%= link_to 'Delete', document_destroy_path %>
       <%= link_to 'Delete', document, 
         method: :delete, data: { confirm: 'Are you sure? This will delete the file and destroy any unused links.' },
         class: "float-right text-red-800 background-transparent font-medium uppercase pb-2 text-xs outline-none focus:outline-none mr-1 mb-1",
         style: "transition: all .15s ease" 
       %>
-      <%# # <button class="float-right text-red-800 background-transparent font-medium uppercase pb-2 text-xs outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all .15s ease">
-      #   Delete
-      # </button> %>
     </div>
   </div>
 </div>
+<%#  %>
