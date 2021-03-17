@@ -1,7 +1,7 @@
 <h1>Document Shared</h1>
 
 <h2>
-  <%= "You have shared the document #{@document.name} to #{@recipient_emails.length} people:" %>
+  <%= "You have shared the document #{@document.name} with #{@recipient_emails.length} people:" %>
 </h2>
 <ul>
   <% @recipient_emails.each do |recipient_email| %>
