@@ -84,7 +84,7 @@ function removeValidationError(inputElement) {
 	console.log('Input is back to normal');
 }
 
-document.addEventListener('turbolinks:load', (event) => {
+document.addEventListener('DOMContentLoaded', (event) => {
 	const submit = document.querySelector("input[type='submit']"),
 		form = document.querySelector('form'),
 		fileNameInput = document.querySelector('#document_name'),
