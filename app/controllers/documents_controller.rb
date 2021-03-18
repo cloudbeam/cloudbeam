@@ -96,6 +96,7 @@ class DocumentsController < ApplicationController
     recipients.each do |recipient|
       recipient_email = recipient.strip
       download_code = SecureRandom.uuid
+      # error catching code here in case the creation fails due to validation?
       helpers.create_new_document_recipient(recipient_email, document_id, download_code)
       #DocumentMailer.distributed(sender, recipient_email, document, message, download_code).deliver_now
     end
