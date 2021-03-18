@@ -3,11 +3,70 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
-      /* Email styles need to be inline */
+      body {
+	      background: #f0f7ff;
+        font-family: Arial;
+        font-weight: light;
+        color: #182a44;
+        margin: 0;
+      }
+
+      header {
+        background-color: #182a44;
+        color: #FBE8A6;
+        padding: 1em 2em;
+      }
+
+      h4 {
+        padding-left: 2px;
+      }
+
+      h5 {
+        color: #55BDCA;
+        font-size: 20px;
+      }
+
+      #page-head {
+        padding: 0
+      }
+
+      #title-heading {
+      	font-size: 6.75em;
+      	font-family: Arial;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .content {
+        margin: 1em;
+        border: 2px solid #F27D42;
+        padding: 1em;
+      }
+
+      .cloudbeam-msg {
+        border-top: 1px solid #F27D42;
+        margin: 1em;
+      }
+
+      .user-msg {
+        margin: 1em;
+      }
     </style>
   </head>
 
   <body>
-    <%= yield %>
+    <header class="pt-10 bg-navy">
+      <div id="page-head" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
+        <h1 id="title-heading" class="text-7xl text-pale_yellow mr-4">
+          Cloudbeam
+        </h1>
+        <h4>
+          Your simple share solution.
+        </h4>
+      </div>
+    </header>
+    <div class="content">
+      <%= yield %>
+    </div>
   </body>
 </html>

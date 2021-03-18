@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+
+en:
+  file_entity_mailer:
+    distributed:
+      subject: "A message from Team Cloudbeam"
