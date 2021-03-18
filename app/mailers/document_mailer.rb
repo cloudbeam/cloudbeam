@@ -7,6 +7,7 @@ class DocumentMailer < ApplicationMailer
   #
   default from: "Team Cloud-Beam <teamcloudbeam@cloud-beam.com>"
   def distributed(sender, recipient_email, document, message, download_code)
+    @sender = sender
     @message = message
     @download_code = download_code
     @document = document
