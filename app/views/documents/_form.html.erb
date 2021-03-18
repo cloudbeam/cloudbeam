@@ -1,5 +1,4 @@
 <%= form_with(url: "/upload", method: :post, model: document, local: true) do |form| %>
-  
   <div class="bg-powder_blue rounded-md pt-4 space-y-8 divide-y divide-gray-200">
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
       <div class="sm:col-span-4 sm:col-start-2">
@@ -44,4 +43,6 @@
     </div>
   </div>
 <% end %>
+
+<%= javascript_pack_tag 'document_upload_progress' %>
 <%= javascript_pack_tag 'document_validation' %>

@@ -2,7 +2,7 @@ const VALIDATION_ERRORS = {
 	fileName            :
 		"File names need to be at least 3 characters long, START and END with a letter or number, and only contain letters, numbers, '.' and spaces!",
 	fileUpload          : 'Please select a file to beam up to our cloud!',
-	emailAddressInvalid : "Please make sure all email addresses are valid and multiples are separated by ', ' !"
+	emailAddressInvalid : "Please make sure all email addresses are valid and multiple emails are separated by ', ' !"
 };
 
 document.querySelector('#clear').addEventListener('click', (e) => {

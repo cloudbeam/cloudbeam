@@ -3,11 +3,10 @@ class Document < ApplicationRecord
   belongs_to :user
   has_many :document_recipients, dependent: :destroy
 
-  validates :name, length: { in: 3..30, message: "Whoops, file name needs to be between 6 to 30 characters long!" },
+  validates :name, length: { minimum: 3, message: "Whoops, file name needs to be at least 3 characters long!" },
                    format: { with: /\A[\d|\w]+[\d|\w|.| -]+[\d|\w]+\z/i, message: "Sorry, the file name needs to START and END with a letter or number and can only use letters, numbers, '.' , ',' , and spaces!"},
                    presence: true,
                    uniqueness: { scope: :name, message: "No redundant file names in the cloud!" }
-
 
   S3_BUCKET_BASE_URL = Rails.application.credentials[:bucket_url]
 
