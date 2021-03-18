@@ -37,9 +37,9 @@
   </div>
 </div>
 <div class="bg-white overflow-hidden text-gray-700">
-  <%= render 'manage', document: @document, recipients: @recipients %>
+  <%= render 'manage', document: @document, recipients: @recipients, document_data: @document_data %>
   <%= render('tracking', recipients: @recipients) %>
   <%= render 'share' %>
-  
+
 </div>
 <%= javascript_pack_tag("file_dashboard") %>

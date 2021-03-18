@@ -9,6 +9,10 @@ module DocumentsHelper
     })
   end
 
+  def bytes_to_megabyte(bytes)
+    (bytes / 1.0.megabyte).round(2)
+  end
+
   # format created at from UTC to human readable local time
   def created_at_local_time(doc)
     doc.created_at.localtime.to_formatted_s(:long)

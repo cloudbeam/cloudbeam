@@ -13,9 +13,10 @@ class DocumentsController < ApplicationController
   # GET /documents/1 or /documents/1.json
   def show
     @document = Document.find(params[:id])
+    @document_data = ActiveStorage::Blob.find(params[:id])
 
     if @document.expired_at != nil then
-      # redirect to 404 page
+      not_found
     end
     @recipients = DocumentRecipient.where(document_id: params[:id])
   end
