@@ -2,12 +2,9 @@ class Document < ApplicationRecord
   has_one_attached :upload
   belongs_to :user
   has_many :document_recipients, dependent: :destroy
-
   validates :name, length: { in: 3..30, message: "Whoops, file name needs to be between 6 to 30 characters long!" },
                    format: { with: /\A[\d|\w]+[\d|\w|.| -]+[\d|\w]+\z/i, message: "Sorry, the file name needs to START and END with a letter or number and can only use letters, numbers, '.' , ',' , and spaces!"},
-                   presence: true,
-                   uniqueness: { scope: :name, message: "No redundant file names in the cloud!" }
-
+                   presence: true
 
   S3_BUCKET_BASE_URL = Rails.application.credentials[:bucket_url]
 
@@ -25,5 +22,9 @@ class Document < ApplicationRecord
   def set_properties_after_upload(id, key)
     self[:url] = self.calculate_s3_url(key, S3_BUCKET_BASE_URL)
     self[:uploaded_at] = self.current_date_time
+  end
+
+  def self.filename_unique_to_user(name, id)
+    Document.where(user_id: id).where(expired_at: nil).where(name: name).to_a.size == 0
   end
 end

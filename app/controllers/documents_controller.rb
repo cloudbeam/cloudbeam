@@ -13,7 +13,7 @@ class DocumentsController < ApplicationController
   # GET /documents/1 or /documents/1.json
   def show
     @document = Document.find(params[:id])
-    @document_data = ActiveStorage::Blob.find(params[:id])
+    @document_data = ActiveStorage::Blob.where(id: params[:id]).first
 
     if @document.expired_at != nil then
       not_found
@@ -37,8 +37,12 @@ class DocumentsController < ApplicationController
       return
     end
 
-    if !document_params[:upload]
-      redirect_to upload_url, alert: "You didn't choose a file." and return
+    if !document_params[:upload] || !document_params[:name]
+      redirect_to upload_url, alert: "You must choose a file and a name." and return
+    end
+
+    if !Document.filename_unique_to_user(document_params[:name], session[:user_id])
+      redirect_to upload_url, alert: "You already have an active file by that name." and return
     end
 
     @document = Document.create!(document_params)
@@ -57,7 +61,6 @@ class DocumentsController < ApplicationController
   end
 
   def distribute_again
-    puts "distributing"
     document_id = params[:document_id]
     recipient_id = params[:recipient_id]
     document = Document.find(document_id)
