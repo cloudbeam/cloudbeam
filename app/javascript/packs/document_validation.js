@@ -1,20 +1,8 @@
-<<<<<<< HEAD
-document.querySelector("#clear").addEventListener('click', e => {
-  e.preventDefault();
-  document.querySelector("#message").value = ""
-});
-=======
 const VALIDATION_ERRORS = {
-	fileName            :
-		"File names need to be at least 3 characters long, START and END with a letter or number, and only contain letters, numbers, '.' and spaces!",
-	fileUpload          : 'Please select a file to beam up to our cloud!',
-	emailAddressInvalid : "Please make sure all email addresses are valid and multiple emails are separated by ', ' !"
+	fileName   :
+		"File names need to be at least 3 characters long, START and END with a letter or number, and only contain letters, numbers, '.', '-', and spaces!",
+	fileUpload : 'Please select a file to beam up to our cloud!'
 };
-
-document.querySelector('#clear').addEventListener('click', (e) => {
-	e.preventDefault();
-	document.querySelector('#message').value = '';
-});
 
 function blankInputPresent(inputCollection) {
 	for (const input of inputCollection) {
@@ -45,38 +33,13 @@ function invalidInputsPresent() {
 	return document.querySelectorAll('.invalid').length > 0;
 }
 
+function validFileName(inputElement) {
+	let fileName = inputElement.value;
+	let fileRegEx = new RegExp(/^[\d|\w]+[\d|\w|.| -]+[\d|\w]+$/);
+	return fileName.length >= 3 && fileRegEx.test(fileName);
+}
 function uploadNotEmpty(inputElement) {
 	return inputElement.value.length > 0;
-}
-
-function validEmailAddress(email) {
-	emailRegEx = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-	return email.match(emailRegEx);
-}
-
-function validEmailList(emailList) {
-	const emails = emailList.split(',').map((email) => email.trim());
-	if (emails.length < 1) return false;
-
-	for (const email of emails) {
-		if (!validEmailAddress(email)) {
-			return false;
-		}
-	}
-
-	return true;
-}
-
-function findBadEmails(emailList) {
-	const emails = emailList.split(',').map((email) => email.trim());
-	const badEmails = [];
-	for (const email of emails) {
-		if (!validEmailAddress(email)) {
-			badEmails.push(email);
-		}
-	}
-
-	return badEmails;
 }
 
 function addValidationError(inputElement, validationErrorType) {
@@ -118,28 +81,35 @@ function removeValidationError(inputElement) {
 	if (warningDialogue) {
 		warningDialogue.remove();
 	}
+	console.log('Input is back to normal');
 }
 
-document.addEventListener('turbolinks:load', (event) => {
-	const submit = document.querySelector("button[type='submit']"),
+document.addEventListener('DOMContentLoaded', (event) => {
+	const submit = document.querySelector("input[type='submit']"),
 		form = document.querySelector('form'),
-		emails = document.querySelector('#recipients'),
-		targetInputs = [ emails ];
+		fileNameInput = document.querySelector('#document_name'),
+		fileUploadInput = document.querySelector('#document_upload'),
+		targetInputs = [ fileNameInput, fileUploadInput ];
 
 	document.addEventListener('focusout', (e) => {
-		if (e.target == emails) {
-			console.log('emails lost focus');
-			if (validEmailList(emails.value)) {
-				removeValidationError(emails);
-				console.log('error message removed from emails');
+		if (e.target === fileNameInput) {
+			if (validFileName(fileNameInput)) {
+				removeValidationError(fileNameInput);
 			} else {
-				addValidationError(emails, 'emailAddressInvalid');
+				addValidationError(fileNameInput, 'fileName');
+			}
+		} else if (e.target === fileUploadInput) {
+			if (uploadNotEmpty(fileUploadInput)) {
+				removeValidationError(fileUploadInput);
+			} else {
+				addValidationError(fileUploadInput, 'fileUpload');
 			}
 		}
 	});
 
 	submit.addEventListener('click', (e) => {
 		e.preventDefault();
+		const targetInputs = [ fileNameInput, fileUploadInput ];
 		toggleInputs(targetInputs);
 		if (invalidInputsPresent()) {
 			alert('Please fix your information and we can continue.');
@@ -149,4 +119,3 @@ document.addEventListener('turbolinks:load', (event) => {
 		}
 	});
 });
->>>>>>> 101132faa9f604c40737ac810f9981f06aace65d

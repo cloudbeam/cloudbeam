@@ -45,7 +45,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.mailgun.org",
     port: 587,
-    domain: "sandbox5634fd882fb143c1b8f7dc2797130a81.mailgun.org",
+    domain: "cloud-beam.com",
     authentication: "plain",
     #user_name: ENV["MAILGUN_USERNAME"],
     user_name: Rails.application.credentials[:mailgun][:username],

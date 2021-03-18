@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
+
   get 'errors/not_found'
   get 'errors/internal_server_error'
   root 'downloads#index', as: 'download'

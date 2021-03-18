@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
     if session[:user_id] then
       session[:user_id] = nil
       cookies.delete(:user_id)
-      redirect_to login_url, alert: "Logged out"
+      redirect_to login_url, notice: "Logged out"
     else 
       redirect_to download_url
     end

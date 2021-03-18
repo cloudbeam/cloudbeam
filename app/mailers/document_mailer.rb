@@ -11,11 +11,17 @@ class DocumentMailer < ApplicationMailer
     @download_code = download_code
     @document = document
 
+<<<<<<< HEAD
     @sender = sender
 
     mail to: recipient_email, subject: "#{sender.first_name} #{sender.last_name} has shared a file: #{document.name}!"
   end
 
+=======
+    mail to: recipient_email, subject: "#{sender.first_name} #{sender.last_name} has shared a file: #{document.name}!"
+  end
+
+>>>>>>> 101132faa9f604c40737ac810f9981f06aace65d
   def sender_distributed(email, document, recipient_emails, message)
     @document = document
     @recipient_emails = recipient_emails

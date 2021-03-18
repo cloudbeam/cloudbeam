@@ -8,6 +8,7 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'alert_close' %>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
   </head>
@@ -22,11 +23,7 @@
       <main class="-mt-32">
         <div class="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
           <div class="bg-white rounded-lg shadow px-5 py-6 sm:px-6">
-            <% flash.each do |type, msg| %>
-              <div class=<%= type %>>
-                <%= msg %>
-              </div>
-            <% end %>
+              <%= render 'shared/alert' %>
             <div class="rounded-lg min-h-96">
               <%= yield %>
             </div>
@@ -34,6 +31,5 @@
         </div>
       </main>
     </div>
-    <ul class="alert-ul"></ul>
   </body>
 </html>

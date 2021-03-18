@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: %i[ show edit update destroy ]
+  before_action :authorize
 
   # GET /documents or /documents.json
   def index
@@ -13,9 +14,10 @@ class DocumentsController < ApplicationController
   # GET /documents/1 or /documents/1.json
   def show
     @document = Document.find(params[:id])
+    @document_data = ActiveStorage::Blob.where(id: params[:id]).first
 
     if @document.expired_at != nil then
-      # redirect to 404 page
+      not_found
     end
     @recipients = DocumentRecipient.where(document_id: params[:id])
   end
@@ -31,13 +33,12 @@ class DocumentsController < ApplicationController
 
   # POST /documents or /documents.json
   def create
-    unless session[:user_id]
-      redirect_to login_url, alert: "You need to be signed in to do that"
-      return
+    if !document_params[:upload] || !document_params[:name]
+      redirect_to upload_url, alert: "You must choose a file and a name." and return
     end
 
-    if !document_params[:upload]
-      redirect_to upload_url, alert: "You didn't choose a file." and return
+    if !Document.filename_unique_to_user(document_params[:name], session[:user_id])
+      redirect_to upload_url, alert: "You already have an active file by that name." and return
     end
 
     @document = Document.create!(document_params)
@@ -56,7 +57,6 @@ class DocumentsController < ApplicationController
   end
 
   def distribute_again
-    puts "distributing"
     document_id = params[:document_id]
     recipient_id = params[:recipient_id]
     document = Document.find(document_id)

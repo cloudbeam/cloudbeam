@@ -1,29 +1,48 @@
 <%= form_with(url: "/upload", method: :post, model: document, local: true) do |form| %>
-  <% if document.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
+  <div class="bg-powder_blue rounded-md pt-4 space-y-8 divide-y divide-gray-200">
+    <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+      <div class="sm:col-span-4 sm:col-start-2">
+        <h3 class="text-xl leading-6 font-medium text-gray-900">
+          Upload a File!
+        </h3>
+        <p class="mt-1 text-sm text-gray-500">
+          Want to beam a file directly to the cloud? Pass it over to us and <em>we'll do the rest</em>!
+        </p>
+      </div>
 
-      <ul>
-        <% document.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+      <div class="border-t field sm:col-span-4 sm:col-start-2">
+        <%= form.label :name, :value => 'File name', :class => "mt-2 block text-sm font-medium text-gray-700" %>
+        <div class="mt-1 flex flex-wrap rounded-md shadow-sm">
+          <%= form.text_field :name, :class => "flex-1 focus:ring-navy focus:border-navy block w-full min-w-full rounded-md sm:text-sm border-navy" %>
+        </div>
+      </div>
+
+      <%= form.hidden_field :user_id, :value => session[:user_id] %>
+
+      <div class="border-b sm:col-span-4 sm:col-start-2">
+        <%= form.label :upload, :value => "File to upload", :class => "block text-sm font-medium text-gray-700" %>
+        <div class="mt-1 flex justify-center px-6 pt-3 pb-6 ">
+          <div class="space-y-1 text-center">
+            <div class="field flex flex-wrap text-sm text-gray-600">
+              <%= form.file_field :upload, multiple: false, direct_upload: true, :class => "cursor-pointer inline-flex min-w-full justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-navy hover:bg-turqoise focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange" %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-  
-  <%= form.hidden_field :user_id, :value => session[:user_id] %>
-
-  <div class="field">
-    <%= form.label :upload %>
-    <%= form.file_field :upload, multiple: false, direct_upload: true %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+    <div class="mt-2 actions">
+      <div class="flex justify-end">
+            <button type="button" onClick="window.location.href='/documents'" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        Cancel
+      </button>
+        <div >
+          <%= form.submit 'Upload To CloudBeam', :class => "ml-3 inline-flex justify-center py-4 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-orange hover:bg-turqoise focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+      </div>
+    </div>
   </div>
 <% end %>
+
+<%= javascript_pack_tag 'document_upload_progress' %>
+<%= javascript_pack_tag 'document_validation' %>
