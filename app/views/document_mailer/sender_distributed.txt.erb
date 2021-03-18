@@ -1,6 +1,13 @@
-Document Sent
+Document Shared
 
-<%= "You have sent the document #{@document_name} to #{@recipients.length} people:" %>
-<% @recipients.each do |recipient| %>
-  <%= recipient %>
+<%= "You have shared the document #{@document.name} with #{@recipient_emails.length} people:" %>
+<% @recipient_emails.each do |recipient_email| %>
+  <%= recipient_email %>
+<% end %>
+
+<% if @message == "" %>
+  You didn't send them any message.
+<% else %>
+  You sent them the following message:
+  <%= @message %>
 <% end %>

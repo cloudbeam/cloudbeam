@@ -1,10 +1,19 @@
-<h1>Document Sent</h1>
+<h1>Document Shared</h1>
 
-<%= "You have sent the document #{@document_name} to #{@recipients.length} people:" %>
+<h2>
+  <%= "You have shared the document #{@document.name} with #{@recipient_emails.length} people:" %>
+</h2>
 <ul>
-  <% @recipients.each do |recipient| %>
+  <% @recipient_emails.each do |recipient_email| %>
     <li>
-      <%= recipient %>
+      <%= recipient_email %>
     </li>
   <% end %>
 </ul>
+
+<% if @message == "" %>
+  <h2> You didn't send them any message. </h2>
+<% else %>
+  <h2>You sent them the following message: </h2>
+  <p><%= @message %></p>
+<% end %>

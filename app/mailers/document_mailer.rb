@@ -5,23 +5,20 @@ class DocumentMailer < ApplicationMailer
   #
   #   en.file_entity_mailer.distributed.subject
   #
-  default from: "John Doe <jimbot842@gmail.com>"
-  def distributed(email, message, download_code)
-    puts email, message
-    @greeting = "Hi"
+  default from: "Team Cloud-Beam <teamcloudbeam@cloud-beam.com>"
+  def distributed(sender, recipient_email, document, message, download_code)
     @message = message
-
     @download_code = download_code
+    @document = document
 
-    mail to: email, subject: 'File sent'
+    mail to: recipient_email, subject: "#{sender.first_name} #{sender.last_name} has shared a file: #{document.name}!"
   end
 
-  def sender_distributed(email, document_name, recipients)
-    puts "Email sender of the file"
-    @document_name = document_name
+  def sender_distributed(email, document, recipient_emails, message)
+    @document = document
+    @recipient_emails = recipient_emails
+    @message = message
 
-    @recipients = recipients
-
-    mail to: email, subject: 'File distributed'
+    mail to: email, subject: "You shared the file #{document.name} with #{recipient_emails.count} people"
   end
 end
