@@ -11,6 +11,8 @@ class DocumentMailer < ApplicationMailer
     @download_code = download_code
     @document = document
 
+    @sender = sender
+
     mail to: recipient_email, subject: "#{sender.first_name} #{sender.last_name} has shared a file: #{document.name}!"
   end
 

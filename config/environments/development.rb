@@ -31,6 +31,9 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :amazon
+  # config.active_storage.content_types_to_serve_as_binary = %w(image/png image/gif image/jpg image/jpeg image/tiff image/bmp image/vnd.adobe.photoshop image/vnd.microsoft.icon application/pdf)
+  #
+  # config.active_storage.content_types_allowed_inline = %w()
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
@@ -42,7 +45,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.mailgun.org",
     port: 587,
-    domain: "cloud-beam.com",
+    domain: "sandbox5634fd882fb143c1b8f7dc2797130a81.mailgun.org",
     authentication: "plain",
     #user_name: ENV["MAILGUN_USERNAME"],
     user_name: Rails.application.credentials[:mailgun][:username],
