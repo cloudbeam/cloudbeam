@@ -1,3 +1,9 @@
+const VALIDATION_ERRORS = {
+	fileName   :
+		"File names need to be at least 3 characters long, START and END with a letter or number, and only contain letters, numbers, '.', '-', and spaces!",
+	fileUpload : 'Please select a file to beam up to our cloud!'
+};
+
 function blankInputPresent(inputCollection) {
 	for (const input of inputCollection) {
 		if (blankInput(input)) {
@@ -27,15 +33,9 @@ function invalidInputsPresent() {
 	return document.querySelectorAll('.invalid').length > 0;
 }
 
-const VALIDATION_ERRORS = {
-	fileName   :
-		"File names need to be at least 3 characters long, START and END with a letter or number, and only contain letters, numbers, '.' and spaces!",
-	fileUpload : 'Please select a file to beam up to our cloud!'
-};
-
 function validFileName(inputElement) {
 	let fileName = inputElement.value;
-	let fileRegEx = new RegExp(/^[\d|\w]+[\d|\w|.| ]+[\d|\w]+$/);
+	let fileRegEx = new RegExp(/^[\d|\w]+[\d|\w|.| -]+[\d|\w]+$/);
 	return fileName.length >= 3 && fileRegEx.test(fileName);
 }
 function uploadNotEmpty(inputElement) {
