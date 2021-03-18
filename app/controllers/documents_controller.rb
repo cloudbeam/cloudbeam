@@ -13,7 +13,9 @@ class DocumentsController < ApplicationController
   # GET /documents/1 or /documents/1.json
   def show
     @document = Document.find(params[:id])
-    @document_data = ActiveStorage::Blob.find(params[:id])
+    # helper to query db and find correct blob based on doc id and attach id
+    blob_id = helpers.matching_active_storage_blob_id(@document.id)
+    @document_data = ActiveStorage::Blob.find(blob_id)
 
     if @document.expired_at != nil then
       not_found
@@ -24,10 +26,6 @@ class DocumentsController < ApplicationController
   # GET /documents/new
   def new
     @document = Document.new
-  end
-
-  # GET /documents/1/edit
-  def edit
   end
 
   # POST /documents or /documents.json
@@ -105,7 +103,6 @@ class DocumentsController < ApplicationController
     redirect_to document_dashboard_path(document_id), notice: "We are working to distribute your file"
 
   end
-
   # PATCH/PUT /documents/1 or /documents/1.json
   def update
     respond_to do |format|

@@ -1,5 +1,5 @@
-// direct_uploads.js
 addEventListener('direct-upload:initialize', (event) => {
+	console.log('direct upload started');
 	const { target, detail } = event;
 	const { id, file } = detail;
 	target.insertAdjacentHTML(

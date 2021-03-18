@@ -73,7 +73,7 @@ function findBadEmails(emailList) {
 	return badEmails;
 }
 
-function addValidationError(inputElement, validationErrorType) {
+function addValidationError(inputElement, validationError) {
 	// format input with Tailwinds consistent formatting
 	inputElement.classList.remove('border-navy');
 	inputElement.classList.add('text-red-600', 'border-red-600');
@@ -84,7 +84,7 @@ function addValidationError(inputElement, validationErrorType) {
 		// create new element to display error message
 		warningDialogue = document.createElement('p');
 		// style that message with tailwinds consistent formatting
-		warningDialogue.innerText = VALIDATION_ERRORS[validationErrorType];
+		warningDialogue.innerText = validationError;
 		warningDialogue.classList.add(
 			'invalid',
 			'p-2',
@@ -114,32 +114,30 @@ function removeValidationError(inputElement) {
 	}
 }
 
-document.addEventListener('turbolinks:load', (event) => {
-	const submit = document.querySelector("button[type='submit']"),
-		form = document.querySelector('form'),
-		emails = document.querySelector('#recipients'),
-		targetInputs = [ emails ];
+const submit = document.querySelector("button[type='submit']"),
+	form = document.querySelector('form'),
+	emails = document.querySelector('#recipients'),
+	targetInputs = [ emails ];
 
-	document.addEventListener('focusout', (e) => {
-		if (e.target == emails) {
-			console.log('emails lost focus');
-			if (validEmailList(emails.value)) {
-				removeValidationError(emails);
-				console.log('error message removed from emails');
-			} else {
-				addValidationError(emails, 'emailAddressInvalid');
-			}
-		}
-	});
-
-	submit.addEventListener('click', (e) => {
-		e.preventDefault();
-		toggleInputs(targetInputs);
-		if (invalidInputsPresent()) {
-			alert('Please fix your information and we can continue.');
+document.addEventListener('focusout', (e) => {
+	if (e.target == emails) {
+		console.log('emails lost focus');
+		if (validEmailList(emails.value)) {
+			removeValidationError(emails);
+			console.log('error message removed from emails');
 		} else {
-			console.log(form);
-			form.submit();
+			addValidationError(emails, VALIDATION_ERRORS['emailAddressInvalid']);
 		}
-	});
+	}
+});
+
+submit.addEventListener('click', (e) => {
+	e.preventDefault();
+	toggleInputs(targetInputs);
+	if (invalidInputsPresent()) {
+		alert('Please fix your information and we can continue.');
+	} else {
+		console.log(form);
+		form.submit();
+	}
 });

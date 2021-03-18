@@ -10,12 +10,22 @@ module DocumentsHelper
   end
 
   def bytes_to_megabyte(bytes)
-    (bytes / 1.0.megabyte).round(2)
+    if (bytes < 1000)
+      (bytes / 1.0.megabyte).round(2)
+    else
+      (bytes / 1.0.megabyte).round(2)
+    end
   end
 
   # format created at from UTC to human readable local time
   def created_at_local_time(doc)
     doc.created_at.localtime.to_formatted_s(:long)
+  end
+
+  # for a doc, find the correct active storage blob according to its id
+  def matching_active_storage_blob_id(doc_id) 
+    attachment = ActiveStorage::Attachment.where(record_id: doc_id)
+    attachment.first[:blob_id]
   end
 
   # for a doc, find times shared and how many times downloaded

@@ -26,7 +26,6 @@ function toggleInputs(inputCollection) {
 function focusToggle(inputElement) {
 	inputElement.focus();
 	inputElement.blur();
-	console.log(inputElement, 'toggled');
 }
 
 function invalidInputsPresent() {
@@ -42,7 +41,7 @@ function uploadNotEmpty(inputElement) {
 	return inputElement.value.length > 0;
 }
 
-function addValidationError(inputElement, validationErrorType) {
+function addValidationError(inputElement, validationError) {
 	// format input with Tailwinds consistent formatting
 	inputElement.classList.remove('border-navy');
 	inputElement.classList.add('text-red-600', 'border-red-600');
@@ -53,7 +52,7 @@ function addValidationError(inputElement, validationErrorType) {
 		// create new element to display error message
 		warningDialogue = document.createElement('p');
 		// style that message with tailwinds consistent formatting
-		warningDialogue.innerText = VALIDATION_ERRORS[validationErrorType];
+		warningDialogue.innerText = validationError;
 		warningDialogue.classList.add(
 			'invalid',
 			'p-2',
@@ -81,41 +80,37 @@ function removeValidationError(inputElement) {
 	if (warningDialogue) {
 		warningDialogue.remove();
 	}
-	console.log('Input is back to normal');
 }
 
-document.addEventListener('DOMContentLoaded', (event) => {
-	const submit = document.querySelector("input[type='submit']"),
-		form = document.querySelector('form'),
-		fileNameInput = document.querySelector('#document_name'),
-		fileUploadInput = document.querySelector('#document_upload'),
-		targetInputs = [ fileNameInput, fileUploadInput ];
+const submit = document.querySelector("input[type='submit']"),
+	form = document.querySelector('form'),
+	fileNameInput = document.querySelector('#document_name'),
+	fileUploadInput = document.querySelector('#document_upload'),
+	targetInputs = [ fileNameInput, fileUploadInput ];
 
-	document.addEventListener('focusout', (e) => {
-		if (e.target === fileNameInput) {
-			if (validFileName(fileNameInput)) {
-				removeValidationError(fileNameInput);
-			} else {
-				addValidationError(fileNameInput, 'fileName');
-			}
-		} else if (e.target === fileUploadInput) {
-			if (uploadNotEmpty(fileUploadInput)) {
-				removeValidationError(fileUploadInput);
-			} else {
-				addValidationError(fileUploadInput, 'fileUpload');
-			}
-		}
-	});
-
-	submit.addEventListener('click', (e) => {
-		e.preventDefault();
-		const targetInputs = [ fileNameInput, fileUploadInput ];
-		toggleInputs(targetInputs);
-		if (invalidInputsPresent()) {
-			alert('Please fix your information and we can continue.');
+document.addEventListener('focusout', (e) => {
+	if (e.target === fileNameInput) {
+		if (validFileName(fileNameInput)) {
+			removeValidationError(fileNameInput);
 		} else {
-			console.log(form);
-			form.submit();
+			addValidationError(fileNameInput, VALIDATION_ERRORS['fileName']);
 		}
-	});
+	} else if (e.target === fileUploadInput) {
+		if (uploadNotEmpty(fileUploadInput)) {
+			removeValidationError(fileUploadInput);
+		} else {
+			addValidationError(fileUploadInput, 'fileUpload');
+		}
+	}
+});
+
+submit.addEventListener('click', (e) => {
+	e.preventDefault();
+	const targetInputs = [ fileNameInput, fileUploadInput ];
+	toggleInputs(targetInputs);
+	if (invalidInputsPresent()) {
+		alert('Please fix your information and we can continue.');
+	} else {
+		form.submit();
+	}
 });
