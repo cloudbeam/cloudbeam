@@ -1,19 +1,24 @@
-<h1>Document Shared</h1>
-
-<h2>
-  <%= "You have shared the document #{@document.name} with #{@recipient_emails.length} people:" %>
-</h2>
-<ul>
-  <% @recipient_emails.each do |recipient_email| %>
-    <li>
-      <%= recipient_email %>
-    </li>
+<div class="user-msg">
+  <h5>Document Shared via Cloudbeam</h5>
+  <p><%= "You have shared the document #{@document.name} with #{@recipient_emails.length} people:" %></p>
+  <ul>
+    <% @recipient_emails.each do |recipient_email| %>
+      <li>
+        <%= recipient_email %>
+      </li>
+    <% end %>
+  </ul>
+  <% if @message == "" %>
+    <h2> You didn't send a message to your recipients along with the download link. </h2>
+  <% else %>
+    <h2>You sent recipients the following message with their unique download link: </h2>
+    <p><%= @message %></p>
   <% end %>
-</ul>
+</div>
 
-<% if @message == "" %>
-  <h2> You didn't send them any message. </h2>
-<% else %>
-  <h2>You sent them the following message: </h2>
-  <p><%= @message %></p>
-<% end %>
+<div class='cloudbeam-msg'>
+  <p><b>What now?</b> You have provided each recipient with one-time access to download this file. Once they use their unique download code, it will become invalid.</p>
+  <p>We'll let you know when file recipients downloaded the content.</p>
+  <p><b>Note: </b>Cloudbeam is a temporary storage solution for the purpose of efficiently sharing content.  All uploaded files have a maximum active storage of 30 days.  Your file <b>expires <%= @expiration %></b>.</p>
+  <p><%= link_to "View your file dashboard on Cloudbeam", "https://cloud-beam.com/dashboard" %></p>
+</div>

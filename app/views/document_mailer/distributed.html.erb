@@ -1,15 +1,23 @@
-<h1>
-  <%= "#{sender.first_name} #{sender.last_name} has sent you a file: #{document.name}!" %>
-</h1>
-<% if @message != "" %>
-  <h2>
-    Message:
-  </h2>
-  <p>
-    <%= @message %>
-  </p>
-<% end %>
-<p> Link: </p>
-<%= link_to "Download the file", "https://cloud-beam.com/?id=#{@download_code}" %>
-<p> Code: </p>
-<p> <%= @download_code %> </p>
+<div class="user-msg">
+  <h5>
+    <%= "#{@sender[:first_name]} #{@sender[:last_name]} has sent you a file!" %><br>
+    <br><%= "File name: #{@document[:name]}" %>
+  </h5>
+  <% if @message != "" %>
+    <p>
+      Message from <%= @sender[:first_name] %>:
+    </p>
+    <p>
+      <%= @message %>
+    </p>
+  <% end %>
+</div>
+<div class='cloudbeam-msg'>
+  <p><b>What now?</b> You have one-time access to download this file. Once you use your unique download code, it will become invalid.  Please ensure that you have a stable internet connection before beginning to download.</p>
+  <p>Note that this file <b>expires at <%= @expiration %></b>.<br>Don't delay or you may miss your chance!<br>
+    We'll let <%= @sender[:first_name] %> know when you've downloaded the content they shared with you.</p>
+    <p>To download your file, click the link below: </p>
+    <p style="color: #55BDCA, text-decoration: none"><%= link_to "Download the file", "https://cloud-beam.com/?id=#{@download_code}" %></p>
+    <p>If you prefer to navigate to cloud-beam.com on your own, just copy this unique download code to your clipboard and paste it in to the 'Download' input.</p>
+    <p style="color: #55BDCA"> <%= @download_code %> </p>
+</div>
