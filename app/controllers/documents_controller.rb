@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: %i[ show edit update destroy ]
+  before_action :authorize
 
   # GET /documents or /documents.json
   def index
@@ -32,11 +33,6 @@ class DocumentsController < ApplicationController
 
   # POST /documents or /documents.json
   def create
-    unless session[:user_id]
-      redirect_to login_url, alert: "You need to be signed in to do that"
-      return
-    end
-
     if !document_params[:upload] || !document_params[:name]
       redirect_to upload_url, alert: "You must choose a file and a name." and return
     end
