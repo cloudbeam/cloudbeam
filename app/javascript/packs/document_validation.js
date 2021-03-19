@@ -99,18 +99,16 @@ document.addEventListener('focusout', (e) => {
 		if (uploadNotEmpty(fileUploadInput)) {
 			removeValidationError(fileUploadInput);
 		} else {
-			addValidationError(fileUploadInput, 'fileUpload');
+			addValidationError(fileUploadInput, VALIDATION_ERRORS['fileUpload']);
 		}
 	}
 });
 
 submit.addEventListener('click', (e) => {
-	e.preventDefault();
 	const targetInputs = [ fileNameInput, fileUploadInput ];
 	toggleInputs(targetInputs);
 	if (invalidInputsPresent()) {
+		e.preventDefault();
 		alert('Please fix your information and we can continue.');
-	} else {
-		form.submit();
 	}
 });
