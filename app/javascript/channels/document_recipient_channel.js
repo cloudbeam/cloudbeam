@@ -22,7 +22,7 @@ consumer.subscriptions.create("DocumentRecipientChannel", {
       }, 2000);
     }
     let li = document.createElement('li');
-    li.innerHTML = `${data.recipient.email} downloaded the file ${data.document.name} <button>x</button>`;
+    li.innerHTML = `${data.recipient.email} downloaded the file ${data.document.name} <button><strong>x</strong></button>`;
     
     
     document.querySelector('.alert-ul').appendChild(li);
