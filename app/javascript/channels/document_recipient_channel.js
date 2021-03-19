@@ -22,13 +22,17 @@ consumer.subscriptions.create("DocumentRecipientChannel", {
       }, 2000);
     }
     let li = document.createElement('li');
-    li.textContent = `${data.recipient.email} downloaded the file ${data.document.name}`;
+    li.innerHTML = `${data.recipient.email} downloaded the file ${data.document.name} <button>x</button>`;
     
     
     document.querySelector('.alert-ul').appendChild(li);
-    
-    setTimeout(() => {
+    li.querySelector('button').addEventListener('click', e => {
+      e.preventDefault();
       li.remove();
-    }, 5000);
+    })
+    
+    // setTimeout(() => {
+    //   li.remove();
+    // }, 5000);
   }
 });
