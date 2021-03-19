@@ -86,18 +86,18 @@ class DocumentsController < ApplicationController
       return
     end
 
-    recipients = params[:recipients].split(",")
-    recipients.each do |recipient|
+    recipient_emails = params[:recipients].split(",")
+    recipient_emails.each do |recipient|
       recipient_email = recipient.strip
       download_code = SecureRandom.uuid
       # error catching code here in case the creation fails due to validation?
-      #helpers.create_new_document_recipient(recipient_email, document_id, download_code)
-      #DocumentMailer.distributed(sender, recipient_email, document, message, download_code).deliver_later
+      helpers.create_new_document_recipient(recipient_email, document_id, download_code)
+      DocumentMailer.distributed(sender, recipient_email, document, message, download_code).deliver_later
     end
 
 
-    #sender_email = sender.email
-    #DocumentMailer.sender_distributed(sender_email, document, recipients, message).deliver_now
+    sender_email = sender.email
+    DocumentMailer.sender_distributed(sender_email, document, recipient_emails, message).deliver_later
 
     redirect_to document_dashboard_path(document_id), notice: "We are working to distribute your file"
 

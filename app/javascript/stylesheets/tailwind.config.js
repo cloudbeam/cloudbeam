@@ -20,7 +20,8 @@ module.exports = {
 				light_navy  : '#f0f7ff',
 				turqoise    : '#55BDCA',
 				light_blue  : '#96FFFF',
-				powder_blue : '#C8EFF9'
+				powder_blue : '#C8EFF9',
+				white       : '#ffffff'
 			}
 		}
 	},
