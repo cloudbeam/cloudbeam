@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   controller :downloads do
     get  '/downloads'  => :index
     post '/downloads'  => :submit_code
+    post '/file_owner_download', to: 'downloads#file_owner_download'
   end
 
   controller :sessions do
