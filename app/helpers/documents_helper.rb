@@ -9,11 +9,13 @@ module DocumentsHelper
     })
   end
 
-  def bytes_to_megabyte(bytes)
-    if (bytes < 1000)
-      (bytes / 1.0.megabyte).round(2)
+  def bytes_display(bytes)
+    if (bytes < 10000)
+      "#{(bytes / 1.0.kilobyte).round(2)} KB"
+    elsif (byts < 1000000000)
+      "#{(bytes / 1.0.megabyte).round(2)} MB"
     else
-      (bytes / 1.0.megabyte).round(2)
+      "#{(bytes / 1.0.gigabyte).round(2)} GB"
     end
   end
 
