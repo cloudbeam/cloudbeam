@@ -21,11 +21,11 @@ module DocumentsHelper
 
   # format created at from UTC to human readable local time
   def created_at_local_time(doc)
-    doc.created_at.localtime.to_formatted_s(:long)
+    doc.created_at.localtime.to_formatted_s(:long) 
   end
 
   # for a doc, find the correct active storage blob according to its id
-  def matching_active_storage_blob_id(doc_id) 
+  def matching_active_storage_blob_id(doc_id)
     attachment = ActiveStorage::Attachment.where(record_id: doc_id)
     attachment.first[:blob_id]
   end
