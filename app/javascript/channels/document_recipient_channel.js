@@ -1,5 +1,12 @@
 import consumer from "./consumer"
 
+function flashGreen(element) {
+  element.classList.add("flash-green");
+  setTimeout(() => {
+    element.classList.remove("flash-green");
+  }, 2000);
+}
+
 consumer.subscriptions.create("DocumentRecipientChannel", {
   connected() {
     // Called when the subscription is ready for use on the server
@@ -14,12 +21,15 @@ consumer.subscriptions.create("DocumentRecipientChannel", {
     let hiddenIdField = document.querySelector(`[id="${data.recipient.id}"]`);
     if (hiddenIdField) {
       let recipientElement = hiddenIdField.nextElementSibling;
-      console.log(recipientElement);
       recipientElement.textContent = "Yes";
-      recipientElement.classList.add("flash-green");
-      setTimeout(() => {
-        recipientElement.classList.remove("flash-green");
-      }, 2000);
+      console.log(recipientElement);
+      flashGreen(recipientElement);
+    }
+
+    let timesDownloadedElement = document.querySelector("#times-downloaded");
+    if (timesDownloadedElement) {
+      timesDownloadedElement.textContent = data.times_downloaded;
+      flashGreen(timesDownloadedElement);
     }
     let li = document.createElement('li');
     li.innerHTML = `${data.recipient.email} downloaded the file ${data.document.name} <button><strong>x</strong></button>`;

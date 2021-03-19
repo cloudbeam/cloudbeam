@@ -37,7 +37,7 @@
         <dt class="text-base font-medium text-gray-500">
           Number of downloads
         </dt>
-        <dd class="mt-1 text-base text-gray-900 sm:mt-0 sm:col-span-1">
+        <dd id="times-downloaded" class="mt-1 text-base text-gray-900 sm:mt-0 sm:col-span-1">
           <%= recipients.where.not(downloaded_at: nil).count %>
         </dd>
       </div>
