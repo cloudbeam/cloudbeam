@@ -44,17 +44,16 @@
     </dl>
   </div>
   <div class="py-5">
-  <%# set download to pull document url %>
-    <button id="download" class="text-blue-400 background-transparent font-normal pb-2 text-base outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all .15s ease">
-      Download File
-    </button>
+    <%= form_with url: "/file_owner_download", method: :post, local: true do |form| %>
+      <%= form.hidden_field :document_id, value: document.id %>
+      <%= form.submit "Download File", class: "text-blue-400 bg-transparent font-normal pb-2 text-base outline-none focus:outline-none mr-1 mb-1 cursor-pointer" %>
+    <% end %>
   </div>
   <div class="clearfix px-4 py-4 sm:px-6 text-xs">
     <div class="float-right w-80">
       <div class="flex mb-2">
         <p class="text-right">Change your mind? You can permanently delete this file immediately. <b>Be careful!</b> If you delete your file now, any recipients you've shared this with who haven't yet downloaded the file will be unable to do so.</p>
       </div>
-      <%# <%= link_to 'Delete', document_destroy_path %>
       <%= link_to 'Delete', document,
         method: :delete, data: { confirm: 'Are you sure? This will delete the file and destroy any unused links.' },
         class: "float-right text-red-800 background-transparent font-medium uppercase pb-2 text-xs outline-none focus:outline-none mr-1 mb-1",

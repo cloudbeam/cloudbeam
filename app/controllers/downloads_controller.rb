@@ -4,6 +4,8 @@ require 'date'
 
 # this controller handles the download based on user's unique code
 class DownloadsController < ApplicationController
+  before_action :authorize, only: [:file_owner_download]
+
   def index
     # get any id param in the url
     @download_code = params[:id]
@@ -37,7 +39,22 @@ class DownloadsController < ApplicationController
     redirect_to signed_url(file_name(document), request.remote_ip)
   end
 
+  def file_owner_download
+    user_id = session[:user_id]
+    document = Document.find(params[:document_id])
+
+    if user_owns_file?(user_id, document)
+      redirect_to signed_url(file_name(document), request.remote_ip)
+    else
+      redirect_to documents_url, alert: "You don't own that file."
+    end
+  end
+
   private
+
+  def user_owns_file?(user_id, document)
+    document.user_id == user_id
+  end
 
   def signed_url(file_name, ip)
     expiration  = Time.now + 180
