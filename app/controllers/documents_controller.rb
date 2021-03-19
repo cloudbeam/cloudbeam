@@ -14,13 +14,11 @@ class DocumentsController < ApplicationController
   # GET /documents/1 or /documents/1.json
   def show
     @document = Document.find(params[:id])
-<<<<<<< HEAD
     # helper to query db and find correct blob based on doc id and attach id
     blob_id = helpers.matching_active_storage_blob_id(@document.id)
     @document_data = ActiveStorage::Blob.find(blob_id)
-=======
-    @document_data = ActiveStorage::Blob.where(id: params[:id]).first
->>>>>>> 9753ab051239106077fdafbaa3cdd4d3b9aa0344
+
+
 
     if @document.expired_at != nil then
       not_found
