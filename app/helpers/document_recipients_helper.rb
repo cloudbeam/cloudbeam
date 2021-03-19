@@ -16,3 +16,4 @@ module DocumentRecipientsHelper
                data: {recipient: recipient.email, recipient_id: recipient.id, document_id: recipient.document_id}
   end
 end
+  
