@@ -41,8 +41,9 @@ db:structure:load
 db:version
 document:reset[id]
 dynamo_db:session_store:clean
-expired:remove_expired
+expired:remove_old
 expired:show_expired
+expired:show_old
 log:clear
 middleware
 restart
@@ -54,6 +55,8 @@ test:system
 time:zones[country_or_offset]
 tmp:clear
 tmp:create
+unattached:remove_unattached_blobs
+unattached:show_unattached_blobs
 webpacker
 webpacker:binstubs
 webpacker:check_binstubs
