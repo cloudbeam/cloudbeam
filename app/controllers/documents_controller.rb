@@ -14,7 +14,13 @@ class DocumentsController < ApplicationController
   # GET /documents/1 or /documents/1.json
   def show
     @document = Document.find(params[:id])
+<<<<<<< HEAD
+    # helper to query db and find correct blob based on doc id and attach id
+    blob_id = helpers.matching_active_storage_blob_id(@document.id)
+    @document_data = ActiveStorage::Blob.find(blob_id)
+=======
     @document_data = ActiveStorage::Blob.where(id: params[:id]).first
+>>>>>>> 9753ab051239106077fdafbaa3cdd4d3b9aa0344
 
     if @document.expired_at != nil then
       not_found
@@ -25,10 +31,6 @@ class DocumentsController < ApplicationController
   # GET /documents/new
   def new
     @document = Document.new
-  end
-
-  # GET /documents/1/edit
-  def edit
   end
 
   # POST /documents or /documents.json
@@ -93,18 +95,17 @@ class DocumentsController < ApplicationController
       recipient_email = recipient.strip
       download_code = SecureRandom.uuid
       # error catching code here in case the creation fails due to validation?
-      helpers.create_new_document_recipient(recipient_email, document_id, download_code)
-      #DocumentMailer.distributed(sender, recipient_email, document, message, download_code).deliver_now
+      #helpers.create_new_document_recipient(recipient_email, document_id, download_code)
+      #DocumentMailer.distributed(sender, recipient_email, document, message, download_code).deliver_later
     end
 
 
-    # sender_email = sender.email
-    # DocumentMailer.sender_distributed(sender_email, document, recipients, message).deliver_now
+    #sender_email = sender.email
+    #DocumentMailer.sender_distributed(sender_email, document, recipients, message).deliver_now
 
     redirect_to document_dashboard_path(document_id), notice: "We are working to distribute your file"
 
   end
-
   # PATCH/PUT /documents/1 or /documents/1.json
   def update
     respond_to do |format|
