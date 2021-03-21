@@ -38,6 +38,6 @@ document.querySelector("#file-navpane").addEventListener('click', e => {
 
 document.querySelector("#selected-tab").addEventListener('change', e => {
   e.preventDefault();
-  let newActivePaneCategory = e.target.value;
+  let newActivePaneCategory = e.target.value.toLowerCase();
   changeActivePane(newActivePaneCategory);
 });
