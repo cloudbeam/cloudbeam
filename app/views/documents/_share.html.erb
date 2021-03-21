@@ -9,7 +9,7 @@
         <%= form.text_area :message, rows: 10, class: "shadow-sm focus:ring-indigo-500 focus:border-gray-600 block w-full sm:text-sm border-gray-300 rounded-md", placeholder: "Hey everyone, \nPlease download this file at your earliest convenience!\nRegards,\nYour Teammate" %>
       </div>
       <div class="clearfix block mt-5 py-2 pr-2">
-        <%= form.button "Send to recipients", class: "ml-5 float-right items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-orange hover:bg-orange focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange" %>
+        <%= form.button "Send to recipients", id: "submit_button", class: "ml-5 float-right items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-orange hover:bg-orange focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange" %>
         
         <%= form.button "Clear Form", id: "clear", class: "float-right items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700" %>
       </div>

@@ -69,6 +69,16 @@ const validationTable = {
 		}
 	},
 
+	emailList            : function(input) {
+		const emails = input.split(',').map((email) => email.trim());
+		for (const email of emails) {
+			if (this.email(email) != true) {
+				return "Please make sure all email addresses are valid and multiple emails are separated by ', ' !";
+			}
+		}
+		return true;
+	},
+
 	password             : function(input) {
 		if (input == '') {
 			return 'Please enter a password';
@@ -82,6 +92,24 @@ const validationTable = {
 			return true;
 		} else {
 			return 'Passwords do not match';
+		}
+	},
+
+	fileName             : function(input) {
+		let fileName = input;
+		let fileRegEx = new RegExp(/^[\d|\w]+[\d|\w|.| -]+[\d|\w]+$/);
+		if (fileName.length >= 3 && fileRegEx.test(fileName)) {
+			return true;
+		} else {
+			return "File names need to be at least 3 characters long, START and END with a letter or number, and only contain letters, numbers, '.' , '-' , and spaces!";
+		}
+	},
+
+	uploadFile           : function(input) {
+		if (input.length > 1) {
+			return true;
+		} else {
+			return 'Please select a file to beam up to our cloud!';
 		}
 	}
 };
