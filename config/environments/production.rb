@@ -37,6 +37,25 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :amazon
+  
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.perform_caching = false
+
+#   config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.smtp_settings = {
+    address: "smtp.mailgun.org",
+    port: 587,
+    domain: "cloud-beam.com",
+    authentication: "plain",
+    #user_name: ENV["MAILGUN_USERNAME"],
+    user_name: ENV["MAILGUN_SMTP_LOGIN"],
+    #password: ENV["MAILGUN_PASSWORD"],
+    password: ENV["MAILGUN_SMTP_PASSWORD"],
+    enable_starttls_auto: true
+  }
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil

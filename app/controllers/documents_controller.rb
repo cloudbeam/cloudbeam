@@ -53,6 +53,11 @@ class DocumentsController < ApplicationController
 
   # GET /distributeagain
   def distribute_again
+    if not session[:user_id] then
+      redirect_to login_url, alert: 'You need to be signed in to do that!'
+      return
+    end
+    sender = User.find(session[:user_id])
     document_id = params[:document_id]
     recipient_id = params[:recipient_id]
     document = Document.find(document_id)
@@ -63,10 +68,10 @@ class DocumentsController < ApplicationController
     end
 
     document_recipient = DocumentRecipient.find(recipient_id)
-    recipient = document_recipient.email
+    recipient_email = document_recipient.email
     message = "Resending the code for the file: #{document.name}!"
     download_code = document_recipient.download_code
-    #DocumentMailer.distributed(recipient, message, download_code).deliver_now
+    DocumentMailer.distributed(sender, recipient_email, document, message, download_code).deliver_later
   end
 
   def distribute
@@ -94,7 +99,10 @@ class DocumentsController < ApplicationController
 
 
     sender_email = sender.email
+      
+    puts "Sending email..."
     DocumentMailer.sender_distributed(sender_email, document, recipient_emails, message).deliver_later
+    puts "Delivery"
 
     redirect_to document_dashboard_path(document_id), notice: 'We are working to distribute your file!'
 
