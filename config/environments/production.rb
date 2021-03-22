@@ -51,9 +51,9 @@ Rails.application.configure do
     domain: "cloud-beam.com",
     authentication: "plain",
     #user_name: ENV["MAILGUN_USERNAME"],
-    user_name: Rails.application.credentials[:mailgun][:username],
+    user_name: ENV["MAILGUN_SMTP_LOGIN"],
     #password: ENV["MAILGUN_PASSWORD"],
-    password: Rails.application.credentials[:mailgun][:password],
+    password: ENV["MAILGUN_SMTP_PASSWORD"],
     enable_starttls_auto: true
   }
 
