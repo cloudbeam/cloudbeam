@@ -41,6 +41,7 @@ db:structure:load
 db:version
 document:reset[id]
 dynamo_db:session_store:clean
+expired:remove_expired
 expired:remove_old
 expired:show_expired
 expired:show_old

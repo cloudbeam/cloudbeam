@@ -5,7 +5,7 @@ class DocumentsController < ApplicationController
   # GET /documents or /documents.json
   def index
     if session[:user_id] == nil then
-      redirect_to login_url, alert: "You need to be logged in to do that"
+      redirect_to login_url, alert: 'You need to be logged in to do that!'
     end
 
     @documents = Document.where(user_id: session[:user_id])
@@ -32,20 +32,17 @@ class DocumentsController < ApplicationController
   # POST /documents or /documents.json
   def create
     if !document_params[:upload] || !document_params[:name]
-      redirect_to upload_url, alert: "You must choose a file and a name." and return
-    end
-
-    if !Document.filename_unique_to_user(document_params[:name], session[:user_id])
-      redirect_to upload_url, alert: "You already have an active file by that name." and return
+      redirect_to upload_url, alert: 'You must choose a file and a name.' and return
     end
 
     @document = Document.create!(document_params)
     key = @document.upload.key
     @document.set_properties_after_upload(session[:user_id], key)
+    @document.append_counter_if_redundant_name(session[:user_id], document_params[:name])
 
     respond_to do |format|
-      if @document.save
-        format.html { redirect_to @document, notice: "Document was successfully created." }
+      if @document.save!
+        format.html { redirect_to @document, notice: 'Document was successfully created.' }
         format.json { render :show, status: :created, location: @document }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -54,26 +51,27 @@ class DocumentsController < ApplicationController
     end
   end
 
+  # GET /distributeagain
   def distribute_again
     document_id = params[:document_id]
     recipient_id = params[:recipient_id]
     document = Document.find(document_id)
 
     if not session[:user_id] || session[:user_id] != document.user_id then
-      redirect_to login_url, alert: "You need to be signed in to do that"
+      redirect_to login_url, alert: 'You need to be signed in to do that!'
       return
     end
 
     document_recipient = DocumentRecipient.find(recipient_id)
     recipient = document_recipient.email
-    message = "Resending the code for the file: #{document.name}"
+    message = "Resending the code for the file: #{document.name}!"
     download_code = document_recipient.download_code
     #DocumentMailer.distributed(recipient, message, download_code).deliver_now
   end
 
   def distribute
     if not session[:user_id] then
-      redirect_to login_url, alert: "You need to be signed in to do that"
+      redirect_to login_url, alert: 'You need to be signed in to do that!'
       return
     end
     sender = User.find(session[:user_id])
@@ -86,11 +84,10 @@ class DocumentsController < ApplicationController
       return
     end
 
-    recipient_emails = params[:recipients].split(",")
+    recipient_emails = params[:recipients].split(',')
     recipient_emails.each do |recipient|
       recipient_email = recipient.strip
       download_code = SecureRandom.uuid
-      # error catching code here in case the creation fails due to validation?
       helpers.create_new_document_recipient(recipient_email, document_id, download_code)
       DocumentMailer.distributed(sender, recipient_email, document, message, download_code).deliver_later
     end
@@ -99,14 +96,15 @@ class DocumentsController < ApplicationController
     sender_email = sender.email
     DocumentMailer.sender_distributed(sender_email, document, recipient_emails, message).deliver_later
 
-    redirect_to document_dashboard_path(document_id), notice: "We are working to distribute your file"
+    redirect_to document_dashboard_path(document_id), notice: 'We are working to distribute your file!'
 
   end
+
   # PATCH/PUT /documents/1 or /documents/1.json
   def update
     respond_to do |format|
       if @document.update(document_params)
-        format.html { redirect_to @document, success: "Document was successfully updated." }
+        format.html { redirect_to @document, success: 'Document was successfully updated.' }
         format.json { render :show, status: :ok, location: @document }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -119,22 +117,19 @@ class DocumentsController < ApplicationController
   def destroy
     # remove active storage entry and trigger removal from S3
     @document.upload.purge
-
     @document.destroy
     respond_to do |format|
-      format.html { redirect_to documents_url, notice: "Document was successfully destroyed." }
+      format.html { redirect_to documents_url, notice: 'Document was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_document
-      @document = Document.find(params[:id])
-    end
+  def set_document
+    @document = Document.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def document_params
-      params.require(:document).permit(:name, :uploaded_at, :expired_at, :url, :user_id, :upload)
-    end
+  def document_params
+    params.require(:document).permit(:name, :uploaded_at, :expired_at, :url, :user_id, :upload)
+  end
 end
