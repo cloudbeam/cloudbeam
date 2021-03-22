@@ -5,7 +5,7 @@ class DocumentMailer < ApplicationMailer
   #
   # en.file_entity_mailer.distributed.subject
   #
-  default from: "Team Cloud-Beam <postmaster@sandboxc1b700e5a30849949ce76cb5d337a0e5.mailgun.org>"
+  default from: "Team Cloud-Beam <teamcloudbeam@cloud-beam.com>"
   def distributed(sender, recipient_email, document, message, download_code)
     @sender = sender
     @message = message
