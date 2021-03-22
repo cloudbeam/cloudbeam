@@ -99,7 +99,10 @@ class DocumentsController < ApplicationController
 
 
     sender_email = sender.email
+      
+    puts "Sending email..."
     DocumentMailer.sender_distributed(sender_email, document, recipient_emails, message).deliver_later
+    puts "Delivery"
 
     redirect_to document_dashboard_path(document_id), notice: 'We are working to distribute your file!'
 
