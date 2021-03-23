@@ -120,3 +120,8 @@ body {
 input[type=file][data-direct-upload-url][disabled] {
 	display: none;
 }
+
+#download-code {
+	border-radius: 6px;
+	border: 1px solid grey;
+}
