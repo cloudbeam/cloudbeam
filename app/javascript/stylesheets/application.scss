@@ -6,6 +6,14 @@
 /* Add any custom CSS here */
 @import "tailwindcss/utilities";
 
+*,
+::before,
+::after {
+  border-width: 0;
+  border-style: solid;
+  border-color: 'grey';
+}
+
 body {
 	background: #f0f7ff;
 }
