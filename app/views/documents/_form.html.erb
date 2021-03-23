@@ -2,7 +2,7 @@
   <div class="bg-powder_blue rounded-md pt-4 space-y-8 divide-y divide-gray-200">
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
       <div class="sm:col-span-4 sm:col-start-2">
-        <h3 class="text-xl leading-6 font-medium text-gray-900">
+        <h3 class="text-2xl leading-6 font-medium text-gray-900">
           Upload a File!
         </h3>
         <p class="mt-1 text-sm text-gray-500">
@@ -11,7 +11,7 @@
       </div>
 
       <div class="border-t field sm:col-span-4 sm:col-start-2">
-        <%= form.label :name, :value => 'File name', :class => "mt-2 block text-sm font-medium text-gray-700" %>
+        <%= form.label :name, :value => 'File name', :class => "mt-2 block text-lg font-medium text-gray-700" %>
         <div class="mt-1 flex flex-wrap rounded-md shadow-sm">
           <%= form.text_field :name, :class => "px-2 text-lg mb-1 flex-1 focus:ring-navy focus:border-navy block w-full min-w-full rounded-md sm:text-md border-navy" %>
         </div>
@@ -20,7 +20,7 @@
       <%= form.hidden_field :user_id, :value => session[:user_id] %>
 
       <div class="border-b sm:col-span-4 sm:col-start-2">
-        <%= form.label :upload, :value => "File to upload", :class => "block text-sm font-medium text-gray-700" %>
+        <%= form.label :upload, :value => "File to upload", :class => "block text-lg font-medium text-gray-700" %>
         <div class="mt-1 flex justify-center px-6 pt-3 pb-6 ">
           <div class="space-y-1 text-center">
             <div class="field flex flex-wrap text-sm text-gray-600">
