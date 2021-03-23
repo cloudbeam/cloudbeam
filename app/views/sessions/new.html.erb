@@ -11,11 +11,11 @@
     </div>
   <% end %>
 
-  <div class="rounded-md min-h-full flex items-center justify-center bg-powder_blue py-4 px-4 sm:px-6 lg:px-8">
+  <div class="pb-6 rounded-md min-h-full flex items-center justify-center bg-powder_blue py-4 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8">
       <div>
-        <%= image_tag 'cloud-upload-icon.png', alt: "The CloudBeam Icon", :class => "mx-auto h-12 w-auto"  %>
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <%= image_tag 'cloud-upload-icon.png', alt: "The CloudBeam Icon", :class => "mx-auto h-12 w-auto mt-6"  %>
+        <h2 class="text-center text-3xl font-extrabold text-gray-900">
           Sign in to start Beaming!
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600">
@@ -40,7 +40,7 @@
         </div>
 
         <!-- if we want to include this functionality at a later date -- >
-        <!-- 
+        <!--
         <div class="flex items-center justify-between">
           <div class="flex items-center">
             <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
@@ -60,7 +60,7 @@
         <div>
           <div class="actions">
             </span>
-            <%= form.submit "Login", id: "login-btn", :class => "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange hover:bg-turqoise focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navy"%>
+            <%= form.submit "Login", id: "login-btn", :class => " mb-6 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange hover:bg-turqoise focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navy"%>
           </div>
         </div>
         </div>
