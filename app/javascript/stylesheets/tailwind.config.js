@@ -24,8 +24,7 @@ module.exports = {
 				white       : '#ffffff'
 			},
 			backgroundImage : (theme) => ({
-				'cloud-gen' : "url('./../../assets/images/cloud-background.jpg')",
-				waves     : "url('./../../assets/images/waves.jpg')"
+				'cloud-gen' : "url('./../../assets/images/cloud-background.jpg')"
 			})
 		}
 	},
