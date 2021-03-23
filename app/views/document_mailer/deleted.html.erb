@@ -1,0 +1,16 @@
+<div class="user-msg">
+  <h5>Document Deleted from your Cloudbeam Dashboard</h5>
+  <p><%= "Cloudbeam has automatically deleted #{@document.name} that you uploaded because all #{@recipients.count} people you shared with have downloaded the document:" %></p>
+  <ul>
+    <% @recipients.each do |recipient| %>
+      <li>
+        <%= recipient.email %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class='cloudbeam-msg'>
+  <p><b>Need to share again?</b> Just reupload the file!</p>
+  <p><%= link_to "Upload a new file here:", "https://cloud-beam.com/upload" %></p>
+</div>
