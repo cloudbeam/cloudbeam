@@ -3,7 +3,10 @@
   Message:
   <%= @message %>
 <% end %>
-Link:
-<%= link_to "Download the file", "https://cloud-beam.com/?id=#{@download_code}" %>
-Code:
+What now? You have one-time access to download this file. Once you use your unique download code, it will become invalid.  Please ensure that you have a stable internet connection before beginning to download.
+Note that this file expires at <%= @expiration %>Don't delay or you may miss your chance!
+We'll let <%= @sender[:first_name] %> know when you've downloaded the content they shared with you.
+To download your file, click the link below:
+Download the file: <%= "https://cloud-beam.com/?id=#{@download_code}" %>
+If you prefer to navigate to cloud-beam.com on your own, just copy this unique download code to your clipboard and paste it in to the 'Download' input.
 <%= @download_code %>
