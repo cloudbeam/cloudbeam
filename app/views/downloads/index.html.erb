@@ -8,7 +8,7 @@
     <div class="w-1/2 px-8 mx-auto mb-10 clearfix">
       <%= form_with url: "/downloads", method: :post, local: true do |form| %>
         <%= form.text_field :download_code, value: @download_code, placeholder: 'my share code', class: "ml-3 mb-2 h-10 inline-block shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-2/3 text-base border-gray-300 rounded-md" %>
-        <%= form.submit "Download", class: "h-10 px-6 inline-block items-center px-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-orange hover:bg-turqoise focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700" %>
+        <%= form.submit "Download", class: "px-2 h-10 px-6 inline-block items-center px-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-orange hover:bg-turqoise focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700" %>
       <% end %>
       <p class="text-right text-xs float-right w-48 mr-7 text-gray-600">If a file has been shared with you via Cloudbeam, the unique share code has been e-mailed to you.</p>
     </div>
