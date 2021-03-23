@@ -25,10 +25,7 @@ class DownloadsController < ApplicationController
     recipient.update(downloaded_at: DateTime.now)
 
     # Delete the file if everyone has downloaded it
-<<<<<<< HEAD
-    
-=======
->>>>>>> 101132faa9f604c40737ac810f9981f06aace65d
+
     recipients_not_downloaded = DocumentRecipient.where(document_id: document.id, downloaded_at: nil).count
 
     if recipients_not_downloaded == 0 then
@@ -44,19 +41,6 @@ class DownloadsController < ApplicationController
   private
 
   def signed_url(file_name, ip)
-<<<<<<< HEAD
-    resource = "#{Rails.application.credentials.cloudfront[:url]}#{file_name}?response-cache-control=No-cache&?response-content-disposition=attachment%3B%20filename%#{file_name}"
-
-
-    # the next 5 lines of code would replace the code on lines 47-52 to restrict IP addresses
-    # url = Aws::CF::Signer.sign_url resource,
-    #                            expires: expiration,
-    #                            resource: resource,
-    #                            ip_range: "#{ip}/32"
-    # url
-
-    # this could be removed if IP identify works on production
-=======
     expiration  = Time.now + 180
 
     resource    = "#{Rails.application.credentials.cloudfront[:url]}#{file_name}?"
@@ -80,7 +64,6 @@ class DownloadsController < ApplicationController
   end
 
   def local_signed_url(resource, expiration)
->>>>>>> 101132faa9f604c40737ac810f9981f06aace65d
     signer = Aws::CloudFront::UrlSigner.new({
                                               key_pair_id: Rails.application.credentials.cloudfront[:public_key_id],
                                               private_key: Rails.application.credentials.cloudfront[:private_key]
