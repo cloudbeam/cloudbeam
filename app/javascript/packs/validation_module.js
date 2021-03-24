@@ -100,6 +100,7 @@ const validationTable = {
 	},
 
 	passwordConfirmation : function(input) {
+		let password = document.querySelector('#user_password');
 		if (input == password.value) {
 			return true;
 		} else {
