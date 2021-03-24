@@ -13,9 +13,11 @@ function validateInput(inputName) {
 	let inputElement = inputs[inputName];
 	let inputValue = inputElement.value;
 	let result = validationTable[inputName](inputValue);
-	removeValidationError(inputElement);
+	let login = inputElement.id === 'user_email' || inputElement.id === 'user_password';
+
+	removeValidationError(inputElement, login);
 	if (result !== true) {
-		addValidationError(inputElement, result);
+		addValidationError(inputElement, result, login);
 		return false;
 	} else {
 		return true;
@@ -23,7 +25,6 @@ function validateInput(inputName) {
 }
 
 for (let prop in inputs) {
-	console.log(prop);
 	let element = inputs[prop];
 	element.addEventListener('blur', (e) => {
 		e.preventDefault();
