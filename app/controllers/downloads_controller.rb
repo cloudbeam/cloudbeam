@@ -4,6 +4,7 @@ require 'date'
 
 # this controller handles the download based on user's unique code
 class DownloadsController < ApplicationController
+  skip_before_action :session_expires, except: [:file_owner_download]
   before_action :authorize, only: [:file_owner_download]
 
   def index
@@ -37,10 +38,10 @@ class DownloadsController < ApplicationController
 
     if recipients_not_downloaded == 0 then
       document.update(expired_at: DateTime.now)
-      DocumentMailer.deleted(document_uploader.email, document, recipients)
+      DocumentMailer.deleted(document_uploader.email, document, recipients.to_a).deliver_later
     end
 
-    DocumentRecipientChannel.broadcast_to User.find(document_uploader),
+    DocumentRecipientChannel.broadcast_to User.find(document_uploader.id),
                 document: document, recipient: recipient, times_downloaded: times_downloaded
 
     redirect_to signed_url(file_name(document), request.remote_ip)
