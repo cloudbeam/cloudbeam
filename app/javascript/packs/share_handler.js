@@ -14,10 +14,10 @@ const inputs = {
 
 function validateInput(inputName) {
 	let inputElement = inputs[inputName];
-	let inputValue = inputElement.value;
+	let inputValue = inputElement ? inputElement.value : '';
 	let result = validationTable[inputName](inputValue);
-	removeValidationError(inputElement);
-	if (result !== true) {
+	if (inputElement) removeValidationError(inputElement);
+	if (result !== true && inputElement) {
 		addValidationError(inputElement, result);
 		return false;
 	} else {
@@ -27,7 +27,7 @@ function validateInput(inputName) {
 
 for (let prop in inputs) {
 	let element = inputs[prop];
-	if (!element) continue; 
+	if (!element) continue;
 	element.addEventListener('blur', (e) => {
 		e.preventDefault();
 		validateInput(prop);
