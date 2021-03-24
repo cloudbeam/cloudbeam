@@ -8,7 +8,7 @@
       Message from <%= @sender[:first_name] %>:
     </p>
     <p>
-      <em><%= @message %></em>
+      <em><%= @message.gsub(/\n/, '<br />') %></em>
     </p>
   <% end %>
 </div>
