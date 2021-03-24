@@ -4,6 +4,7 @@ require 'date'
 
 # this controller handles the download based on user's unique code
 class DownloadsController < ApplicationController
+  skip_before_action :session_expires, except: [:file_owner_download]
   before_action :authorize, only: [:file_owner_download]
 
   def index
