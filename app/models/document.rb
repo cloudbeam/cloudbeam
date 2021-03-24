@@ -19,7 +19,7 @@ class Document < ApplicationRecord
 
   def append_counter_if_redundant_name(id, file_name) 
     redundant_file_names = redundant_filenames(id, "#{file_name}")
-    self[:name] = file_name + "(#{redundant_file_names})" if redundant_file_names.positive?
+    self[:name] = file_name + "(#{redundant_file_names - 1})" if redundant_file_names > 1
   end
 
   # set properties on object that are unset after initial creation from params

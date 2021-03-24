@@ -24,10 +24,6 @@ class DocumentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  def filename_unique_to_user
-    Document.where(user_id: 1).where.not(expired_at: nil).to_a.size == 0
-  end
-
   test "should get edit" do
     get edit_document_url(@document)
     assert_response :success
