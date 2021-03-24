@@ -28,7 +28,7 @@ function changeActivePane(newActivePaneCategory) {
 
 document.querySelector("#file-navpane").addEventListener('click', e => {
   e.preventDefault();
-  console.log('clicked');
+
   let a = e.target.closest('a');
   if (a) {
     let newActivePaneCategory = a.dataset.ref;

@@ -25,4 +25,10 @@ class DocumentMailer < ApplicationMailer
 
     mail to: email, subject: "You shared the file #{document.name} with #{recipient_emails.count} people"
   end
+
+  def deleted(email, document, recipients)
+    @document = document
+    @recipients = recipients
+    mail to: email, subject: "#{document.name} has been deleted from your CloudBeam dashboard"
+  end
 end

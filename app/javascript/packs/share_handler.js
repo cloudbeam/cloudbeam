@@ -26,8 +26,8 @@ function validateInput(inputName) {
 }
 
 for (let prop in inputs) {
-	console.log(prop);
 	let element = inputs[prop];
+	if (!element) continue; 
 	element.addEventListener('blur', (e) => {
 		e.preventDefault();
 		validateInput(prop);

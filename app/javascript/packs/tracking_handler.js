@@ -25,14 +25,13 @@ Array.from(self.sendAgainButtons).forEach(sendAgainButton => {
       sendAgainButton.innerHTML = "<strong>Sending...</strong>";
       let xhr = new XMLHttpRequest();
       xhr.open("GET", `/distributeagain?recipient_id=${recipientId}&document_id=${documentId}`);
-      // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
       xhr.addEventListener('load', e => {
         e.preventDefault();
         sendAgainButton.innerHTML = "<strong>Message is on the way!</strong>";
         setTimeout(() => {
           sendAgainButton.innerHTML = "Send Again";
         }, 2000);
-        console.log("email sent");
       });
       xhr.send();
     }

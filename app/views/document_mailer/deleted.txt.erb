@@ -1,0 +1,10 @@
+Document Deleted from your Cloudbeam Dashboard
+<%= "Cloudbeam has automatically deleted #{@document.name} that you uploaded because all #{@recipients.count} people you shared with have downloaded the document:" %>
+<% @recipients.each do |recipient| %>
+  <%= recipient.email %>
+<% end %>
+
+Need to share again?
+Just reupload the file!
+  
+Upload a new file here: https://cloud-beam.com/upload

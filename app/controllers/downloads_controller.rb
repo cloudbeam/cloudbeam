@@ -20,6 +20,8 @@ class DownloadsController < ApplicationController
 
     document = Document.find(recipient.document_id)
 
+    document_uploader = User.find(document.user_id)
+
     if recipient.downloaded_at || document.expired_at
       redirect_to downloads_url, alert: error_message(document) and return
     end
@@ -28,15 +30,17 @@ class DownloadsController < ApplicationController
 
     # Delete the file if everyone has downloaded it
     recipients_not_downloaded = DocumentRecipient.where(document_id: document.id, downloaded_at: nil).count
-    total_recipients = DocumentRecipient.where(document_id: document.id).count
+    recipients = DocumentRecipient.where(document_id: document.id)
+    total_recipients = recipients.count
 
     times_downloaded = total_recipients - recipients_not_downloaded
 
     if recipients_not_downloaded == 0 then
       document.update(expired_at: DateTime.now)
+      DocumentMailer.deleted(document_uploader.email, document, recipients)
     end
 
-    DocumentRecipientChannel.broadcast_to User.find(document.user_id),
+    DocumentRecipientChannel.broadcast_to User.find(document_uploader),
                 document: document, recipient: recipient, times_downloaded: times_downloaded
 
     redirect_to signed_url(file_name(document), request.remote_ip)

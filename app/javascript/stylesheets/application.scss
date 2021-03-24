@@ -1,9 +1,18 @@
 /* app/javascript/stylesheets/application.scss */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
+// @import "tailwindcss/forms";
 
 /* Add any custom CSS here */
 @import "tailwindcss/utilities";
+
+*,
+::before,
+::after {
+  border-width: 0;
+  border-style: solid;
+  border-color: 'grey';
+}
 
 body {
 	background: #f0f7ff;
@@ -110,4 +119,19 @@ body {
 
 input[type=file][data-direct-upload-url][disabled] {
 	display: none;
+}
+
+#download-code {
+	border-radius: 6px;
+	border: 1px solid grey;
+}
+
+#email-list  {
+  border-radius: 4px;
+  border: 1px solid grey;
+}
+
+#share-form textarea {
+  border-radius: 4px;
+  border: 1px solid grey;
 }

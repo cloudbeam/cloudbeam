@@ -22,7 +22,6 @@ consumer.subscriptions.create("DocumentRecipientChannel", {
     if (hiddenIdField) {
       let recipientElement = hiddenIdField.nextElementSibling;
       recipientElement.textContent = "Yes";
-      console.log(recipientElement);
       flashGreen(recipientElement);
     }
 
@@ -33,15 +32,11 @@ consumer.subscriptions.create("DocumentRecipientChannel", {
     }
     let li = document.createElement('li');
     li.innerHTML = `${data.recipient.email} downloaded the file ${data.document.name} <button><strong>x</strong></button>`;
-    
+
     document.querySelector('.alert-ul').appendChild(li);
     li.querySelector('button').addEventListener('click', e => {
       e.preventDefault();
       li.remove();
-    })
-    
-    // setTimeout(() => {
-    //   li.remove();
-    // }, 5000);
+    });
   }
 });
