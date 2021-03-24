@@ -8,10 +8,11 @@
       Message from <%= @sender[:first_name] %>:
     </p>
     <p>
-      <%= @message %>
+      <em><%= @message %></em>
     </p>
   <% end %>
 </div>
+
 <div class='cloudbeam-msg'>
   <p><b>What now?</b> You have one-time access to download this file. Once you use your unique download code, it will become invalid.  Please ensure that you have a stable internet connection before beginning to download.</p>
   <p>Note that this file <b>expires at <%= @expiration %></b>.<br>Don't delay or you may miss your chance!<br>
@@ -19,5 +20,5 @@
     <p>To download your file, click the link below: </p>
     <p style="color: #55BDCA, text-decoration: none"><%= link_to "Download the file", "https://cloud-beam.com/?id=#{@download_code}" %></p>
     <p>If you prefer to navigate to cloud-beam.com on your own, just copy this unique download code to your clipboard and paste it in to the 'Download' input.</p>
-    <p style="color: #55BDCA"> <%= @download_code %> </p>
+    <strong><p style="color: #55BDCA"> <%= @download_code %> </p></strong>
 </div>

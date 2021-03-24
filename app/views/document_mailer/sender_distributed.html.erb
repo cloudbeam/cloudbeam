@@ -1,6 +1,6 @@
 <div class="user-msg">
   <h5>Document Shared via Cloudbeam</h5>
-  <p><%= "You have shared the document #{@document.name} with #{@recipient_emails.length} people:" %></p>
+  <h2><%= "You have shared the document #{@document.name} with #{@recipient_emails.length} people:" %></h2>
   <ul>
     <% @recipient_emails.each do |recipient_email| %>
       <li>
@@ -12,7 +12,7 @@
     <h2> You didn't send a message to your recipients along with the download link. </h2>
   <% else %>
     <h2>You sent recipients the following message with their unique download link: </h2>
-    <p><%= @message %></p>
+    <em><p><%= @message %></p></em>
   <% end %>
 </div>
 
