@@ -7,7 +7,7 @@ demoBtn.addEventListener('click', function(e) {
 
 function logonDemoUser() {
   let email  = 'demo@cloud-beam.com';
-  let password = 'cloudbeam-demo';
+  let password = 'Testing Our App 123#';
 
   const emailInput = document.querySelector('#user_email');
   const passwordInput = document.querySelector('#user_password');
