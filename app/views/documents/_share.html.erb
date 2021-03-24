@@ -2,10 +2,10 @@
   <%= form_with(url: "/distribute/#{@document.id}", method: :post, local: true, class: "sm:col-span-6 mt-3") do |form| %>
     <%= form.label :recipients, 'Recipient email(s) (comma separated)', class:"px-1 block text-base font-medium text-gray-700" %>
     <div class="mt-1">
-      <%= form.text_field :recipients, class: "p-2 shadow-sm focus:ring-indigo-500 focus:border-gray-500 block w-full sm:text-base border-gray-300 rounded-md", placeholder: "you@example.com, friend@example.com" %>
+      <%= form.text_field :recipients, class: "p-2 shadow-sm focus:ring-indigo-500 focus:border-gray-500 block w-full sm:text-base border-gray-300 rounded-md", placeholder: "you@example.com, friend@example.com", id:"email-list" %>
     </div>
       <%= form.label :message, "Message to recipients", class: "mt-2 px-1 block text-base font-medium text-gray-700" %>
-      <div class="mt-1">
+      <div class="mt-1" id="share-form">
         <%= form.text_area :message, rows: 10, class: "shadow-sm focus:ring-indigo-500 focus:border-gray-600 block w-full sm:text-sm border-gray-300 rounded-md", placeholder: "Hey everyone, \nPlease download this file at your earliest convenience!\nRegards,\nYour Teammate" %>
       </div>
       <div class="clearfix block mt-5 py-2 pr-2">
