@@ -40,7 +40,7 @@ class DownloadsController < ApplicationController
       DocumentMailer.deleted(document_uploader.email, document, recipients)
     end
 
-    DocumentRecipientChannel.broadcast_to User.find(document_uploader),
+    DocumentRecipientChannel.broadcast_to User.find(document_uploader.id),
                 document: document, recipient: recipient, times_downloaded: times_downloaded
 
     redirect_to signed_url(file_name(document), request.remote_ip)
