@@ -22,13 +22,13 @@
           Or
           <!-- this will trigger a login with the trial account parameters -->
           <a href="#" class="font-medium text-navy hover:text-orange">
-            take it for test drive with a trial account!
+            take it for a test drive with our demo account!
           </a>
         </p>
       </div>
-        <div class="mt-8 space-y-6">
+        <div class="mt-8 my-6">
         <input type="hidden" name="remember" value="true">
-        <div class="rounded-md shadow-sm -space-y-px">
+        <div class="rounded-md shadow-sm -space-y-px mb-2" id="login-inputs">
           <div class="field">
             <%= form.label :email, :class => "sr-only" %>
             <%= form.text_field :email, placeholder: "your_email_here@example.com", :class => "appearance-none rounded-none relative block w-full px-3 py-2 border border-navy placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-navy focus:border-navy focus:z-10 sm:text-sm" %>
@@ -38,27 +38,8 @@
             <%= form.password_field :password, placeholder: "Super Secret Password", :class => "appearance-none rounded-none relative block w-full px-3 py-2 border border-navy placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-navy focus:border-navy focus:z-10 sm:text-sm"%>
           </div>
         </div>
-
-        <!-- if we want to include this functionality at a later date -- >
-        <!--
-        <div class="flex items-center justify-between">
-          <div class="flex items-center">
-            <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-            <label for="remember_me" class="ml-2 block text-sm text-gray-900">
-              Remember me
-            </label>
-          </div>
-
-          <div class="text-sm">
-            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
-              Forgot your password?
-            </a>
-          </div>
-        </div>
-        -->
-
         <div>
-          <div class="actions">
+          <div class="actions mt-2">
             </span>
             <%= form.submit "Login", id: "login-btn", :class => " mb-6 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange hover:bg-turqoise focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navy"%>
           </div>

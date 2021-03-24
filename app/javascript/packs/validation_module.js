@@ -1,4 +1,4 @@
-function addValidationError(inputElement, validationError) {
+function addValidationError(inputElement, validationError, login=false) {
 	// format input with Tailwinds consistent formatting
 	inputElement.classList.remove('border-navy');
 	inputElement.classList.add('text-red-600', 'border-red-600');
@@ -26,15 +26,27 @@ function addValidationError(inputElement, validationError) {
 			'border-red-600'
 		);
 		// insert after related input
-		inputElement.insertAdjacentElement('afterend', warningDialogue);
+		if (login) {
+			let loginForm = document.querySelector('#login-inputs');
+			loginForm.insertAdjacentElement('afterend', warningDialogue);
+		} else {
+			inputElement.insertAdjacentElement('afterend', warningDialogue);
+		}
 	}
 }
 
-function removeValidationError(inputElement) {
+function removeValidationError(inputElement, login=false) {
 	inputElement.classList.remove('text-red-600', 'border-red-600');
 	inputElement.classList.add('border-navy');
 	let warningDialogue = inputElement.nextElementSibling;
-	if (warningDialogue) {
+	let loginAlerts = Array.from(document.querySelectorAll('.invalid'));
+
+
+	if (login && loginAlerts) {
+		loginAlerts.forEach(alert => alert.remove());
+	}
+
+	if (warningDialogue && !login) {
 		warningDialogue.remove();
 	}
 }
