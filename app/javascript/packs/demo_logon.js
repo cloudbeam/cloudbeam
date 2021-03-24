@@ -1,11 +1,9 @@
 const demoBtn = document.querySelector('#demo-logon');
 
-
 demoBtn.addEventListener('click', function(e) {
   e.preventDefault();
   logonDemoUser();
 });
-
 
 function logonDemoUser() {
   let email  = 'demo@cloud-beam.com';

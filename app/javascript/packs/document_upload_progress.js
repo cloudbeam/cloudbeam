@@ -1,6 +1,4 @@
 addEventListener('direct-upload:initialize', (event) => {
-	console.log('direct upload initialized');
-
 	const { target, detail } = event;
 	const { id, file } = detail;
 	const fileName = document.querySelector('#document_name').value;
@@ -17,14 +15,12 @@ addEventListener('direct-upload:initialize', (event) => {
 });
 
 addEventListener('direct-upload:start', (event) => {
-	console.log('direct upload started');
 	const { id } = event.detail;
 	const element = document.getElementById(`direct-upload-${id}`);
 	element.classList.remove('direct-upload--pending');
 });
 
 addEventListener('direct-upload:progress', (event) => {
-	console.log('direct upload progress event');
 	const { id, progress } = event.detail;
 	const progressElement = document.getElementById(`direct-upload-progress-${id}`);
 	progressElement.style.width = `${progress}%`;
