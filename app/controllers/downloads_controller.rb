@@ -38,7 +38,7 @@ class DownloadsController < ApplicationController
 
     if recipients_not_downloaded == 0 then
       document.update(expired_at: DateTime.now)
-      DocumentMailer.deleted(document_uploader.email, document, recipients)
+      DocumentMailer.deleted(document_uploader.email, document, recipients).deliver_later
     end
 
     DocumentRecipientChannel.broadcast_to User.find(document_uploader.id),
