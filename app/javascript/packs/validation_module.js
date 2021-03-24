@@ -53,7 +53,7 @@ function removeValidationError(inputElement, login = false) {
 const validationTable = {
 	nameRegex            : /^[A-Za-z][A-Za-z '-]*$/,
 	emailRegex           : /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
-	passwordRegex        : /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*d)(?=.*[!#$%&?"]).*$/,
+	passwordRegex        : /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!#$%&?" ]).*$/,
 	fileRegEx            : /^[\d|\w]+[\d|\w|.| -]+[\d|\w]+$/,
 
 	firstName            : function(input) {
