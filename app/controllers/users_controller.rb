@@ -29,8 +29,10 @@ class UsersController < ApplicationController
         format.html { redirect_to documents_dashboard_url, notice: "CloudBeam Account Created!" }
         format.json { render :show, status: :created, location: @user }
       else
+        # byebug
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @user.errors, status: :unprocessable_entity }
+        flash.now[:alert] = "#{@user.errors.full_messages.first}"
       end
     end
   end

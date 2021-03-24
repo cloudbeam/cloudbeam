@@ -5,8 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create(first_name: 'Greta', last_name: 'VonTest', 
-            email: 'vontest@example.com', 
-            password: 'password', 
-            password_confirmation: 'password'
+User.create(first_name: 'CloudBeam', last_name: 'Tester', 
+            email: 'demo@cloud-beam.com', 
+            password: 'Testing Our App 123#', 
+            password_confirmation: 'Testing Our App 123#'
            )

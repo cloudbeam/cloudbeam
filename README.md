@@ -14,7 +14,7 @@
 
 ## Try it out using our demo credentials :key:
 - user: demo@cloud-beam.com
-- password: cloudbeam-demo
+- password: 'Testing Our App 123#'
 
 ## Authors
 - [Kyle LeDoux](https://github.com/kaledoux) - kaledoux@gmail.com
