@@ -26,10 +26,9 @@ function validateInput(inputName) {
 }
 
 for (let prop in inputs) {
-	console.log(prop);
 	let element = inputs[prop];
 	element.addEventListener('blur', (e) => {
-		e.preventDefault(); 
+		e.preventDefault();
 		validateInput(prop);
 	});
 }
