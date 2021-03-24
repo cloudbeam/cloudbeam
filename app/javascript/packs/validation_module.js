@@ -1,4 +1,4 @@
-function addValidationError(inputElement, validationError, login=false) {
+function addValidationError(inputElement, validationError, login = false) {
 	// format input with Tailwinds consistent formatting
 	inputElement.classList.remove('border-navy');
 	inputElement.classList.add('text-red-600', 'border-red-600');
@@ -35,15 +35,14 @@ function addValidationError(inputElement, validationError, login=false) {
 	}
 }
 
-function removeValidationError(inputElement, login=false) {
+function removeValidationError(inputElement, login = false) {
 	inputElement.classList.remove('text-red-600', 'border-red-600');
 	inputElement.classList.add('border-navy');
 	let warningDialogue = inputElement.nextElementSibling;
 	let loginAlerts = Array.from(document.querySelectorAll('.invalid'));
 
-
 	if (login && loginAlerts) {
-		loginAlerts.forEach(alert => alert.remove());
+		loginAlerts.forEach((alert) => alert.remove());
 	}
 
 	if (warningDialogue && !login) {
@@ -52,27 +51,32 @@ function removeValidationError(inputElement, login=false) {
 }
 
 const validationTable = {
+	nameRegex            : /^[A-Za-z][A-Za-z '-]*$/,
+	emailRegex           : /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+	passwordRegex        : /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*d)(?=.*[!#$%&?"]).*$/,
+	fileRegEx            : /^[\d|\w]+[\d|\w|.| -]+[\d|\w]+$/,
+
 	firstName            : function(input) {
-		if (input == '') {
-			return 'Please enter your first name';
-		} else {
+		if (input.match(this.nameRegex)) {
 			return true;
+		} else if (input == '') {
+			return 'Please enter a first name';
+		} else {
+			return 'Please use only letters, dashes, spaces, and commas';
 		}
 	},
 
 	lastName             : function(input) {
-		if (input == '') {
-			return 'Please enter your last name';
-		} else {
+		if (input.match(this.nameRegex)) {
 			return true;
+		} else if (input == '') {
+			return 'Please enter a last name';
+		} else {
+			return 'Please use only letters, dashes, spaces, and commas';
 		}
 	},
 	email                : function(input) {
-		if (
-			input.match(
-				/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-			)
-		) {
+		if (input.match(this.emailRegex)) {
 			return true;
 		} else if (input == '') {
 			return 'Please enter an email';
@@ -92,10 +96,12 @@ const validationTable = {
 	},
 
 	password             : function(input) {
-		if (input == '') {
+		if (input.match(this.passwordRegex)) {
+			return true;
+		} else if (input == '') {
 			return 'Please enter a password';
 		} else {
-			return true;
+			return 'Passwords must be at least 8 characters long and contain at least 1 of each: lowercase, uppercase, number, special characters ( !#$%&?" )';
 		}
 	},
 
@@ -110,8 +116,7 @@ const validationTable = {
 
 	fileName             : function(input) {
 		let fileName = input;
-		let fileRegEx = new RegExp(/^[\d|\w]+[\d|\w|.| -]+[\d|\w]+$/);
-		if (fileName.length >= 3 && fileRegEx.test(fileName)) {
+		if (fileName.length >= 3 && this.fileRegEx.test(fileName)) {
 			return true;
 		} else {
 			return "File names need to be at least 3 characters long, START and END with a letter or number, and only contain letters, numbers, '.' , '-' , and spaces!";
