@@ -1,0 +1,30 @@
+<%= form_tag password_resets_path, :method => :post do %>
+
+  <div class="pb-6 rounded-md min-h-full flex items-center justify-center bg-powder_blue py-4 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+      <div>
+        <%= image_tag 'reset-icon.jpg', alt: "The CloudBeam Icon", :class => "mx-auto h-12 w-auto mt-6"  %>
+        <h2 class="text-center text-2xl font-extrabold text-gray-900">
+          Enter your email to send a reset link!
+        </h2>
+      </div>
+      <div class="mt-8 my-6">
+        <input type="hidden" name="remember" value="true">
+        <div class="rounded-md shadow-sm -space-y-px mb-2" id="login-inputs">
+          <div class="field">
+            <%= label_tag :email %>
+            <%= text_field_tag :email, nil, placeholder: "your_email_here@example.com", class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-navy placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-navy focus:border-navy focus:z-10 sm:text-sm" %>
+          </div>
+        </div>
+        <div>
+          <div class="actions mt-2">
+            </span>
+            <%= submit_tag "Send Password Reset Link", id: "login-btn", :class => " mb-6 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange hover:bg-turqoise focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navy"%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= javascript_pack_tag("login_validation") %>

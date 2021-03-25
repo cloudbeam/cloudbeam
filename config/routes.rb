@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     delete 'logout' =>  :destroy
   end
 
+  resources :password_resets
+
   resources :documents
   resources :users
 
