@@ -9,10 +9,10 @@
     <% end %>
   </ul>
   <% if @message == "" %>
-    <h2> You didn't send a message to your recipients along with the download link. </h2>
+    <h5> You didn't send a message to your recipients along with the download link. </h5>
   <% else %>
-    <h2>You sent recipients the following message with their unique download link: </h2>
-    <em><p><%= h(@message).gsub(/\n/, '<br>') %></p></em>
+    <h5>You sent recipients the following message with their unique download link: </h5>
+    <em><p><%= @message.gsub(/\n/, '<br>').html_safe %></p></em>
   <% end %>
 </div>
 
