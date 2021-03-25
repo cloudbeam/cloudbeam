@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       session[:expires_at] = 60.minutes.from_now
       cookies.signed[:user_id] = user.id
 
-      redirect_to documents_dashboard_url
+      redirect_to documents_dashboard_url, notice: "Logged In!"
     else
       redirect_to login_url, alert: "Invalid user/password combination"
     end
