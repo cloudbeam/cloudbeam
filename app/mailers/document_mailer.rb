@@ -31,4 +31,11 @@ class DocumentMailer < ApplicationMailer
     @recipients = recipients
     mail to: email, subject: "#{document.name} has been deleted from your CloudBeam dashboard"
   end
+
+  def cleaned(email, document, recipients_not_downloaded, recipients_downloaded)
+    @document = document
+    @recipients_not_downloaded = recipients_not_downloaded
+    @recipients_downloaded = recipients_downloaded
+    mail to: email, subject: "#{document.name} has been deleted from your CloudBeam dashboard"
+  end
 end
