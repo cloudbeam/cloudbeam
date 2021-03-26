@@ -2,7 +2,7 @@
   <h5>Document Deleted from your Cloudbeam Dashboard</h5>
   <p><%= "Cloudbeam has automatically deleted #{@document.name} that you uploaded because you've reached the 30 day limit!" %></p>
   
-  <p><%= "You shared with a total of #{@recipients_not_downloaded.count + @recipents_downloaded.count} people" %></p>
+  <p><%= "You shared with a total of #{@recipients_not_downloaded.count + @recipients_downloaded.count} people" %></p>
   <p><%= "A total of #{@recipients_not_downloaded.count} people you shared with have NOT downloaded the document:" %></p>
   <ul>
     <% @recipients_not_downloaded.each do |recipient| %>

@@ -29,7 +29,6 @@ class DocumentMailer < ApplicationMailer
   def deleted(email, document, recipients)
     @document = document
     @recipients = recipients
-    byebug
     mail to: email, subject: "#{document.name} has been deleted from your CloudBeam dashboard"
   end
 

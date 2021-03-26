@@ -77,4 +77,10 @@ namespace :expired do
     end
     docs.size
   end
+
+  desc "call cleaned" 
+  task cleaned: "environment" do
+    doc = Document.where("id IS NOT NULL").first
+    DocumentMailer.cleaned('kaledoux@gmail.com', doc, [{email: "kaledoux@gmail.com"}],[{email: "kaledoux@gmail.com"}]).deliver_now
+  end
 end
