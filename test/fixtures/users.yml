@@ -4,6 +4,7 @@ one:
   id: 1
   email: vontest@example.com
   password_digest: <%= BCrypt::Password.create('password') %>
+  password_reset_token: <%= SecureRandom.urlsafe_base64 %>
 
 two:
   first_name: 'john'
