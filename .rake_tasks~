@@ -14,7 +14,6 @@ assets:precompile
 aws_record:migrate
 cache_digests:dependencies
 cache_digests:nested_dependencies
-cron_test:document_count
 current_data:report_attachments
 current_data:report_blobs
 current_data:report_document_recipients

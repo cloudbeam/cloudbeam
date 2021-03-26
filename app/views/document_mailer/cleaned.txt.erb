@@ -4,11 +4,11 @@ Document Deleted from your Cloudbeam Dashboard
 <%= "You shared with a total of #{@recipients_not_downloaded.count + @recipients_downloaded.count} people" %>
 <%= "A total of #{@recipients_not_downloaded.count} people you shared with have NOT downloaded the document:" %>
 <% @recipients_not_downloaded.each do |recipient| %>
-  -<%= recipient.email %>
+  -<%= recipient[:email] %>
 <% end %>
 <%= "The other #{@recipients_downloaded.count} people you shared with have downloaded the document:" %>
 <% @recipients_downloaded.each do |recipient| %>
-  <%= recipient.email %>
+  <%= recipient[:email] %>
 <% end %>
 
 Need to share again? Just reupload the file
