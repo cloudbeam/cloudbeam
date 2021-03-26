@@ -1,0 +1,27 @@
+<div class="user-msg">
+  <h5>Document Deleted from your Cloudbeam Dashboard</h5>
+  <p><%= "Cloudbeam has automatically deleted #{@document.name} that you uploaded because you've reached the 30 day limit!" %></p>
+  
+  <p><%= "You shared with a total of #{@recipients_not_downloaded.count + @recipents_downloaded.count} people" %></p>
+  <p><%= "A total of #{@recipients_not_downloaded.count} people you shared with have NOT downloaded the document:" %></p>
+  <ul>
+    <% @recipients_not_downloaded.each do |recipient| %>
+      <li>
+        <%= recipient.email %>
+      </li>
+    <% end %>
+  </ul>
+  <p><%= "The other #{@recipients_downloaded.count} people you shared with have downloaded the document:" %></p>
+  <ul>
+    <% @recipients_downloaded.each do |recipient| %>
+      <li>
+        <%= recipient.email %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class='cloudbeam-msg'>
+  <p><b>Need to share again?</b> Just reupload the file!</p>
+  <p><%= link_to "Upload a new file here:", "https://cloud-beam.com/upload" %></p>
+</div>
