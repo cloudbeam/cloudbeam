@@ -13,17 +13,17 @@
         <div class="rounded-md shadow-sm -space-y-px mb-2" id="login-inputs">
           <div class="field">
             <%= form.label :password %>
-            <%= form.password_field :password, placeholder: "Super Secret Password", :class => "appearance-none rounded-none relative block w-full px-3 py-2 border border-navy placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-navy focus:border-navy focus:z-10 sm:text-sm"%>
+            <%= form.password_field :password, id: "user_password", placeholder: "Super Secret Password", :class => "appearance-none rounded-none relative block w-full px-3 py-2 border border-navy placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-navy focus:border-navy focus:z-10 sm:text-sm"%>
           </div>
           <div class="field">
             <%= form.label :password_confirmation %>
-            <%= form.password_field :password_confirmation, placeholder: "Super Secret Password", :class => "appearance-none rounded-none relative block w-full px-3 py-2 border border-navy placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-navy focus:border-navy focus:z-10 sm:text-sm"%>
+            <%= form.password_field :password_confirmation, id: "password-confirmation", placeholder: "Super Secret Password", :class => "appearance-none rounded-none relative block w-full px-3 py-2 border border-navy placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-navy focus:border-navy focus:z-10 sm:text-sm"%>
           </div>
         </div>
         <div>
           <div class="actions mt-2">
             </span>
-            <%= form.submit "Update Password", id: "login-btn", :class => " mb-6 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange hover:bg-turqoise focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navy"%>
+            <%= form.submit "Update Password", id: "reset-btn", :class => " mb-6 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange hover:bg-turqoise focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navy"%>
           </div>
         </div>
         </div>
@@ -32,4 +32,4 @@
   </div>
 <% end %>
 
-<%= javascript_pack_tag("login_validation") %>
+<%= javascript_pack_tag("reset_password_validation") %>
