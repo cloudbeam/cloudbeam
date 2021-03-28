@@ -26,7 +26,7 @@ function validateInput(inputName) {
 
 for (let prop in inputs) {
 	let element = inputs[prop];
-	element.addEventListener('keypress', (e) => {
+	element.addEventListener('keyup', (e) => {
 		validateInput(prop);
 	});
 }
