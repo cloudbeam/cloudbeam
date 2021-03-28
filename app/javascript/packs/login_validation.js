@@ -26,8 +26,7 @@ function validateInput(inputName) {
 
 for (let prop in inputs) {
 	let element = inputs[prop];
-	element.addEventListener('blur', (e) => {
-		e.preventDefault();
+	element.addEventListener('keypress', (e) => {
 		validateInput(prop);
 	});
 }
