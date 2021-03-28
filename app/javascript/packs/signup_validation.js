@@ -30,8 +30,7 @@ function validateInput(inputName) {
 
 for (let inputName in inputs) {
 	let element = inputs[inputName];
-	element.addEventListener('blur', (e) => {
-		e.preventDefault();
+	element.addEventListener('keyup', (e) => {
 		validateInput(inputName);
 		if (inputName == 'passwordConfirmation') {
 			validateInput('password');
