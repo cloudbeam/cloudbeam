@@ -11,9 +11,10 @@ const inputs = {
 
 function validateInput(inputName) {
 	let inputElement = inputs[inputName];
-	let inputValue = inputElement.value;
+	let inputValue = inputElement ? inputElement.value : null;
 	let result = validationTable[inputName](inputValue);
-	let login = inputElement.id === 'user_email' || inputElement.id === 'user_password';
+	let login = inputElement.id === 'user_email' ||
+							inputElement.id === 'user_password';
 
 	removeValidationError(inputElement, login);
 	if (result !== true) {
@@ -26,8 +27,8 @@ function validateInput(inputName) {
 
 for (let prop in inputs) {
 	let element = inputs[prop];
-	element.addEventListener('blur', (e) => {
-		e.preventDefault();
+	if (!element) break;
+	element.addEventListener('keyup', (e) => {
 		validateInput(prop);
 	});
 }

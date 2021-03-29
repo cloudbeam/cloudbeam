@@ -7,7 +7,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should logout" do
-    delete logout_url
+    get logout_url
     assert_response :redirect
     assert_redirected_to download_url
   end

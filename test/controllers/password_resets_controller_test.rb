@@ -16,9 +16,8 @@ class PasswordResetsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "send reset routes to home" do
+  test "send reroute with flash msg" do
     post password_resets_path
     assert_response :redirect
-    assert_redirected_to download_url
   end
 end

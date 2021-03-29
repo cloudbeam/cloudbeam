@@ -19,9 +19,12 @@ function validateInput(inputName) {
 	let inputElement = inputs[inputName];
 	let inputValue = inputElement.value;
 	let result = validationTable[inputName](inputValue);
-	removeValidationError(inputElement);
+	let password = inputElement.id === 'user_password' ||
+								 inputElement.id === 'user_password_confirmation';
+
+	removeValidationError(inputElement, password);
 	if (result !== true) {
-		addValidationError(inputElement, result);
+		addValidationError(inputElement, result, false, password);
 		return false;
 	} else {
 		return true;
@@ -30,14 +33,9 @@ function validateInput(inputName) {
 
 for (let inputName in inputs) {
 	let element = inputs[inputName];
-	element.addEventListener('blur', (e) => {
-		e.preventDefault();
+
+	element.addEventListener('keyup', (e) => {
 		validateInput(inputName);
-		if (inputName == 'passwordConfirmation') {
-			validateInput('password');
-		} else if (inputName == 'password') {
-			validateInput('passwordConfirmation');
-		}
 	});
 }
 
