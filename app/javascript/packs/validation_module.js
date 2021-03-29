@@ -1,4 +1,4 @@
-function addValidationError(inputElement, validationError, login = false) {
+function addValidationError(inputElement, validationError, login=false, pword=false) {
 	// format input with Tailwinds consistent formatting
 	inputElement.classList.remove('border-navy');
 	inputElement.classList.add('text-red-600', 'border-red-600');
@@ -29,13 +29,16 @@ function addValidationError(inputElement, validationError, login = false) {
 		if (login) {
 			let loginForm = document.querySelector('#login-inputs');
 			loginForm.insertAdjacentElement('afterend', warningDialogue);
+		} else if (pword) {
+			let passwordInputs = document.querySelector('#password-inputs');
+			passwordInputs.insertAdjacentElement('afterend', warningDialogue);
 		} else {
 			inputElement.insertAdjacentElement('afterend', warningDialogue);
 		}
 	}
 }
 
-function removeValidationError(inputElement, login = false) {
+function removeValidationError(inputElement, login=false) {
 	inputElement.classList.remove('text-red-600', 'border-red-600');
 	inputElement.classList.add('border-navy');
 	let warningDialogue = inputElement.nextElementSibling;

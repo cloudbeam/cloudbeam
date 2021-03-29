@@ -19,28 +19,30 @@
       <div class="rounded-md shadow-sm -space-y-px">
         <div class="field">
           <%= form.label :first_name, :class => "block text-sm font-medium text-gray-700" %>
-          <%= form.text_field :first_name, placeholder: "Jane", :class => "appearance-none rounded-md relative block w-full px-3 py-2 border border-navy placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-navy focus:border-navy focus:z-10 sm:text-sm" %>
+          <%= form.text_field :first_name, placeholder: "Jane", :class => "mb-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-navy placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-navy focus:border-navy focus:z-10 sm:text-sm" %>
+        </div>
+        <div class="field mt-2">
+          <%= form.label :last_name, :class => "mt-2 block text-sm font-medium text-gray-700" %>
+          <%= form.text_field :last_name, placeholder: "Doe", :class => "mb-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-navy placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-navy focus:border-navy focus:z-10 sm:text-sm" %>
         </div>
         <div class="field">
-          <%= form.label :last_name, :class => "block text-sm font-medium text-gray-700" %>
-          <%= form.text_field :last_name, placeholder: "Doe", :class => "appearance-none rounded-md relative block w-full px-3 py-2 border border-navy placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-navy focus:border-navy focus:z-10 sm:text-sm" %>
+          <%= form.label :email, :class => "mt-2 block text-sm font-medium text-gray-700" %>
+          <%= form.text_field :email, placeholder: "your_email_here@example.com", :class => "mb-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-navy placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-navy focus:border-navy focus:z-10 sm:text-sm" %>
         </div>
-        <div class="field">
-          <%= form.label :email, :class => "block text-sm font-medium text-gray-700" %>
-          <%= form.text_field :email, placeholder: "your_email_here@example.com", :class => "appearance-none rounded-md relative block w-full px-3 py-2 border border-navy placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-navy focus:border-navy focus:z-10 sm:text-sm" %>
-        </div>
-        <div class="field">
-          <%= form.label :password, :class => "block text-sm font-medium text-gray-700" %>
-          <%= form.password_field :password, placeholder: "Super Secret Password", :class => "appearance-none relative block w-full px-3 py-2 border border-navy placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-navy focus:border-navy focus:z-10 sm:text-sm"%>
-        </div>
-        <div class="field">
-          <%= form.label :password_confirmation, :class => "sr-only" %>
-          <%= form.password_field :password_confirmation, placeholder: "Confirm Password", :class => "appearance-none relative block w-full px-3 py-2 border border-navy placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-navy focus:border-navy focus:z-10 sm:text-sm"%>
+        <div id="password-inputs">
+          <div class="field">
+            <%= form.label :password, :class => "mt-2 block text-sm font-medium text-gray-700" %>
+            <%= form.password_field :password, placeholder: "Super Secret Password", :class => "appearance-none relative block w-full px-3 py-2 border border-navy placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-navy focus:border-navy focus:z-10 sm:text-sm"%>
+          </div>
+          <div class="field">
+            <%= form.label :password_confirmation, :class => "sr-only" %>
+            <%= form.password_field :password_confirmation, placeholder: "Confirm Password", :class => "mb-1 appearance-none relative block w-full px-3 py-2 border border-navy placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-navy focus:border-navy focus:z-10 sm:text-sm"%>
+          </div>
         </div>
       </div>
 
       <!-- if we want to include this functionality at a later date -- >
-      <!-- 
+      <!--
       <div class="flex items-center justify-between">
         <div class="flex items-center">
           <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
