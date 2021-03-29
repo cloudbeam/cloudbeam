@@ -12,7 +12,7 @@ class DocumentMailer < ApplicationMailer
     @download_code = download_code
     @document = document
     @sender = sender
-    @expiration = document[:uploaded_at] + 30.days
+    @expiration = get_document_expiration(document)
 
     mail to: recipient_email, subject: "#{sender.first_name} #{sender.last_name} has shared a file: #{document.name}!"
   end
@@ -21,7 +21,7 @@ class DocumentMailer < ApplicationMailer
     @document = document
     @recipient_emails = recipient_emails
     @message = message
-    @expiration = document[:uploaded_at] + 30.days
+    @expiration = get_document_expiration(document)
 
     mail to: email, subject: "You shared the file #{document.name} with #{recipient_emails.count} people"
   end
@@ -37,5 +37,12 @@ class DocumentMailer < ApplicationMailer
     @recipients_not_downloaded = recipients_not_downloaded
     @recipients_downloaded = recipients_downloaded
     mail to: email, subject: "#{document.name} has been deleted from your CloudBeam dashboard"
+  end
+
+  private
+
+  def get_document_expiration(document)
+    unformatted = document[:uploaded_at] + 30.days
+    return unformatted.localtime.to_formatted_s(:long)
   end
 end
