@@ -2,7 +2,11 @@ import { addValidationError, removeValidationError, validationTable } from './va
 
 document.querySelector('#clear').addEventListener('click', (e) => {
 	e.preventDefault();
-	document.querySelector('#message').value = '';
+	let response = confirm("Are you sure you want to clear the entire form?");
+	if (response == true) {
+		document.querySelector('#message').value = '';
+		document.querySelector('#recipients').value = '';
+	}
 });
 
 const emailList = document.querySelector('#recipients');
