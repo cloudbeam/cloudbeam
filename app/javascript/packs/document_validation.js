@@ -22,13 +22,21 @@ function validateInput(inputName) {
 	}
 }
 
-for (let prop in inputs) {
-	let element = inputs[prop];
-	element.addEventListener('blur', (e) => {
-		e.preventDefault();
-		validateInput(prop);
-	});
-}
+fileName.addEventListener('keyup', (e) => {
+	e.preventDefault();
+	validateInput('fileName');
+});
+uploadFile.addEventListener('blur', (e) => {
+	e.preventDefault();
+	validateInput('uploadFile');
+});
+// for (let prop in inputs) {
+// 	let element = inputs[prop];
+// 	element.addEventListener('blur', (e) => {
+// 		e.preventDefault();
+// 		validateInput(prop);
+// 	});
+// }
 
 submitButton.addEventListener('click', (e) => {
 	for (let inputName in inputs) {
