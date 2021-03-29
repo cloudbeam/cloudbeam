@@ -14,8 +14,8 @@ class DocumentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "index should raise error with unauthenticated user" do
-    delete logout_url
-    get documents_url
+    get logout_url
+    #get documents_url
     assert_response :redirect
   end
 
