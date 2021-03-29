@@ -12,11 +12,14 @@ const inputs = {
 function validateInput(inputName) {
 	let inputElement = inputs[inputName];
 	let inputValue = inputElement ? inputElement.value : null;
+	let warningDialogue = inputElement.nextElementSibling;
 	let result = validationTable[inputName](inputValue);
-	let login = inputElement.id === 'user_email' ||
-							inputElement.id === 'user_password';
+	let login = inputElement.id === 'user_email' || inputElement.id === 'user_password';
 
-	removeValidationError(inputElement, login);
+	if (warningDialogue) {
+		removeValidationError(inputElement, login);
+	}
+
 	if (result !== true) {
 		addValidationError(inputElement, result, login);
 		return false;
