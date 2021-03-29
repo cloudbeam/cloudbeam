@@ -5,7 +5,7 @@ document.querySelector('#clear').addEventListener('click', (e) => {
 	document.querySelector('#message').value = '';
 });
 
-const emailList = document.querySelector('#recipients');
+const emailList = document.querySelector('#email-list');
 const submitButton = document.querySelector('#submit_button');
 
 const inputs = {
@@ -28,7 +28,7 @@ function validateInput(inputName) {
 for (let prop in inputs) {
 	let element = inputs[prop];
 	if (!element) continue;
-	element.addEventListener('blur', (e) => {
+	element.addEventListener('keyup', (e) => {
 		e.preventDefault();
 		validateInput(prop);
 	});

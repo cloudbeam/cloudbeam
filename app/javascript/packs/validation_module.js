@@ -1,4 +1,4 @@
-function addValidationError(inputElement, validationError, login=false, pword=false) {
+function addValidationError(inputElement, validationError, login = false, pword = false) {
 	// format input with Tailwinds consistent formatting
 	inputElement.classList.remove('border-navy');
 	inputElement.classList.add('text-red-600', 'border-red-600');
@@ -27,8 +27,9 @@ function addValidationError(inputElement, validationError, login=false, pword=fa
 		);
 		// insert after related input
 		if (login) {
-			let loginForm = document.querySelector('#login-inputs');
-			loginForm.insertAdjacentElement('afterend', warningDialogue);
+			inputElement.insertAdjacentElement('afterend', warningDialogue);
+			// let loginForm = document.querySelector('#login-inputs');
+			// loginForm.insertAdjacentElement('afterend', warningDialogue);
 		} else if (pword) {
 			let passwordInputs = document.querySelector('#password-inputs');
 			passwordInputs.insertAdjacentElement('afterend', warningDialogue);
@@ -38,17 +39,14 @@ function addValidationError(inputElement, validationError, login=false, pword=fa
 	}
 }
 
-function removeValidationError(inputElement, login=false) {
+function removeValidationError(inputElement, login = false) {
 	inputElement.classList.remove('text-red-600', 'border-red-600');
 	inputElement.classList.add('border-navy');
 	let warningDialogue = inputElement.nextElementSibling;
-	let loginAlerts = Array.from(document.querySelectorAll('.invalid'));
 
-	if (login && loginAlerts) {
-		loginAlerts.forEach((alert) => alert.remove());
-	}
-
-	if (warningDialogue && !login) {
+	if (login) {
+		warningDialogue.remove();
+	} else if (warningDialogue && !login) {
 		warningDialogue.remove();
 	}
 }
