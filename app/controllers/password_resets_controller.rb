@@ -2,7 +2,15 @@ class PasswordResetsController < ApplicationController
   def create
     user = User.find_by(email: params[:email])
     user.send_password_reset if user
-    redirect_to download_url, notice: 'Email sent with password reset instructions.'
+
+    if user
+      user.send_password_reset
+      flash[:notice] = "An email has been sent to #{params[:email]} with password reset instructions."
+      redirect_to login_url
+    else
+      flash[:alert] = "We have no account associated with #{params[:email]}. Sign up to start beaming!"
+      redirect_to controller: 'users', action: 'new'
+    end
   end
 
   def edit
