@@ -108,19 +108,6 @@ class DocumentsController < ApplicationController
 
   end
 
-  # PATCH/PUT /documents/1 or /documents/1.json
-  def update
-    respond_to do |format|
-      if @document.update(document_params)
-        format.html { redirect_to @document, success: 'Document was successfully updated.' }
-        format.json { render :show, status: :ok, location: @document }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @document.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /documents/1 or /documents/1.json
   def destroy
     # remove active storage entry and trigger removal from S3

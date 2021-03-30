@@ -2,7 +2,7 @@ one:
   first_name: 'bob'
   last_name: 'doe'
   id: 1
-  email: vontest@example.com
+  email: 'vontest@example.com'
   password_digest: <%= BCrypt::Password.create('password') %>
   password_reset_token: <%= SecureRandom.urlsafe_base64 %>
 
@@ -10,5 +10,12 @@ two:
   first_name: 'john'
   last_name: 'doe'
   id: 2
-  email: john@gmail.com
+  email: 'john@gmail.com'
+  password_digest: <%= BCrypt::Password.create('test') %>
+
+three:
+  first_name: 'CloudBeam'
+  last_name: 'Tester'
+  id: 3
+  email: 'demo@cloud-beam.com'
   password_digest: <%= BCrypt::Password.create('test') %>

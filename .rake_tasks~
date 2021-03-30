@@ -38,6 +38,7 @@ db:setup
 db:structure:dump
 db:structure:load
 db:version
+demo:remove_demo_docs
 document:reset[id]
 dynamo_db:session_store:clean
 expired:cleaned
