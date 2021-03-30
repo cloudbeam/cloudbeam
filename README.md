@@ -1,7 +1,7 @@
 ![Status](https://github.com/kaledoux/cloudbeam/actions/workflows/verify.yml/badge.svg)
 
 # Cloudbeam  :cloud:
-:hammer: Built with
+## :hammer: Built with
 - [Rails 6](https://guides.rubyonrails.org/) and Ruby 2.6.6
 - [Heroku](https://www.heroku.com/)
 - [AWS S3](https://aws.amazon.com/s3) storage
@@ -16,12 +16,13 @@
 - user: demo@cloud-beam.com
 - password: 'Testing Our App 123#'
 
+## About Cloudbeam
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
 ## Authors
 - [Kyle LeDoux](https://github.com/kaledoux) - kaledoux@gmail.com
 - [Jimmy Zheng](https://github.com/jimzhe842) - jimmy_842@berkeley.edu
 - [Elizabeth Tackett](http://github.com/emctackett) - emctackett@gmail.com
-
----
 
 ## Development notes :computer:
 
@@ -43,5 +44,5 @@
 ### Testing locally
 - `bin/rails t`
 
-### Heroku from the command line (must be a collaborator):
+### Heroku data from the command line (must be a collaborator):
 `heroku pg:psql`
