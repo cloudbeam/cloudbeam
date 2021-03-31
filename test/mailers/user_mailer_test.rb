@@ -10,7 +10,7 @@ class UserMailerTest < ActionMailer::TestCase
     assert_equal "Password Reset", mail.subject
     assert_equal ["vontest@example.com"], mail.to
     assert_equal ["teamcloudbeam@cloud-beam.com"], mail.from
-    assert_match(/To reset your CloudBeam password/, mail.body.encoded)
+    assert_match(/To reset your Cloudbeam password/, mail.body.encoded)
   end
 
 end

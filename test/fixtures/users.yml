@@ -14,7 +14,7 @@ two:
   password_digest: <%= BCrypt::Password.create('test') %>
 
 three:
-  first_name: 'CloudBeam'
+  first_name: 'Cloudbeam'
   last_name: 'Tester'
   id: 3
   email: 'demo@cloud-beam.com'

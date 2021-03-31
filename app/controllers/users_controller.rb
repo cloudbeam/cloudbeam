@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       if @user.save
         session[:user_id] = @user.id
         cookies.signed[:user_id] = @user.id
-        format.html { redirect_to documents_dashboard_url, notice: "CloudBeam Account Created!" }
+        format.html { redirect_to documents_dashboard_url, notice: "Cloudbeam Account Created!" }
         format.json { render :show, status: :created, location: @user }
       else
         # byebug
