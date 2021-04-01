@@ -1,81 +1,57 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
-<div class="bg-navy shadow overflow-hidden sm:rounded-md ">
-  <ul class="divide-y divide-gray-200 grid grid-cols-4 sm:grid-rows{6} gap-2">
-    <div class="col-span-4 m-6 px-4 p-4 sm:px-6 first:bg-navy text-white rounded-md bg-cloud-gen">
-      <li>
-        <div class="sm:flex">
-          <div>
-            <h4 class="text-4xl text-center font-bold ">Welcome to Cloudbeam!</h4>
-            </br>
-            <p class="text-sm mt-1">We believe that <strong>sharing files with your team should be easy</strong>. That’s why we built Cloudbeam!</p> 
-            <p class="text-sm mt-1">So instead of worrying about uploading a file to you drive, tracking your storage space, distributing share links, monitoring who has accessed your share, and the many, many other small problems that come with this seemingly simple task, <em>leave it all to us!</em></p>
-            <p class="text-sm mt-1">Bulky email attachment that won’t cooperate? Company’s cloud drive filled to the rafters? Tired of tracking? <strong>Cloudbeam it</strong>!</p>
-            </p>
-          </div>
-        </div>
-      </li> 
+<div class="mb-6 px-4 p-4 sm:px-6 bg-navy text-center text-white rounded-md bg-cloud-gen">
+    <h2 class="text-4xl text-center font-bold ">Welcome to Cloudbeam!</h2>
+    </br>
+    <p class="text-sm mt-1">We believe that <strong>sharing files with your team should be easy</strong>. That’s why we built Cloudbeam!</p> 
+    <p class="text-sm mt-1">So instead of worrying about uploading a file to you drive, tracking your storage space, distributing share links, monitoring who has accessed your share, and the many, many other small problems that come with this seemingly simple task, <em>leave it all to us!</em></p>
+    <p class="text-sm mt-1">Bulky email attachment that won’t cooperate? Company’s cloud drive filled to the rafters? Tired of tracking? <strong>Cloudbeam it</strong>!</p>
+    </p>        
+    <div class="pt-5">
+      <h3 class="text-lg text-center font-bold ">How Do I Cloudbeam?</h3>
+      <p class="text-sm mt-1">Wondering how you can stop fussing with cloud drives and start Cloudbeaming? (Yes, you can use it as a verb from now on, we’re cool with that)</p> 
+      <p class="text-sm mt-1">Read on future Cloudbeam enthusiast; we’ll let you know how we do things!</p>
+      </p>
     </div>
-    <div class="col-span-4 lg:col-span-2 lg:row-span-1 m-2 px-4 py-4 sm:px-6 bg-powder_blue bg-opacity-80 hover:bg-opacity-100 rounded-md">
-      <li>
-        <div class="sm:flex">
-          <div>
-            <h4 class="text-lg text-center font-bold ">How Do I Cloudbeam?</h4>
-            <p class="text-sm mt-1">Wondering how you can stop fussing with cloud drives and start Cloudbeaming? (Yes, you can use it as a verb from now on, we’re cool with that)</p> 
-            <p class="text-sm mt-1">Read on future Cloudbeam enthusiast; we’ll let you know how we do things!</p>
-            </p>
-          </div>
-        </div>
-      </li> 
+</div>
+<div class="grid grid-cols-10">
+  <div class="col-span-10 relative md:sticky md:col-span-5 h-screen inset-0 flex justify-center items-center">
+    <div class="absolute p-5 text-white text-6xl">
+      <h1>Cloudbeam</h1>
+      <p class="text-2xl">your simple storage solution</p>
     </div>
-    <div class="col-span-4 lg:col-span-3 lg:row-span-2 m-2 px-4 py-4 sm:px-6 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-md">
-      <li>
-        <div class="sm:flex">
-          <div>
-            <h4 class="text-lg text-center font-bold ">Download and Done</h4>
-            <p class="text-sm mt-1">When you upload and share a file, it will be active and available to download, <strong>until</strong> <em>everyone you shared it with has downloaded it</em> or until <em>30 days have elapsed</em> since the date it was uploaded.</p> 
-            <p class="text-sm mt-1">Cloudbeam is meant to be a rapid, temporary sharing utility, so we don’t like to keep files hanging around gathering dust in our space-age cloud. Does the prospect of sorting through heaps of old, abandoned files give you the chills, too? We thought so. That’s why <em>we keep our cloud tidy</em> and clean out the old, lonely files.</p> 
-            <p class="text-sm mt-1">While the file is active, you can share it as many times, to as many people as you like. However, once everyone you shared the file with has downloaded it using the unique link we sent them, the file gets deleted, automatically.</p>
-            <p class="text-sm mt-1">No need to worry about managing storage space or manually deleting it. <em>We'll do that for you</em>!</p>
-          </div>
-        </div>
-      </li>
+    <%= image_tag 'placeholder-bg.jpg', class: "object-cover w-full h-full"%>
+  </div>
+  <div class="col-span-10 w-full md:col-span-5 ml-auto">
+    <div class="bg-powder_blue bg-opacity-70 hover:bg-opacity-100 h-screen flex justify-center items-center flex-col space-y-8 p-10">
+      <h4 class="text-4xl mb-5 text-center font-bold ">Download and Done</h4>
+      <p class="text-sm">When you upload and share a file, it will be active and available to download, <strong>until</strong> <em>everyone you shared it with has downloaded it</em> or until <em>30 days have elapsed</em> since the date it was uploaded.</p> 
+      <p class="text-sm">Cloudbeam is meant to be a rapid, temporary sharing utility, so we don’t like to keep files hanging around gathering dust in our space-age cloud. Does the prospect of sorting through heaps of old, abandoned files give you the chills, too? We thought so. That’s why <em>we keep our cloud tidy</em> and clean out the old, lonely files.</p> 
+      <p class="text-sm">While the file is active, you can share it as many times, to as many people as you like. However, once everyone you shared the file with has downloaded it using the unique link we sent them, the file gets deleted, automatically.</p>
+      <p class="text-sm">No need to worry about managing storage space or manually deleting it. <em>We'll do that for you</em>!</p>
     </div>
-    <div class="col-span-4 lg:col-span-1 lg:row-span-3 lg:col-start-4 lg:row-start-2 m-2 px-4 py-4 sm:px-6 bg-powder_blue bg-opacity-80 hover:bg-opacity-100 rounded-md">
-      <li>
-        <div class="sm:flex">
-          <div>
-            <h4 class="text-lg text-center font-bold ">One Code, One Download</h4>
-            <p class="text-sm mt-1">The unique share code can be used to download the file ONE TIME and one time only, no exceptions!</p> 
-            <p class="text-sm mt-1">This means that once they download the file, their unique code will be made inactive. No need to worry about links being passed around outside your intended share group!</p> 
-          </div>
-        </div>
-      </li> 
+    <div class="bg-orange bg-opacity-80 hover:bg-opacity-100 text-navy hover:text-black h-screen flex justify-center items-center flex-col space-y-8 p-10">
+      <h5 class="text-4xl mb-5 text-center font-bold">One Code, One Download</h5>
+      <p class="text-sm">The unique share code can be used to download the file ONE TIME and one time only, no exceptions!</p> 
+      <p class="text-sm">This means that once they download the file, their unique code will be made inactive. No need to worry about links being passed around outside your intended share group!</p> 
     </div>
-    <div class="col-span-4 lg:col-span-2 lg:row-span-2 lg:col-start-3 m-2 px-4 py-4 sm:px-6 bg-opacity-80 hover:bg-opacity-100 bg-powder_blue rounded-md">
-    <li>
-        <div class="sm:flex">
-          <div>
-            <h4 class="text-lg text-center font-bold ">Emails, Automated</h4>
-            <p class="text-sm mt-1">You can choose who will get to download your file. All you need to do is give us their email address. <em>Quick</em> and <em>Painless</em>!</p> 
-            <p class="text-sm mt-1">We’ll set everything up in the background and they’ll receive an email from us with their unique share code and any extra info you want to pass along to them in a custom message.</p> 
-            <p class="text-sm mt-1">For each file you upload to Cloudbeam, we'll keep track of who has received a download link, and more importantly, who has used their link to download the file.We'll even send out a reminder email to those procrastinators on the list if they haven’t downloaded the file and we are about to do some cloud clean up.</p>
-            <p class="text-sm mt-1">When everyone on your share list has downloaded the content, we'll send you an email to let you know!</p>
-          </div>
-        </div>
-      </li>
+    <div class="bg-navy bg-opacity-80 hover:bg-opacity-100 hover:text-white h-screen flex justify-center items-center flex-col space-y-8 p-10">
+      <h6 class="text-4xl mb-5 text-center font-bold">Emails, Automated</h6>
+      <p class="text-sm">You can choose who will get to download your file. All you need to do is give us their email address. <em>Quick</em> and <em>Painless</em>!</p> 
+      <p class="text-sm">We’ll set everything up in the background and they’ll receive an email from us with their unique share code and any extra info you want to pass along to them in a custom message.</p> 
+      <p class="text-sm">For each file you upload to Cloudbeam, we'll keep track of who has received a download link, and more importantly, who has used their link to download the file.We'll even send out a reminder email to those procrastinators on the list if they haven’t downloaded the file and we are about to do some cloud clean up.</p>
+      <p class="text-sm">When everyone on your share list has downloaded the content, we'll send you an email to let you know!</p>
     </div>
-    <div class="col-span-4 lg:col-span-2 lg:row-span-2 lg:col-start-1 lg:row-start-5 m-2 px-4 py-4 sm:px-6 bg-light_navy bg-opacity-80 hover:bg-opacity-100 rounded-md">
-      <li>
-        <div class="sm:flex">
-          <div>
-            <h4 class="text-lg text-center font-bold ">Forget About a File? Cleanup Is On Us!</h4>
-            <p class="text-sm mt-1">Every file that you upload to our server will be stored in our cloud for <strong>a maximum of 30 days</strong>; after that month has passed, <em>we'll remove the file automatically</em>. Remember, we hate seeing old files left abandoned and gathering dust...</p> 
-            <p class="text-sm mt-1">Don't worry though, <em>when we clean up</em> a forgotten file, <em>we'll send you an email</em> to let you know that we spruced up!</p> 
-            <p class="text-sm mt-1">That means that if you send out a link that never gets used, or you just forget about a file, you don't need to worry about that file hanging around. <strong>Cleanup is on us</strong>!</p>
-          </div>
-        </div>
-      </li>
+    <div class="bg-turqoise bg-opacity-80 hover:bg-opacity-100 hover:text-white h-screen flex justify-center items-center flex-col space-y-8 p-10">
+      <h7 class="text-4xl mb-5 text-center font-bold">Forget About a File? Cleanup Is On Us!</h7>
+      <p class="text-sm">Every file that you upload to our server will be stored in our cloud for <strong>a maximum of 30 days</strong>; after that month has passed, <em>we'll remove the file automatically</em>. Remember, we hate seeing old files left abandoned and gathering dust...</p> 
+      <p class="text-sm">Don't worry though, <em>when we clean up</em> a forgotten file, <em>we'll send you an email</em> to let you know that we spruced up!</p> 
+      <p class="text-sm">That means that if you send out a link that never gets used, or you just forget about a file, you don't need to worry about that file hanging around. <strong>Cleanup is on us</strong>!</p>
     </div>
-  </ul>
+    <div class="bg-navy text-white h-screen flex justify-center items-center flex-col space-y-8 p-10">
+      <h7 class="text-4xl mb-5 text-center font-bold">Curious to know more?</h7>
+      <p class="text-sm">Want to get some behind-the-scenes info on how we went about making Cloudbeam?</p> 
+      <p class="text-sm">Check the link below to see a quick explanation of how we tackled some of the issues behind making this whole thing possible.</p> 
+      <%= link_to 'How we made Cloudbeam', downloads_url, class: "relative top-32 text-xl font-bold bg-turqoise bg-opacity-70 hover:bg-opacity-100 p-4 rounded-md"%>
+    </div
+  </div>
 </div>
 
