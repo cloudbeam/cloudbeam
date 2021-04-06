@@ -1,3 +1,4 @@
+
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
@@ -23,9 +24,9 @@ module.exports = {
 				powder_blue : '#C8EFF9',
 				white       : '#ffffff'
 			},
-			backgroundImage : (theme) => ({
-				'cloud-gen' : "url('./../../assets/images/cloud-background.jpg')"
-			})
+			// backgroundImage : (theme) => ({
+			// 	'cloud-gen' : "url('./../../assets/images/cloud-background.jpg')"
+			// })
 		}
 	},
 	variants : {
