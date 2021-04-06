@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'downloads#index', as: 'download'
 
   get 'about', to: 'about#show', as: 'about'
+  get 'team', to: 'team#index', as: 'team'
 
   get 'dashboard', to: 'documents#index', as: 'documents_dashboard'
   get 'dashboard/:id', to: 'documents#show', as: 'document_dashboard'
