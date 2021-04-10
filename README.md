@@ -1,6 +1,8 @@
 ![Status](https://github.com/kaledoux/cloudbeam/actions/workflows/verify.yml/badge.svg)
 
 # Cloudbeam  :cloud:
+<img src="home.png" width=500 alt="Cloudbeam homepage">
+
 ## :hammer: Built with
 - [Rails 6](https://guides.rubyonrails.org/) and Ruby 2.6.6
 - [Heroku](https://www.heroku.com/)
@@ -50,11 +52,15 @@ To broadcast user-specific live notifications, we had to configure WebSocket to 
 
 On the client side, we needed to make sure that the user was displaying the correct file dashboard page, as the server broadcasts data based on a particular file.
 
+<img src="track.png" width=500 alt="Cloudbeam homepage">
+
 ### Configuring Mailgun Credentials
 
 The automation of tracking and notification is an important component of the application. To create a smooth, automated email notification and distribution system, we used Mailgun SMTP. One challenge we faced with this setup though was securing the credentials required for complete functionality in both development and production environments. 
 
 In the development environment, we stored the credentials in the encrypted `credentials.yml.enc` file and referenced the variables stored therein under the `development.rb` file in our SMTP configuration, like so: `user_name: Rails.application.credentials[:mailgun][:username]`. This kept the credentials secure and easily accessible during development. As we deployed this app through Heroku, we made use of Heroku's configuration variables to set and access these credentials in our production environment. 
+
+<img src="share.png" width=500 alt="Cloudbeam homepage">
 
 ### Recurring Rake Tasks with Heroku Scheduler
 
