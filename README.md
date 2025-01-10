@@ -12,6 +12,8 @@
 - [Mailgun](https://www.mailgun.com/)
 
 ## Visit on the web :earth_americas:
+As of January 9th, 2025, we are no longer maintaining this site. Therefore, the below link will not work. Please refer to the screenshots in this README.md for reference.
+
 [cloud-beam.com](https://www.cloud-beam.com)
 
 ## Try it out using our demo credentials :key:
