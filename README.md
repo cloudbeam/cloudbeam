@@ -1,3 +1,5 @@
+# ⚠️ This project is no longer actively maintained ⚠️
+
 ![Status](https://github.com/kaledoux/cloudbeam/actions/workflows/verify.yml/badge.svg)
 
 # Cloudbeam  :cloud:
@@ -5,6 +7,7 @@
 
 ## :hammer: Built with
 - [Rails 6](https://guides.rubyonrails.org/) and Ruby 2.6.6
+- [Tailwind CSS](https://v2.tailwindcss.com/docs)
 - [Heroku](https://www.heroku.com/)
 - [AWS S3](https://aws.amazon.com/s3) storage
 - [AWS Cloudfront](https://aws.amazon.com/cloudfront/) distribution
@@ -12,6 +15,8 @@
 - [Mailgun](https://www.mailgun.com/)
 
 ## Visit on the web :earth_americas:
+:stop_sign: As of January 9th, 2025, we are no longer maintaining this site. Therefore, the below link will not work. Please refer to the screenshots in this README.md for reference.
+
 [cloud-beam.com](https://www.cloud-beam.com)
 
 ## Try it out using our demo credentials :key:
@@ -70,7 +75,7 @@ These tasks are defined in Rails as custom Rake tasks, grouped under relevant na
 
 ## Authors
 - [Kyle LeDoux](https://github.com/kaledoux) - kaledoux@gmail.com
-- [Jimmy Zheng](https://github.com/jimzhe842) - jimmy_842@berkeley.edu
+- [Jimmy Zheng](https://github.com/jimzhe842) - jimzhe842@gmail.com
 - [Elizabeth Tackett](http://github.com/emctackett) - emctackett@gmail.com
 
 ## Development notes :computer:
