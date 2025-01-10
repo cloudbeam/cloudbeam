@@ -7,6 +7,7 @@
 
 ## :hammer: Built with
 - [Rails 6](https://guides.rubyonrails.org/) and Ruby 2.6.6
+- [Tailwind CSS](https://v2.tailwindcss.com/docs)
 - [Heroku](https://www.heroku.com/)
 - [AWS S3](https://aws.amazon.com/s3) storage
 - [AWS Cloudfront](https://aws.amazon.com/cloudfront/) distribution
