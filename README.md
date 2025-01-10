@@ -75,7 +75,7 @@ These tasks are defined in Rails as custom Rake tasks, grouped under relevant na
 
 ## Authors
 - [Kyle LeDoux](https://github.com/kaledoux) - kaledoux@gmail.com
-- [Jimmy Zheng](https://github.com/jimzhe842) - jimmy_842@berkeley.edu
+- [Jimmy Zheng](https://github.com/jimzhe842) - jimzhe842@gmail.com
 - [Elizabeth Tackett](http://github.com/emctackett) - emctackett@gmail.com
 
 ## Development notes :computer:
