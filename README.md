@@ -1,3 +1,5 @@
+# ⚠️ This project is no longer actively maintained ⚠️
+
 ![Status](https://github.com/kaledoux/cloudbeam/actions/workflows/verify.yml/badge.svg)
 
 # Cloudbeam  :cloud:
